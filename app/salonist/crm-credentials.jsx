@@ -42,7 +42,7 @@ export async function upsertCrmCredentials(data) {
 /**
  * Get CRM credentials by shop domain.
  */
-export async function getCrmCredentialsByShop(shop) {
+export async function GetCrmCredentialsByShop(shop) {
   try {
     return await prisma.crmCredential.findUnique({
       where: { shop },

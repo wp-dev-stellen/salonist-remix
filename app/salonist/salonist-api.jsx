@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { upsertCrmCredentials } from './crm-credentials'; // Assuming you are using a named export
 
+
 const API_LOGIN = 'https://salonist.io/secureweb/login';
+const API_SERVICE = 'https://salonist.io/wordpressapi/services';
+const API_PRODUCT = 'https://salonist.io/wordpressapi/products';
+const API_PACKAGES = 'https://salonist.io/wordpressapi/packages';
 
 /**
  * Logs into Salonist using email and password
@@ -10,21 +14,16 @@ const API_LOGIN = 'https://salonist.io/secureweb/login';
  * @param {string} shop
  * @returns {Promise<object>} Salonist login result
  */
-export default async function salonistLogin(email, password, shop) {
-  console.log(shop,'api')
+export  async function salonistLogin(email, password, shop) {
+ 
   try {
     const data = JSON.stringify({ email, password });
-
-    // Make the login request
     const response = await axios.post(API_LOGIN, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    console.log("API response -", response.data);
-
-    // Check if login failed based on Salonist's response
     if (response.data?.failure) {
       return {
         success: false,
@@ -51,3 +50,106 @@ export default async function salonistLogin(email, password, shop) {
     };
   }
 }
+
+
+/**
+ * Fetches services data from Salonist API using domainId
+ * @param {string} domainId
+ * @returns {Promise<object>} Salonist service data
+ */
+export async function fetchSalonistServices(domainId) {
+  try {
+    const formData = new FormData();
+    formData.append('domainId', domainId);
+
+    const response = await axios.post(API_SERVICE, formData); // No manual headers
+
+    if (response.data?.status === 'error') {
+      return {
+        success: false,
+        error: response.data.message || 'Failed to fetch services',
+      };
+    }
+
+    return {
+      success: true,
+      data: response.data.services,
+      count: response.data.count,
+    };
+  } catch (error) {
+    console.error('Salonist services fetch error:', error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message || 'Something went wrong',
+    };
+  }
+}
+
+
+/**
+ * Fetches products data from Salonist API using domainId
+ * @param {string} domainId
+ * @returns {Promise<object>} Salonist product data
+ */
+export async function fetchSalonistProducts(domainId) {
+  try {
+    const data = new FormData();
+    data.append('domainId', domainId); 
+
+    const response = await axios.post(API_PRODUCT, data);
+
+    if (response.data?.failure) {
+      return {
+        success: false,
+        error: response.data.failure || "Failed to fetch products",
+      };
+    }
+
+    return {
+      success: true,
+      data: response.data,
+      count: response.data.count,
+    };
+  } catch (error) {
+    console.error("Salonist products fetch error:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message || "Something went wrong",
+    };
+  }
+}
+
+/**
+ * Fetches packages data from Salonist API using domainId
+ * @param {string} domainId
+ * @returns {Promise<object>} Salonist package data
+ */
+export async function fetchSalonistPackages(domainId) {
+  try {
+    const data = new FormData();
+    data.append('domainId', domainId);  // Sending domainId instead of shop
+
+    const response = await axios.post(API_PACKAGES, data);
+
+    if (response.data?.status == 'error') {
+      return {
+        success: false,
+        error: response.data.message || "Failed to fetch packages",
+      };
+    }
+
+    return {
+      success: true,
+      data: response.data,
+      count: response.data.count,
+    };
+  } catch (error) {
+    console.error("Salonist packages fetch error:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message || "Something went wrong",
+    };
+  }
+}
+
+

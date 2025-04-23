@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from "react";
-import { useActionData, Form,useNavigation  } from "@remix-run/react";
+import { useActionData, Form,useNavigation,useLoaderData   } from "@remix-run/react";
 import { data } from "@remix-run/node";  // Use 'json' from Remix
 import {
   Page,
@@ -12,14 +12,13 @@ import {
   Spinner,
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server";
-import salonistLogin from "../salonist/salonist-api.jsx";
+import {salonistLogin} from "../salonist/salonist-api.jsx";
 
 // LOADER
 export const loader = async ({ request }) => {
   const { admin, session } = await authenticate.admin(request);
   const shop = session?.shop;
-  console.log(shop, '-shop');
-  return { shop };
+  return null;
 };
 
 // ACTION
@@ -59,12 +58,12 @@ export const action = async ({ request }) => {
   }
 };
 
-// COMPONENT
+
 export default function Login() {
+
   const actionData = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting"; 
-  console.log( actionData?.data);
   const [email, setEmail] = useState(actionData?.data?.values?.email || "");
   const [password, setPassword] = useState(actionData?.data?.values?.password || "");
   const [showBanner, setShowBanner] = useState(false);
@@ -78,7 +77,7 @@ export default function Login() {
   return (
     <Page narrowWidth>
       <Layout>
-        <Layout.AnnotatedSection
+        <Layout.AnnotatedSection 
           id="login-details"
           title="Connect to Salonist"
           description="Connect with Salonist and import your products into Shopify"
