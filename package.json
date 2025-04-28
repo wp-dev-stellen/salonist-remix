@@ -1,6 +1,11 @@
 {
-  "name": "salonist-remix",
+  "name": "salonist",
   "private": true,
+  "config": {
+    "auto-install-peers": true,
+    "shamefully-hoist": true,
+    "enable-pre-post-scripts": true
+  },
   "scripts": {
     "build": "remix vite:build",
     "dev": "shopify app dev",

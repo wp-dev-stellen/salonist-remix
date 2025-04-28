@@ -12,21 +12,26 @@ import {
   Spinner,
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server";
-import {salonistLogin} from "../salonist/salonist-api.jsx";
+import {salonistLogin} from "../salonist/salonist-api.server";
+import { GetCrmCredentialsByShop  } from  '../salonist/crm-credentials.server';
 
 // LOADER
 export const loader = async ({ request }) => {
-  const { admin, session } = await authenticate.admin(request);
+  const { admin, session,redirect } = await authenticate.admin(request);
   const shop = session?.shop;
+  const CrmData = await GetCrmCredentialsByShop(shop);
+  const status =  CrmData?.loginStatus;
+  if(status){
+    return redirect('/app/');
+  }
   return null;
 };
 
 // ACTION
 export const action = async ({ request }) => {
-  const { admin ,session} = await authenticate.admin(request);
+  const { admin ,session } = await authenticate.admin(request);
   const shop = session?.shop;
- 
- console.log(shop,'asas')
+
   const formData = await request.formData();
   const email = formData.get("email")?.trim();
   const password = formData.get("password")?.trim();

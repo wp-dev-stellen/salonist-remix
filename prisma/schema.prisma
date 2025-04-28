@@ -40,5 +40,22 @@ model CrmCredential {
   loginStatus   Boolean  @default(false)
   createdAt     DateTime @default(now())
 
- 
+}
+
+model RetailProduct {
+  id               Int           @id @default(autoincrement())
+  crmProductId     String        @unique 
+  domainId         String
+  shop             String
+  title            String?       
+  productType      String?
+  sku              String?
+  salePrice        String?
+  qty              String?
+  shopifyProductId String?       
+  showInApp        Boolean       @default(true)
+  rawJson          Json
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
 }

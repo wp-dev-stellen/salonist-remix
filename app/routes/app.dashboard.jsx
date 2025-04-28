@@ -1,95 +1,90 @@
-import { useActionData, Form, useLoaderData, useSubmit } from "@remix-run/react";
+import { useActionData, Form, useLoaderData } from "@remix-run/react";
 import { Suspense, useState, useCallback } from "react";
-import {
-  Page,
-  AccountConnection,
-  Divider,
-  Grid,
-  Icon,
-  Text,
-  Badge,
-  Spinner
-} from '@shopify/polaris';
+import { Page, Link, AccountConnection, SkeletonPage, SkeletonBodyText, Layout, Text, Grid, Icon, Divider, Card, Badge } from '@shopify/polaris';
 import { AppsFilledIcon } from '@shopify/polaris-icons';
-import { GetCrmCredentialsByShop ,deleteCrmCredentials} from '../salonist/crm-credentials.server';
+import { GetCrmCredentialsByShop } from '../salonist/crm-credentials.server';
 import { fetchSalonistServices, fetchSalonistPackages, fetchSalonistProducts } from "../salonist/salonist-api.server";
 import { authenticate } from "../shopify.server";
 
-// LOADER
+// Loader function to fetch CRM credentials and data
 export const loader = async ({ request }) => {
-
   const { session, admin, redirect } = await authenticate.admin(request);
   const shop = session?.shop;
+
   const CrmData = await GetCrmCredentialsByShop(shop);
-  const status =  CrmData?.loginStatus;
-  if (!status) {
+
+  // If no CRM data or loginStatus is false, redirect to login
+  if (!CrmData || CrmData.loginStatus === false) {
     return redirect('app/login/');
   }
 
+  // Fetch Salonist data: services, products, and packages
   const Service = await fetchSalonistServices(CrmData.domainId);
   const Product = await fetchSalonistProducts(CrmData.domainId);
   const Packages = await fetchSalonistPackages(CrmData.domainId);
 
+  // Create card data for dashboard
   const cardData = [
-    { title: 'Products', total: Product.count, icon: '' },
-    { title: 'Services', total: Service.count, icon: '' },
-    { title: 'Packages', total: Packages.count, icon: '' },
+    {
+      title: 'Products',
+      total: Product.count,
+      icon: AppsFilledIcon,
+    },
+    {
+      title: 'Services',
+      total: Service.count,
+      icon: AppsFilledIcon,
+    },
+    {
+      title: 'Packages',
+      total: Packages.count,
+      icon: AppsFilledIcon,
+    },
   ];
 
+  // Return data to the component
   return {
     user: CrmData,
-    cardData
+    cardData: cardData,
   };
 };
 
-// ACTION
+// Action function (currently not handling form submission)
 export const action = async ({ request }) => {
-  const { session, admin, redirect } = await authenticate.admin(request);
-  const shop = session?.shop;
-  const formData = await request.formData();
-  const action = formData.get("action")?.trim();
-    if (action === 'disconnect') {
-      await deleteCrmCredentials(shop);
-      console.log('Disconnected!');
-
-    } 
-
   return null;
 };
 
-// COMPONENT
+// Main component
 export default function Index() {
+  const actionData = useActionData();
   const cdata = useLoaderData();
-  const submit = useSubmit(); // 💥 new
+
   const CrmUser = cdata.user;
   const cardData = cdata.cardData;
+
   const [connected, setConnected] = useState(CrmUser.loginStatus);
   const accountName = connected ? CrmUser.name : '';
 
+  // Handle connect/disconnect actions
   const handleAction = useCallback(() => {
-    console.log('asd')
-    
-    submit(
-      { action: connected ? 'disconnect' : 'connect' },
-      { method: 'post' }
-    );
-   
-  }, [connected]); 
+    if (connected) {
+      setConnected(false); // Disconnect logic
+    } else {
+      setConnected(true); // Connect logic
+    }
+  }, [connected]);
+
   const buttonText = connected ? 'Disconnect' : 'Connect';
   const details = connected ? 'Account connected' : 'No account connected';
   const terms = (
-    <p>
-      Welcome to Salonist, the premier booking system for efficient appointment management! 
-      With our app, you can seamlessly synchronize your Shopify bookings, product orders, 
-      and inventory management into a single CRM.
-    </p>
+    <p>Welcome to Salonist, the premier booking system for efficient appointment management! With our app, you can seamlessly synchronize your Shopify bookings, product orders, and inventory management into a single CRM...</p>
   );
 
   return (
-    <Suspense fallback={<Spinner accessibilityLabel="Spinner example" size="large" />}>
+    <Suspense fallback={<SkeletonPage />}>
       <Page narrowWidth>
         <Form method="post">
-          {/* No need for hidden input anymore */}
+          <input type="hidden" name="account" value={connected ? 'disconnect' : 'connect'} />
           <AccountConnection
             accountName={accountName}
             connected={connected}
@@ -109,15 +104,15 @@ export default function Index() {
           <Grid>
             {cardData.map((item, index) => (
               <Grid.Cell key={index} columnSpan={{ xs: 6, sm: 6, md: 4, lg: 4, xl: 4 }}>
-                <div className="mainpdiv" style={{ background: 'var(--p-color-bg-surface)', padding: '20px', borderRadius: '10px' }}>
-                  <div className="picon" style={{ textAlign: 'center' }}>
-                    <Icon source={AppsFilledIcon}  tone="base" className="icon-animation" />
+                <div className="mainpdiv" style={{ background: 'var(--p-color-bg-surface)' }}>
+                  <div className="picon">
+                    <Icon source={AppsFilledIcon} tone="base" className="icon-animation" />
                   </div>
-                  <div className="pdata" style={{ textAlign: 'center', marginTop: '10px' }}>
-                    <Text variant="headingMd" as="h2" fontWeight="medium" tone="subdued">
+                  <div className="pdata">
+                    <Text variant="headingMd" as="h2" fontWeight="medium" alignment="center" tone="subdued">
                       {item.title}
                     </Text>
-                    <Text variant="bodyMd" fontWeight="semibold" tone="strong">
+                    <Text variant="bodyMd" fontWeight="semibold" tone="strong" alignment="center">
                       <Badge tone="info">{item.total}</Badge>
                     </Text>
                   </div>

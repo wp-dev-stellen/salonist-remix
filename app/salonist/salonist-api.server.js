@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { upsertCrmCredentials } from './crm-credentials'; // Assuming you are using a named export
+import { upsertCrmCredentials } from './crm-credentials.server'; // Assuming you are using a named export
 
 
 const API_LOGIN = 'https://salonist.io/secureweb/login';
@@ -107,7 +107,7 @@ export async function fetchSalonistProducts(domainId) {
 
     return {
       success: true,
-      data: response.data,
+      data: response.data.products,
       count: response.data.count,
     };
   } catch (error) {
