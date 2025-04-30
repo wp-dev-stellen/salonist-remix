@@ -26,6 +26,7 @@ export const loader = async ({ request }) => {
     return redirect('app/login/');
   }
 
+
   const Service = await fetchSalonistServices(CrmData.domainId);
   const Product = await fetchSalonistProducts(CrmData.domainId);
   const Packages = await fetchSalonistPackages(CrmData.domainId);
@@ -60,7 +61,7 @@ export const action = async ({ request }) => {
 // COMPONENT
 export default function Index() {
   const cdata = useLoaderData();
-  const submit = useSubmit(); // 💥 new
+  const submit = useSubmit(); 
   const CrmUser = cdata.user;
   const cardData = cdata.cardData;
   const [connected, setConnected] = useState(CrmUser.loginStatus);

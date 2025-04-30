@@ -21,4 +21,7 @@ export const getProductsByShop = async (shop, { limit = 10, page = 1 }) => {
   }
 };
 
+ export const  capitalizeWords = async(str) => {
+  return str.replace(/\b\w/g, char => char.toUpperCase());
+};
 

@@ -3,7 +3,7 @@
 client_id = "6c38763fe7a276ba283c9eb1331506f1"
 name = "salonist-remix"
 handle = "salonist-remix"
-application_url = "https://kay-premises-accused-powerpoint.trycloudflare.com"
+application_url = "https://verde-spot-balloon-discounts.trycloudflare.com"
 embedded = true
 
 [build]
@@ -27,9 +27,9 @@ scopes = "write_products,read_products"
 
 [auth]
 redirect_urls = [
-  "https://kay-premises-accused-powerpoint.trycloudflare.com/auth/callback",
-  "https://kay-premises-accused-powerpoint.trycloudflare.com/auth/shopify/callback",
-  "https://kay-premises-accused-powerpoint.trycloudflare.com/api/auth/callback"
+  "https://verde-spot-balloon-discounts.trycloudflare.com/auth/callback",
+  "https://verde-spot-balloon-discounts.trycloudflare.com/auth/shopify/callback",
+  "https://verde-spot-balloon-discounts.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
