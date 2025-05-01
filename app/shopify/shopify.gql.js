@@ -19,7 +19,7 @@ export const CREATE_PRODUCTS_MUTATION = `mutation populateProduct($product: Prod
         }
       }`;
 
-export  const PRODUCT_VARIANT_UPDATE = `mutation UpdateVariant($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
+export  const PRODUCT_VARIANT_UPDATE = `mutation shopifyUpdateVariant($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
       productVariantsBulkUpdate(productId: $productId, variants: $variants) {
         productVariants {
           id
@@ -30,17 +30,27 @@ export  const PRODUCT_VARIANT_UPDATE = `mutation UpdateVariant($productId: ID!, 
       }
     }`;
 
-export const UPDATE_PRODUCT_MUTATION = `
-  mutation productUpdate($input: ProductInput!) {
+export const UPDATE_PRODUCT_MUTATION = `mutation productUpdate($input: ProductInput!) {
     productUpdate(input: $input) {
       product {
         id
+        variants(first: 10) {
+          edges {
+            node {
+              id
+              price
+              barcode
+              createdAt
+            }
+          }
+        }
       }
       userErrors {
         field
         message
       }
-    }`;
+    }
+  }`;
 
 export const DELETE_PRODUCT_MUTATION = `
   mutation productDelete($id: ID!) {
@@ -118,14 +128,38 @@ export const UPDATE_VARIANT_MUTATION = `
   }
 `;
 
-export const CHANNELS_QUERY = (afterCursor = null) => `
-  {
-    channels(first: 5 ${afterCursor ? `, after: "${afterCursor}"` : ""}) {
+export const CHANNELS_QUERY = (afterCursor = null) => {
+  const after = afterCursor ? `, after: "${afterCursor}"` : '';
+  return `
+    query {
+      channels(first: 50 ${after}) {
+        edges {
+          node {
+            id
+            name
+            handle
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  `;
+};
+
+export const SHOP_LOCATIONS_QUERY = (afterCursor = null) => `
+  query {
+    locations(first: 10${afterCursor ? `, after: "${afterCursor}"` : ""}) {
       edges {
         node {
           id
           name
-          handle
+          isActive
+          address {
+            formatted
+          }
         }
       }
       pageInfo {
@@ -134,25 +168,8 @@ export const CHANNELS_QUERY = (afterCursor = null) => `
       }
     }
   }
-  `;
+`;
 
-export const SHOP_LOCATIONS_QUERY = (afterCursor = null) => `
-  locations(first: 5  ${afterCursor ? `, after: "${afterCursor}"` : ""}) {
-    edges {
-      node {
-        id
-        name
-        address {
-          formatted
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-  }`;
 
 export const SHOP_PRIMARY_LOCATION_QUERY =  `
   query Location {
@@ -199,3 +216,5 @@ export const SHOP_PRIMARY_LOCATION_QUERY =  `
       }
     }
   }`;
+
+

@@ -5,7 +5,6 @@ import * as shopifyApi from '../shopify/shopifyApi';
 export const syncProducts = async (domainId, shop) => {
   let products ;
   try {
-    console.log('here');
     /**
      * Fecth the Salonist Products 
      */
@@ -100,6 +99,14 @@ export async function upsertRetailProduct(product, shop) {
     throw new Error("Failed to upsert product");
   }
 }
+
+export const updateshopifyId = async (id ,shopifyId) => {
+  return await prisma.RetailProduct.update({
+    where: {crmProductId: id},
+    data:{shopifyProductId:shopifyId}
+  });
+};
+
 
 /**
  *  Check exting products in shop

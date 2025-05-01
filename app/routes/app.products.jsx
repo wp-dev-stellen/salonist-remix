@@ -33,14 +33,14 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const action = formData.get('action')?.trim();
   const shop = formData.get('shop')?.trim();
-
   if (action === 'import_products') {
     const {session, admin } = await authenticate.admin(request);
     console.log('sdf');
     const CrmData = await GetCrmCredentialsByShop(shop);
     domainId = CrmData?.domainId;
     try {
-      await syncProducts(domainId, shop);
+     await syncProducts(domainId, shop);
+    
     } catch (error) {
       console.error('Error syncing products:', error);
       return new Response(
