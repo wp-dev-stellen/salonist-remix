@@ -3,10 +3,10 @@ import { fetchSalonistProducts } from './salonist-api.server';
 import * as shopifyApi from '../shopify/shopifyApi';
 
 export const syncProducts = async (domainId, shop) => {
-  let products ;
+  let products;
   try {
     /**
-     * Fecth the Salonist Products 
+     * Fetch the Salonist Products 
      */
     products = await fetchSalonistProducts(domainId);
     products = products.data;
@@ -15,12 +15,12 @@ export const syncProducts = async (domainId, shop) => {
     const crmProductIds = products.map((product) => product?.Product.id);
     const dbProductIds = existingProducts.map((product) => product.crmProductId);
 
-
+    // Find products that need to be deleted
     const productsToDelete = existingProducts.filter(
       (product) => !crmProductIds.includes(product.crmProductId)
     );
 
-   
+    // Delete the products that no longer exist in the CRM
     for (const product of productsToDelete) {
       await prisma.RetailProduct.delete({
         where: { crmProductId: product.crmProductId },
@@ -28,26 +28,24 @@ export const syncProducts = async (domainId, shop) => {
       console.log(`Deleted product ${product.crmProductId} from database.`);
     }
 
-    // Now, loop through the CRM products and upsert or delete as necessary
-    const upsertPromises = products.map(async (p) => {
+    // Delay function to throttle requests
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+    // Now loop through the CRM products and upsert or delete as necessary
+    for (const p of products) {
       try {
-        const dbproduct =   await upsertRetailProduct(p, shop);
-
-        const shopifyProdcut =  await shopifyApi.createProduct(shop,p.Product);
-        
+        const dbproduct = await upsertRetailProduct(p, shop);
+        const shopifyProduct = await shopifyApi.SyncProduct(dbproduct,p.Product);
+        console.log(`Synced product ${p.Product.id}`);
       } catch (error) {
-
-        console.error(`Error processing product ${p.id}:`, error);
+        console.error(`Error processing product ${p.Product.id}:`, error);
       }
-    });
-
-    await Promise.all(upsertPromises);
+      await delay(500); 
+    }
 
   } catch (error) {
-
     console.error('Error syncing products:', error);
     throw new Error('Failed to sync products');
-
   }
 };
 

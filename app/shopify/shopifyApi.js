@@ -1,98 +1,63 @@
-import { unauthenticated } from '../shopify.server';
 import * as ShopifyGQL from './shopify.gql';
 import * as shopdata from './shopifydb';
 import * as shopchannel from './ShopifyChannel';
 import * as shoplocation from './shopifyLcocations';
-import {updateshopifyId} from '../salonist/productqueries.server'
+import {updateshopifyId} from '../salonist/productqueries.server';
+import logger from '../logger/logger';
+import { unauthenticated } from '../shopify.server';
+
 /**
  * Create a product and update its variant.
  */
-export const createProduct = async (shop, result) => {
+export const SyncProduct = async (dbproduct,result) => {
+  let shop;
+  try {
+    shop = dbproduct?.shop;
+    const { admin }   = await unauthenticated.admin(shop);
+    const baseProductData = {
+      title: result.name,
+      handle: result.id?.toString(),
+      descriptionHtml: result.desc ?? '',
+      productType: result.type ?? 'Retail',
+      vendor: result.brand ?? 'Unknown'
+    };
+    const isUpdate = !!dbproduct.shopifyProductId;
+    const mutation = isUpdate ? ShopifyGQL.UPDATE_PRODUCT_MUTATION : ShopifyGQL.CREATE_PRODUCTS_MUTATION;
 
-  const { admin } = await unauthenticated.admin(shop);
+    const variables = isUpdate
+      ? { input: { id: dbproduct.shopifyProductId, ...baseProductData } }
+      : { variables: { product: baseProductData } };
 
+    console.log(variables);
 
-  //Construct product input
-  const data = {
-    title: result.name,
-    handle: result.id,
-    descriptionHtml: result.desc ?? null,
-    productType: result.type ?? 'Retail',
-    vendor: result.brand ?? null,
-  };
-
-  const productInput = {
-    variables: {
-      product: data,
-    },
-  };
-
-  // Create product
-
-    const response = await admin.graphql(ShopifyGQL.CREATE_PRODUCTS_MUTATION, productInput);
+    const response = await admin.graphql(mutation, variables);
     const responseJson = await response.json();
-    const product = responseJson.data?.productCreate?.product;
-  
-  
-  
-  const variantId = product.variants.edges[0].node.id;
-  await updateshopifyId(result.id,product.id);
 
-  if (!product) throw new Error('Product creation failed.');
+    // Optional: Log product ID or handle after success
+    const product = responseJson.data?.productCreate?.product || responseJson.data?.productUpdate?.product;
+    const variantid = product.variants.edges[0].node.id;
+    const productid = product?.id;
+    await updateshopifyId(result.id,productid);
 
- 
+    return {productid};
 
-  return {
-    product,
-  };
+  } catch (error) {
+
+    logger.error(`SyncProduct error for shop ${shop}: ${error.message}`, { stack: error.stack });
+    throw error; 
+  }
+
 };
+
+
 
 /**
  * Update a product variant and its inventory across all DB-stored locations.
  */
+
 export const VariantUpdate = async (shop, variantData) => {
 let locations;
-console.log(variantData);
   const { admin } = await unauthenticated.admin(shop);
+  locations = await shopdata.getLocationsByShop(shop);
 
-
-   locations = await shopdata.getLocationsByShop(shop);
-
-      if (!locations.length){
-
-       await shoplocation.paginateAndStoreLocations(shop);
-       locations = await shopdata.getLocationsByShop(shop);
-
-      }
-
-  // const inventoryQuantities = locations.map((loc) => ({
-  //   locationId: `gid://shopify/Location/${loc.locationid}`,
-  //   availableQuantity: variantData.quantity ?? 0,
-  // }));
-
-  // const variant = {
-  //   id: variantData.variantId,
-  //   price:variantData.price,
-  //   taxable: false,
-  // };
-
-  // const payload = {
-  //   variables: {
-  //     productId: variantData.productId,
-  //     variants: [variant],
-  //   },
-  // };
-
-  // console.log(payload,'payload');
-  // // Execute update
-  // const variantResponse = await admin.graphql(ShopifyGQL.PRODUCT_VARIANT_UPDATE, payload);
-  // const variantResponseJson = await variantResponse.json();
-
-  // if (!variantResponseJson?.data?.productVariantsUpdate?.product?.id) {
-
-  //   console.error('Variant update failed', variantResponseJson.errors ?? variantResponseJson);
-  //   throw new Error('Shopify variant update failed.');
-  // }
-
-  // return variantResponseJson;
 };

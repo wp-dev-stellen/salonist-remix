@@ -30,11 +30,12 @@ export  const PRODUCT_VARIANT_UPDATE = `mutation shopifyUpdateVariant($productId
       }
     }`;
 
-export const UPDATE_PRODUCT_MUTATION = `mutation productUpdate($input: ProductInput!) {
-    productUpdate(input: $input) {
-      product {
-        id
-        variants(first: 10) {
+export const UPDATE_PRODUCT_MUTATION = `mutation ProductUpdate($input: ProductInput!) {
+  productUpdate(input: $input) {
+    product {
+      id
+      title
+      variants(first: 10) {
           edges {
             node {
               id
@@ -44,13 +45,13 @@ export const UPDATE_PRODUCT_MUTATION = `mutation productUpdate($input: ProductIn
             }
           }
         }
-      }
-      userErrors {
-        field
-        message
-      }
     }
-  }`;
+    userErrors {
+      field
+      message
+    }
+  }
+}`;
 
 export const DELETE_PRODUCT_MUTATION = `
   mutation productDelete($id: ID!) {
