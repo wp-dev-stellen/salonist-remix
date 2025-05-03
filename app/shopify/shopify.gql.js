@@ -129,6 +129,63 @@ export const UPDATE_VARIANT_MUTATION = `
   }
 `;
 
+export const CREATE_COLLECTION_MUTATION = `
+    mutation createCollectionMetafields($input: CollectionInput!) {
+    collectionCreate(input: $input) {
+      collection {
+        id
+      }
+      userErrors {
+        message
+        field
+      }
+    }
+  }`;
+
+  export const UPDATE_COLLECTION_MUTATION = `
+  mutation updateCollectionRules($input: CollectionInput!) {
+    collectionUpdate(input: $input) {
+      collection {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }`;
+
+
+  export const CREATE_METAFIELD_DEFINATION = `mutation CreateMetafieldDefinition($definition: MetafieldDefinitionInput!) {
+    metafieldDefinitionCreate(definition: $definition) {
+      createdDefinition {
+        id
+        name
+        namespace
+        key
+      }
+      userErrors {
+        field
+        message
+        code
+      }
+    }
+  }`;
+
+ export const  METAFIELD_DEFINITION_QUERY  =(namespace,key,ownerType) =>{
+  return ` query {
+      metafieldDefinitions(first: 1, namespace:"${namespace}", key:"${key}", ownerType:"${ownerType}") {
+        edges {
+          node {
+            id
+            namespace
+            key
+          }
+        }
+      }
+    }`;
+ };
+
 export const CHANNELS_QUERY = (afterCursor = null) => {
   const after = afterCursor ? `, after: "${afterCursor}"` : '';
   return `
@@ -188,33 +245,6 @@ export const SHOP_PRIMARY_LOCATION_QUERY =  `
   query CollectionByHandle($handle: String!) {
     collectionByHandle(handle: $handle) {
       id
-    }
-  }`;
-
-
-  export const CREATE_COLLECTION_MUTATION = `
-    mutation createCollectionMetafields($input: CollectionInput!) {
-    collectionCreate(input: $input) {
-      collection {
-        id
-      }
-      userErrors {
-        message
-        field
-      }
-    }
-  }`;
-
-  export const UPDATE_COLLECTION_MUTATION = `
-  mutation updateCollectionRules($input: CollectionInput!) {
-    collectionUpdate(input: $input) {
-      collection {
-        id
-      }
-      userErrors {
-        field
-        message
-      }
     }
   }`;
 
