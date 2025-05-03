@@ -1,0 +1,101 @@
+body { background: linear-gradient(135deg, #e0fff9, #ffe6f0, #ffffe0); }
+.logo-section { display: flex; justify-content: center; align-items: center; animation: fadeIn 1.5s ease-in-out; }
+.logo-container {padding: 25px 80px; border-radius: 20px; transition: transform 0.3s ease; }
+/*.logo-container:hover {transform: scale(1.05);}*/
+.main-logo {max-width: 250px; height: auto; }
+
+.blinking-input {
+  padding: 12px 20px;
+  font-size: 18px;
+  border: 2px solid #ff3366;
+  border-radius: 8px;
+  outline: none;
+  animation: blinkBorder 1s infinite;
+  transition: all 0.3s ease;
+}
+
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.salon-section { animation: fadeIn 2.5s ease-in-out; padding: 40px;  background: radial-gradient(circle, rgba(27,3,72,1) 0%, rgba(15,0,44,1) 100%); margin-block: 96px; background-color: #AAC9FC4D; color: white; border-radius: 12px; box-shadow: 0 2px 24px rgba(0, 0, 0, 0.2); overflow: hidden; font-family: sans-serif; max-width: 900px;margin: 10px auto 50px; }
+.salon-section .title { color: #fff; font-weight: 700; font-size: 32px; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,0.3); margin-top: 0; margin-bottom: 24px; }
+.salon-section p.description {  color: #fff; font-size: 18px; text-align: center; line-height: 1.5; margin-top: 0; margin-bottom: 24px; text-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+.salon-section p.description:nth-child(2) { margin-bottom: 5px;}
+.input-group {display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 550px; margin: auto; width: 100%; }
+.input-group input[type="text"] { color: #fff; flex: 1 1 200px; padding: 12px 18px; border-radius: 50px; font-size: 18px; outline: none; box-shadow: inset 0 0 8px #ffffff4d; background-color: rgba(255, 255, 255, 0.15); transition: all 0.3s ease; border: 1px solid #ffffffa8; }
+.input-group input[type="text"]::placeholder { font-weight: normal;color: #fff !important;}
+.input-group input[type="text"]:focus {background-color: rgba(255, 255, 255, 0.3); box-shadow: 0 0 10px #fff; font-weight: 400; }
+.input-group button { background: linear-gradient(45deg, #f5cb5a, #f5cb5a); border: none; padding: 12px 28px; border-radius: 50px; color: #120134; font-weight: 500; font-size: 1rem; cursor: pointer; box-shadow: 0 5px 12px #f5cb5a; transition: all 0.3s ease; user-select: none; }
+.input-group button:hover {box-shadow: 0 8px 20px #f5cb5a; transform: scale(1.05); }
+
+@media (max-width: 400px) {
+  .salon-section {
+    padding: 25px 18px 30px;
+  }
+  .input-group {
+    flex-direction: column;
+  }
+  .input-group input[type="text"],
+  .input-group button {
+    width: 100%;
+    flex: none;
+  }
+}
+
+.app-download-container {animation: fadeIn 2s ease-in-out; background-color: #aac9fc5c; color: white; border-radius: 12px; box-shadow: 0 2px 24px rgba(0,0,0,0.1); overflow: hidden; font-family: sans-serif; max-width: 980px; margin: auto; }
+.app-download-wrapper {display: flex; flex-wrap: wrap; }
+.app-download-text { padding: 40px; width: 100%; max-width: 55%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; }
+.app-download-header { /*display: flex; align-items: center;*/ margin-bottom: 24px; }
+.download-icon {margin-right: 8px; }
+.app-download-title { font-size: 32px; font-weight: 700; margin: 0; color: #15023a; }
+.app-download-description { margin: 0 0 24px; color: #15023a; font-size: 18px; line-height: 1.2; }
+.app-download-buttons {display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start; }
+.app-store-btn, 
+.app-store-btn, .google-play-btn {background-color: #15023a; color: white; padding: 12px 16px; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 700; }
+.app-download-image {width: 100%; max-width: 45%; display: flex; flex-wrap: nowrap; gap: 8px; box-sizing: border-box; justify-content: center; }
+.app-download-image img {width: 40%; height: auto; object-fit: cover; }
+.app-download-image img:last-child { padding-block: 15px; }
+.store-badge {height: 48px; object-fit: contain; border-radius: 8px; transition: transform 0.2s ease; }
+.store-badge:hover {transform: scale(1.05); }
+
+
+
+@media (min-width: 991px) {
+    
+    .app-download-image img:first-child { height: 225px; margin-top: auto; }
+
+}
+
+/* 📱 Mobile (<= 767px) */
+@media (max-width: 767px) {
+
+  .app-download-wrapper {flex-direction: column; }
+  .app-download-text,
+  .app-download-image {max-width: 100%; }
+  .app-download-text {padding: 32px; text-align: center; }
+  .app-download-buttons {justify-content: center; }
+  .app-store-btn,
+  .google-play-btn {width: 100%; text-align: center; }
+  .app-download-image {padding: 16px; flex-direction: column; gap: 16px; }
+  .app-download-image img {width: 100%; }
+
+}
+
+/* 📱 Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  
+  .app-download-wrapper {flex-direction: column; }
+  .app-download-text,
+  .app-download-image {max-width: 100%; }
+  .app-download-text {padding: 40px; text-align: center; }
+  .app-download-buttons {justify-content: center; }
+  .app-download-image {flex-direction: column; gap: 16px; }
+  .app-download-image img {width: 100%; }
+
+}

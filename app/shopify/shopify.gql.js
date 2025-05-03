@@ -65,16 +65,17 @@ export const DELETE_PRODUCT_MUTATION = `
   }
 `;
 
-export const PUBLISH_PRODUCT_MUTATION = `
-  mutation publishablePublish($id: ID!, $publicationId: ID!) {
-    publishablePublish(id: $id, input: {publicationId: $publicationId}) {
-      userErrors {
-        field
-        message
-      }
+export const PUBLISH_PRODUCT_MUTATION = `mutation publishablePublish($id: ID!, $input: [PublicationInput!]!) {
+  publishablePublish(id: $id, input: $input) {
+    shop {
+      publicationCount
+    }
+    userErrors {
+      field
+      message
     }
   }
-`;
+}`;
 
 
 export const SET_METAFIELD = `
@@ -157,24 +158,24 @@ export const CREATE_COLLECTION_MUTATION = `
 
 
   export const CREATE_METAFIELD_DEFINATION = `mutation CreateMetafieldDefinition($definition: MetafieldDefinitionInput!) {
-    metafieldDefinitionCreate(definition: $definition) {
-      createdDefinition {
-        id
-        name
-        namespace
-        key
-      }
-      userErrors {
-        field
-        message
-        code
-      }
+  metafieldDefinitionCreate(definition: $definition) {
+    createdDefinition {
+      id
+      name
+      namespace
+      key
     }
-  }`;
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+}`;
 
  export const  METAFIELD_DEFINITION_QUERY  =(namespace,key,ownerType) =>{
   return ` query {
-      metafieldDefinitions(first: 1, namespace:"${namespace}", key:"${key}", ownerType:"${ownerType}") {
+      metafieldDefinitions(first: 1, namespace:"${namespace}", key:"${key}", ownerType:${ownerType}) {
         edges {
           node {
             id
@@ -185,6 +186,13 @@ export const CREATE_COLLECTION_MUTATION = `
       }
     }`;
  };
+
+ export const PRODUCT_BY_IDENTIFIER = `query($identifier: ProductIdentifierInput!) {
+  product: productByIdentifier(identifier: $identifier) {
+    id
+    handle
+  }
+}`;
 
 export const CHANNELS_QUERY = (afterCursor = null) => {
   const after = afterCursor ? `, after: "${afterCursor}"` : '';
@@ -207,8 +215,7 @@ export const CHANNELS_QUERY = (afterCursor = null) => {
   `;
 };
 
-export const SHOP_LOCATIONS_QUERY = (afterCursor = null) => `
-  query {
+export const SHOP_LOCATIONS_QUERY = (afterCursor = null) => `query {
     locations(first: 10${afterCursor ? `, after: "${afterCursor}"` : ""}) {
       edges {
         node {
@@ -241,8 +248,7 @@ export const SHOP_PRIMARY_LOCATION_QUERY =  `
 
   
 
-  export const COLLECTION_BY_HANDLE = `
-  query CollectionByHandle($handle: String!) {
+  export const COLLECTION_BY_HANDLE = `query CollectionByHandle($handle: String!) {
     collectionByHandle(handle: $handle) {
       id
     }

@@ -1,189 +1,162 @@
-[2025-05-02T12:34:39.608Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: e863af4d-b92e-4917-8225-04f1ed0360a8-1746189279
-[2025-05-02T12:34:40.566Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 3f12b14e-df65-4ddc-8387-f04b09f7460e-1746189280
-[2025-05-02T12:34:41.486Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 28a98041-c4b6-47b2-843a-db6d88544668-1746189281
-[2025-05-02T12:34:42.409Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 897668de-573f-4bc9-b375-a45339907d79-1746189281
-[2025-05-02T12:34:43.328Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 94b27605-aae5-4624-87b3-1190129779c4-1746189282
-[2025-05-02T12:34:44.252Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 999aa6b0-2f13-403d-973f-27abb8143210-1746189283
-[2025-05-02T12:34:45.137Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 65c0bd39-edea-4692-85df-97981a4e7f03-1746189284
-[2025-05-02T12:34:46.083Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 3bff9908-140d-4012-b286-0b6784f6353f-1746189285
-[2025-05-02T12:34:46.997Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 01c53ffa-7487-471c-93b4-9755b08e0ed2-1746189286
-[2025-05-02T12:34:47.952Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 17d0acb1-2b84-47c6-9699-95473985d86d-1746189287
-[2025-05-02T12:34:48.867Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 24f26933-c678-42c6-b630-5c4c84064fac-1746189288
-[2025-05-02T12:34:49.844Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 4e8bd143-62a3-439f-886e-38d03cc3c173-1746189289
-[2025-05-02T12:34:50.768Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 53cf5bf0-9a35-41e3-a5ea-3e5d64cf0835-1746189290
-[2025-05-02T12:34:51.690Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 554e528d-3cc0-47b9-bc8d-54a32371ca6a-1746189291
-[2025-05-02T12:34:52.626Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 409c4f2f-eadf-44fe-9804-6b0b2bca4332-1746189292
-[2025-05-02T12:34:53.555Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 524f50fd-c183-43a2-ae9b-0b4e55e74a4a-1746189293
-[2025-05-02T12:34:54.446Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 01a8c8f2-f637-4c25-a10c-59f2611c4719-1746189294
-[2025-05-02T12:34:55.366Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: c8a2e259-2200-437b-8ce9-a5b2b287e8f5-1746189294
-[2025-05-02T12:34:56.277Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 8ab93a7a-f60e-40d7-9365-bdef9b7f40d4-1746189295
-[2025-05-02T12:34:57.201Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: ebf26db7-222a-4289-a781-198fab976f13-1746189296
-[2025-05-02T12:34:58.124Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: bdab582d-ef93-4485-906d-5a630cf496e0-1746189297
-[2025-05-02T12:34:59.108Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: d6c10db8-a3ff-4049-a83f-887bcdcde414-1746189298
-[2025-05-02T12:35:00.064Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 1e02935b-88cc-47aa-b03a-f22bdbf24a57-1746189299
-[2025-05-02T12:35:01.000Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 82442765-eec1-4015-813e-b6ff81d03045-1746189300
-[2025-05-02T12:35:01.915Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 9e233098-0998-4c0c-9abd-3bb0b1b3241e-1746189301
-[2025-05-02T12:35:06.866Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 5b5a6108-276a-438d-b06d-a5e5ed4df082-1746189306
-[2025-05-02T12:35:07.755Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Received an error response (401 Unauthorized) from Shopify:
-{
-  "networkStatusCode": 401,
-  "message": "GraphQL Client: Unauthorized",
-  "response": {}
-}
-If you report this error, please include this id: 745796c7-132e-4e8f-9beb-cd57ed94efca-1746189307
+[2025-05-03T09:38:01.285Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:03.201Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:05.201Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:07.107Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:09.121Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:11.042Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:13.074Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:14.983Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:16.799Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:18.786Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:20.669Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:22.929Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:24.885Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:26.715Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:28.586Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:30.508Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:32.407Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:34.362Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:36.221Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:38.204Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:40.257Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:42.158Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:44.112Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:45.990Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:47.990Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:49.814Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:38:51.758Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "DNEY" to be one of: DENY, CONTINUE)
+[2025-05-03T09:43:50.828Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:43:52.737Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:43:54.699Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:43:56.651Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:43:58.596Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:00.588Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:02.493Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:04.417Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:06.329Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:08.215Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:10.077Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:11.944Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:13.709Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:15.590Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:17.536Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:19.417Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:21.243Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:23.140Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:43.126Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:45.009Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:46.867Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:44:48.776Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:45:01.616Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:45:03.530Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:45:05.503Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:45:22.225Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T09:45:24.142Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.inventoryPolicy (Expected "" to be one of: DENY, CONTINUE)
+[2025-05-03T11:12:31.968Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:33.950Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:36.006Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:38.084Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:40.171Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:42.197Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:44.156Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:46.141Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:48.112Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:50.010Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:51.938Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:53.928Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:55.873Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:57.859Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:12:59.804Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:01.769Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:03.690Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:05.734Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:07.716Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:09.643Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:11.663Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:13.701Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:15.744Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:17.690Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:19.762Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:21.705Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:23.636Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:29.232Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:31.095Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:33.059Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:35.135Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:37.057Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:38.999Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:40.965Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:42.927Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:44.868Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:46.863Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:48.785Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:50.655Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:52.596Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:54.582Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:56.601Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:13:58.488Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:00.414Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:02.381Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:04.330Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:06.234Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:08.121Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:10.157Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:12.199Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:14.092Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:16.091Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:17.994Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:14:19.961Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:37:56.535Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:37:58.434Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:00.352Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:02.346Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:04.275Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:06.265Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:08.252Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:10.165Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:12.124Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:14.042Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:15.966Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:17.986Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:19.876Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:21.756Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:23.664Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:25.626Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:27.559Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:29.510Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:31.455Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:33.381Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:35.317Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:37.274Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:39.219Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:41.129Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:43.173Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:45.186Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:38:47.093Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:19.300Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:21.244Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:23.374Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:25.457Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:27.494Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:29.492Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:31.547Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:33.462Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:35.464Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:37.437Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:39.357Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:41.369Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:43.374Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:45.301Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:47.293Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:49.244Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:51.174Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:53.410Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:55.373Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:57.308Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:39:59.284Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:40:01.353Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:40:03.445Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:40:05.452Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:40:07.504Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:40:09.446Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T11:40:11.363Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:

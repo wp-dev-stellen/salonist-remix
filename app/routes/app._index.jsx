@@ -11,15 +11,22 @@ import {
   Spinner
 } from '@shopify/polaris';
 import { AppsFilledIcon } from '@shopify/polaris-icons';
+import { CreateMetafieldDefinition } from '../shopify/shopifyApi';
 import { GetCrmCredentialsByShop ,deleteCrmCredentials} from '../salonist/crm-credentials.server';
 import { fetchSalonistServices, fetchSalonistPackages, fetchSalonistProducts } from "../salonist/salonist-api.server";
 import { authenticate } from "../shopify.server";
+
 
 // LOADER
 export const loader = async ({ request }) => {
 
   const { session, admin, redirect } = await authenticate.admin(request);
   const shop = session?.shop;
+
+    if(shop){
+     await CreateMetafieldDefinition(admin,shop);
+    }
+
   const CrmData = await GetCrmCredentialsByShop(shop);
   const status =  CrmData?.loginStatus;
   if (!status) {
