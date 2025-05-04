@@ -26,16 +26,22 @@ export const loader = async ({ request }) => {
 
 // Action
 export const action = async ({ request }) => {
-
+  let domainId;
   const { admin, session } = await authenticate.admin(request);
-  
+  const { syncServices } = await import("../salonist/ServicesQuery.server");
   const formData = await request.formData();
   const action = formData.get('action')?.trim();
   const shop = formData.get('shop')?.trim();
+   domainId = formData.get('domainId')?.trim();
 
   if (action === 'import_services') {
-    const CrmData = await GetCrmCredentialsByShop(shop);
-    const domainId = CrmData?.domainId;
+
+    if (!domainId) {
+      const CrmData = await GetCrmCredentialsByShop(shop);
+       domainId = CrmData?.domainId;
+    }
+    
+    await syncServices(domainId, shop);
 
   }
 
@@ -49,15 +55,13 @@ export default function ProductPage() {
   return (
   <Page 
     fullWidth
-    title='Services' 
-    secondaryActions={ 
-    <Form method="post" >
+    title='Services' >
+      <Form method="post" >
       <input type="hidden" name="action" value="import_services" />
       <input type="hidden" name="shop" value={shopdata?.shop} />
       <input type="hidden" name="domainId" value={shopdata?.domainId} />
           <Button submit>Import Now</Button>
-    </Form>} >
-
+    </Form>
       <text> Services data table </text>  
     </Page>
   );

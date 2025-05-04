@@ -16,18 +16,43 @@ import { GetCrmCredentialsByShop ,deleteCrmCredentials} from '../salonist/crm-cr
 import { fetchSalonistServices, fetchSalonistPackages, fetchSalonistProducts } from "../salonist/salonist-api.server";
 import { authenticate } from "../shopify.server";
 
+ 
 
-// LOADER
 export const loader = async ({ request }) => {
 
   const { session, admin, redirect } = await authenticate.admin(request);
-  const shop = session?.shop;
+  const shopDomain = session?.shop;
 
-    if(shop){
-     await CreateMetafieldDefinition(admin,shop);
+    if(shopDomain){
+      const definitions = [
+        {
+          name: "Salonist Product",
+          namespace: "salonist",
+          key: "id",
+          description: "Salonist Product Id",
+          type: "id",
+          ownerType: "PRODUCT",
+          pin: true
+        },
+        {
+          name: "Salonist Plan ID",
+          namespace: "salonist",
+          key: "id",
+          description: "Plan identifier from Salonist",
+          type: "id",
+          ownerType: "COLLECTION",
+          pin: true
+        }
+      ];
+      try {
+        await Promise.all(definitions.map(def => CreateMetafieldDefinition(admin, shopDomain, def)));
+        console.log('All metafield definitions created successfully');
+        } catch (error) {
+          console.error('Error creating metafield definitions:', error);
+        }
     }
 
-  const CrmData = await GetCrmCredentialsByShop(shop);
+  const CrmData = await GetCrmCredentialsByShop(shopDomain);
   const status =  CrmData?.loginStatus;
   if (!status) {
     return redirect('app/login/');
@@ -53,11 +78,11 @@ export const loader = async ({ request }) => {
 // ACTION
 export const action = async ({ request }) => {
   const { session, admin, redirect } = await authenticate.admin(request);
-  const shop = session?.shop;
+  const shopDomain = session?.shop;
   const formData = await request.formData();
   const action = formData.get("action")?.trim();
     if (action === 'disconnect') {
-      await deleteCrmCredentials(shop);
+      await deleteCrmCredentials(shopDomain);
       console.log('Disconnected!');
 
     } 

@@ -20,18 +20,14 @@ export const syncProducts = async (domainId, shop) => {
       (product) => !crmProductIds.includes(product.crmProductId)
     );
 
-    // Delete the products that no longer exist in the CRM
     for (const product of productsToDelete) {
       await prisma.RetailProduct.delete({
         where: { crmProductId: product.crmProductId },
       });
       console.log(`Deleted product ${product.crmProductId} from database.`);
     }
-
-    // Delay function to throttle requests
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-    // Now loop through the CRM products and upsert or delete as necessary
+    // Sync each product with Shopify
     for (const p of products) {
       try {
         const dbproduct = await upsertRetailProduct(p, shop);

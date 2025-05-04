@@ -2,9 +2,10 @@ import * as ShopifyGQL from './shopify.gql';
 import * as shopdata from './shopifydb';
 import * as shopchannel from './ShopifyChannel';
 import * as shoplocation from './shopifyLcocations';
-import {updateshopifyId} from '../salonist/productqueries.server';
+import {updateshopifyId} from '../salonist/ProductQueries.server';
 import logger from '../logger/logger';
 import { unauthenticated } from '../shopify.server';
+import { channel } from 'diagnostics_channel';
 
 /**
  * Create a product and update its variant.
@@ -46,9 +47,8 @@ export const SyncProduct = async (dbproduct,result) => {
     const variantData = {productid ,variantid , ...result}
 
      await VariantUpdate (shop, variantData);
-
      await updateshopifyId(result.id,productid);
-
+     await PublishablePublish(shop, productid);
     return {productid};
 
   } catch (error) {
@@ -58,6 +58,54 @@ export const SyncProduct = async (dbproduct,result) => {
   }
 
 };
+export const SyncServices = async (dbproduct,result,collectionid) => {
+  let shop;
+  try {
+    shop = dbproduct?.shop;
+    const { admin }   = await unauthenticated.admin(shop);
+
+    const metaField = {namespace: "salonist", key: "id", type: "id", value: result.id};
+
+    const baseProductData = {
+      title: result.name,
+      handle: result.id?.toString(),
+      descriptionHtml: result.desc ?? '',
+      productType: result.type ?? 'Service',
+      vendor: result.brand ?? 'Unknown',
+      metafields:[metaField],
+      collectionsToJoin:[collectionid]
+    };
+
+     const shopifyProductId = await productByIdentifier(admin,result.id);
+      
+     const isUpdate = !!shopifyProductId?.id;
+   
+     const mutation = isUpdate ? ShopifyGQL.UPDATE_PRODUCT_MUTATION : ShopifyGQL.CREATE_PRODUCTS_MUTATION;
+
+     const variables = isUpdate
+       ? { variables:{ input: { id: shopifyProductId.id, ...baseProductData } } }
+       : { variables: { product: baseProductData } };
+      const response = await admin.graphql(mutation, variables);
+      const responseJson = await response.json();
+
+    // Optional: Log product ID or handle after success
+    const product = responseJson.data?.productCreate?.product || responseJson.data?.productUpdate?.product;
+    const variantid = product.variants.edges[0].node.id;
+    const productid = product?.id;
+    const variantData = {productid ,variantid , ...result}
+
+     await VariantUpdate (shop, variantData);
+     await updateshopifyId(result.id,productid);
+     await PublishablePublish(shop, productid);
+    return {productid};
+
+  } catch (error) {
+
+    logger.error(`SyncProduct error for shop ${shop}: ${error.message}`, { stack: error.stack });
+    throw error; 
+  }
+
+}
 
 export const productByIdentifier = async (admin, id) =>{
 
@@ -72,6 +120,46 @@ export const productByIdentifier = async (admin, id) =>{
 };
 
 
+export const CreateandUpdateCollection = async (shop,data) =>{
+
+  let shopifyCollectionId;
+  try {
+    const { admin } = await unauthenticated.admin(shop);
+    const collectionData = {
+      title: data.name,
+      handle: data.id?.toString(),
+      descriptionHtml: data.desc ?? '',
+      metafields: [
+        {
+          namespace: "salonist",
+          key: "id",
+          type: "id",
+          value: data.id
+        }
+      ]
+    };
+    const collectionId = await productByIdentifier(admin,data.id);
+    if (collectionId) {
+      shopifyCollectionId = collectionId.id;
+      const updateResponse = await admin.graphql(ShopifyGQL.UPDATE_COLLECTION_MUTATION, { variables: { input: { id: shopifyCollectionId, ...collectionData } } });
+      const updateJson = await updateResponse.json();
+      return updateJson.data?.collectionUpdate?.collection || null;
+    } else {
+      const createResponse = await admin.graphql(ShopifyGQL.CREATE_COLLECTION_MUTATION, { variables: { input: collectionData } });
+      const createJson = await createResponse.json();
+      return createJson.data?.collectionCreate?.collection || null;
+    }
+  } catch (error) {
+    logger.error(`CreateandUpdateCollection error for shop ${shop}: ${error.message}`, { stack: error.stack });
+    throw error; 
+  }
+
+};
+
+
+
+
+
 /**
  * Update a product variant and its inventory across all DB-stored locations.
  */
@@ -82,7 +170,14 @@ export const VariantUpdate = async (shop, variantData) => {
   const { admin } = await unauthenticated.admin(shop);
   const mutation = ShopifyGQL.PRODUCT_DEFAULT_VARIANT_MUTATION;
   locations = await shopdata.getLocationsByShop(shop);
+  if(!locations || locations.length ===0){
+    await shoplocation.paginateAndStoreLocations(shop);
+    locations = await shopdata.getLocationsByShop(shop);
+  }
+  
   const qty = Number(variantData?.qty) >= 1 ? Number(variantData.qty) : 0;
+
+  
   const inventoryQuantities = locations.map((loc) => ({
     availableQuantity: qty,
     locationId: `gid://shopify/Location/${loc.locationid}`
@@ -130,29 +225,64 @@ export const VariantUpdate = async (shop, variantData) => {
     return true;
   }
 };
+export const PublishablePublish = async (shop, pid) => {
+  try {
+    const { admin } = await unauthenticated.admin(shop);
+    const mutation = ShopifyGQL.PUBLISH_PRODUCT_MUTATION;
+
+    let channels = await shopdata.getShopChannels(shop, 'online_store');
+
+    if (!channels || channels.length === 0) {
+      await shopchannel.paginateAndStoreChannels(shop);
+      channels = await shopdata.getShopChannels(shop, 'online_store');
+    }
+
+    const channel = channels && channels[0]; 
+    console.log(channel)
+    if (!channel || !channel.id) {
+      logger.error(`No valid publication channel found for shop ${shop}`);
+      return false;
+    }
+
+    const publication = { id:pid, input:{publicationId: `gid://shopify/Publication/${channel.id}`} };
+      console.log(publication)  
+    const response = await admin.graphql(mutation,{variables:publication});
+    const responseJson = await response.json();
+    const userErrors = responseJson?.data?.publishablePublish?.userErrors || [];
+
+    if (userErrors.length > 0) {
+      logger.error(`GraphQL Errors for shop ${shop}:`, JSON.stringify(userErrors, null, 2));
+      return false;
+    }
+
+    console.log(`Product published successfully for shop ${shop}`);
+    return true;
+
+  } catch (error) {
+    logger.error(`Exception while publishing product for shop ${shop}: ${error.message}`, {
+      stack: error.stack,
+      productId: pid
+    });
+    return false;
+  }
+};
 
 
 
 
-export const CreateMetafieldDefinition = async (admin ,shop) => {
+export const CreateMetafieldDefinition = async (admin ,shop,def) => {
   
   const MetafieldData = {
     definition: {
-      name: "Salonist Product",
-      namespace: "salonist",
-      key: "id",
-      description: "Salonist Product Id",
-      type: "id",  
-      ownerType: "PRODUCT",
-      pin: true
+      ...def
     }
   };
 
   try {
     const query = ShopifyGQL.METAFIELD_DEFINITION_QUERY(
-      "salonist",
-      "id",
-      "PRODUCT"
+      def.namespace,
+      def.key,
+      def.ownerType
     );
     const mutation = ShopifyGQL.CREATE_METAFIELD_DEFINATION;
 

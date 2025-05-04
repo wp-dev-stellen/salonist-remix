@@ -1,5 +1,5 @@
 import { redirect } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData ,useActionData} from "@remix-run/react";
 import { login } from "../../shopify.server";
 import styles from "./styles.module.css";
 import customstyles from "./custom-style.css";
@@ -16,9 +16,21 @@ export const loader = async ({ request }) => {
   return { showForm: Boolean(login) };
 };
 
+export const action = async ({ request }) => {
+  const formData = new URLSearchParams(await request.text());
+  const domain = formData.get("domain");
+
+  if (!domain) {
+    return { error: "Shop parameter is required." };
+  }
+
+  const redirectUrl = `/auth/login?shop=${domain}`;
+  return redirect(redirectUrl);
+}
 export default function App() {
   const { showForm } = useLoaderData();
-
+  const actionData = useActionData();
+  const error = actionData?.error || null;
   return (
     <div>
       {/* Logo Section */}
@@ -38,10 +50,13 @@ export default function App() {
 
         {/* Conditionally render form based on showForm */}
         {showForm && (
-          <Form className="input-group" method="post" action="/auth/login">
-            <input type="text" placeholder="Type Here..." name="shop" required id="inputField" />
-            <button type="submit">Install Now</button>
-          </Form>
+          <>
+            <p className="description">Enter your Shopify store domain to get started</p>
+            <Form className="input-group" method="post" >
+              <input type="text" placeholder="example.myshopify.com" value="" name="domain" className={error ? "error-border" : ""} id="inputField" />
+              <button type="submit">Install Now</button>
+            </Form>
+          </>
         )}
       </section>
 

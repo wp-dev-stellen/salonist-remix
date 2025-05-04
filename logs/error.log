@@ -160,3 +160,219 @@
 [2025-05-03T11:40:07.504Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
 [2025-05-03T11:40:09.446Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
 [2025-05-03T11:40:11.363Z] ERROR: GraphQL Errors for shop salonist-app.myshopify.com:
+[2025-05-03T18:09:03.773Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:06.587Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:09.355Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:12.653Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:15.363Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:18.438Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:21.486Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:24.260Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:27.090Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:29.776Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:32.601Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:35.729Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:38.419Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:41.231Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:43.915Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:46.670Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:49.482Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:52.243Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:55.044Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:09:57.862Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:10:00.690Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:10:03.481Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:10:06.309Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:10:09.160Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:10:11.913Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:10:14.689Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:10:17.508Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:10.607Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:13.273Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:15.999Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:18.968Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:21.829Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:24.533Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:28.266Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:31.038Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:34.643Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:37.417Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:40.261Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:42.844Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:45.544Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:48.401Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:51.579Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:55.118Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:11:57.796Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:01.158Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:03.975Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:06.635Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:09.346Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:12.242Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:15.058Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:17.801Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:20.827Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:23.903Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:12:26.679Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:15:46.407Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:46.983Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:49.289Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:49.619Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:52.085Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:52.589Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:55.047Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:55.450Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:58.014Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:15:58.338Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:01.190Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:01.822Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:03.933Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:04.814Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:06.601Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:07.585Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:09.361Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:10.599Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:12.465Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:13.454Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:15.313Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:16.389Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:18.001Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:19.092Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:20.677Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:21.724Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:23.338Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:24.480Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:26.098Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:27.197Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:28.977Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:29.878Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:31.796Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:32.551Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:34.759Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:35.642Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:37.392Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:38.265Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:40.005Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:41.008Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:42.788Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:43.800Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:45.889Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:46.586Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:48.977Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:49.388Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:51.761Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:52.143Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:54.665Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:55.222Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:57.553Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:16:58.036Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:00.645Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:01.819Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:32.672Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:35.483Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:38.331Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:41.223Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:44.128Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:47.094Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:49.913Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:52.979Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:56.045Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:17:58.822Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:01.674Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:04.676Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:07.487Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:10.325Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:13.325Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:16.128Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:19.724Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:22.640Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:25.449Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:29.299Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:32.249Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:35.163Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:39.146Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:42.075Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:44.950Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:47.787Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:18:51.468Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:24:54.287Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:24:57.026Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:24:59.909Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:02.983Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:05.887Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:08.703Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:11.885Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:14.442Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:17.196Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:19.963Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:22.578Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:25.455Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:28.229Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:31.106Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:34.706Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:37.484Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:40.270Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:43.745Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:46.580Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:49.293Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:51.984Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:54.809Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:25:58.093Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:26:00.809Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:26:03.601Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:26:06.266Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:26:09.037Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:27:56.257Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:27:59.001Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:01.717Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:04.428Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:07.150Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:09.904Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:12.734Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:15.464Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:18.178Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:20.862Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:23.597Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:26.289Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:28.992Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:31.667Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:34.366Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:37.086Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:39.842Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:42.533Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:45.160Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:47.866Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:50.622Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:53.311Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:55.978Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:28:58.629Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:29:01.522Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:29:04.269Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:29:06.996Z] ERROR: SyncProduct error for shop quickstart-840ac43c.myshopify.com: id is not defined
+[2025-05-03T18:30:35.578Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:30:40.863Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:30:43.621Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:30:46.408Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:30:49.250Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:30:52.000Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:30:54.824Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:30:58.312Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:01.877Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:04.899Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:07.695Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:11.154Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:13.913Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:16.571Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:19.325Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:21.950Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:24.783Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:27.772Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:30.663Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:33.337Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:36.181Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:39.035Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:41.820Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:44.581Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:47.407Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:50.123Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-03T18:31:52.876Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]

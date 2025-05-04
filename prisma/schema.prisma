@@ -44,12 +44,12 @@ model CrmCredential {
 }
 
 model ShopChannel {
-  id        String   @id @default(cuid())
-  shop      String
-  name      String
-  handle    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(cuid())
+  shop           String
+  name           String
+  handle         String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
 }
 
@@ -58,6 +58,7 @@ model ShopLocations {
   shop      String
   locationid String @unique
   name      String
+  shipsInventory Boolean  @default(false)
   status    Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -81,4 +82,36 @@ model RetailProduct {
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
 
+}
+
+model Plan {
+  id                   Int       @id @default(autoincrement())
+  planid               String    @unique
+  domainId             String
+  shop                 String
+  name                 String
+  rawJson              Json
+  shopifyCollectionId  String?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  services             Service[] @relation("PlanToServices")
+}
+
+model Service {
+  id                  Int       @id @default(autoincrement())
+  serviceId           String    @unique
+  domainId            String
+  planId              String
+  shop                String
+  name                String
+  price               String
+  productType      String?
+  time                String?
+  rawJson             Json
+  shopifyProductId    String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  plan                Plan?     @relation("PlanToServices", fields: [planId], references: [planid])
 }

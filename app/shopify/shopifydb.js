@@ -19,7 +19,6 @@ export const upsertShopChannel = async (channel, shop) => {
         shop,
         name: channel.name,
         handle: channel.handle,
-        
       },
     });
 
@@ -54,7 +53,6 @@ export const getShopChannels = async (shop, handle) => {
 export const upsertShopLocation = async (location, shop) => {
     const getShopifyId = (gid) => gid.match(/\/(\d+)$/)?.[1];
     const shopifyId = getShopifyId(location.id);
-  
     try {
       const locationRecord = await prisma.ShopLocations.upsert({
         where: {
@@ -64,12 +62,14 @@ export const upsertShopLocation = async (location, shop) => {
           shop,
           name: location.name,
           status:location.isActive,
+          shipsInventory:location.shipsInventory,
         },
         create: {
           locationid: shopifyId,
           shop,
           name: location.name,
           status:location.isActive,
+          shipsInventory:location.shipsInventory,
         },
       });
   
@@ -85,6 +85,7 @@ export const upsertShopLocation = async (location, shop) => {
         where: {
           shop,
           status: true,
+          shipsInventory:true,
         },
         select: {
           locationid: true,

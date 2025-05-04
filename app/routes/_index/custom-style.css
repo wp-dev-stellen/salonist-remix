@@ -13,7 +13,14 @@ body { background: linear-gradient(135deg, #e0fff9, #ffe6f0, #ffffe0); }
   animation: blinkBorder 1s infinite;
   transition: all 0.3s ease;
 }
-
+.error-border {
+  border: 2px solid red !important;
+  transition: border-color 0.3s ease !important;
+} 
+.blinking-input:focus {
+  border-color: #ff3366;
+  box-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+}
 
 
 

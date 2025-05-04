@@ -28,14 +28,13 @@ export const loader = async ({ request }) => {
 export const action = async ({ request }) => {
   let domainId;
   const { admin, session } = await authenticate.admin(request);
-
-  const { syncProducts } = await import("../salonist/productqueries.server.js");
+  const { syncProducts } = await import("../salonist/ProdductQuery.server");
   const formData = await request.formData();
   const action = formData.get('action')?.trim();
   const shop = formData.get('shop')?.trim();
   if (action === 'import_products') {
     const {session, admin } = await authenticate.admin(request);
-    console.log('sdf');
+    console.log(`Product importing started for shop ${shop}`);
     const CrmData = await GetCrmCredentialsByShop(shop);
     domainId = CrmData?.domainId;
     try {
@@ -49,7 +48,6 @@ export const action = async ({ request }) => {
       );
     }
   }
-
   return null;
 };
 

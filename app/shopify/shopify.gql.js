@@ -67,9 +67,6 @@ export const DELETE_PRODUCT_MUTATION = `
 
 export const PUBLISH_PRODUCT_MUTATION = `mutation publishablePublish($id: ID!, $input: [PublicationInput!]!) {
   publishablePublish(id: $id, input: $input) {
-    shop {
-      publicationCount
-    }
     userErrors {
       field
       message
@@ -130,31 +127,29 @@ export const UPDATE_VARIANT_MUTATION = `
   }
 `;
 
-export const CREATE_COLLECTION_MUTATION = `
-    mutation createCollectionMetafields($input: CollectionInput!) {
-    collectionCreate(input: $input) {
-      collection {
-        id
-      }
-      userErrors {
-        message
-        field
-      }
+export const CREATE_COLLECTION_MUTATION = `mutation createCollectionMetafields($input: CollectionInput!) {
+  collectionCreate(input: $input) {
+    collection {
+      id
     }
-  }`;
+    userErrors {
+      message
+      field
+    }
+  }
+}`;
 
-  export const UPDATE_COLLECTION_MUTATION = `
-  mutation updateCollectionRules($input: CollectionInput!) {
-    collectionUpdate(input: $input) {
-      collection {
-        id
-      }
-      userErrors {
-        field
-        message
-      }
+  export const UPDATE_COLLECTION_MUTATION = `mutation updateCollectionMetafields($input: CollectionInput!) {
+  collectionUpdate(input: $input) {
+    collection {
+      id
     }
-  }`;
+    userErrors {
+      message
+      field
+    }
+  }
+}`;
 
 
   export const CREATE_METAFIELD_DEFINATION = `mutation CreateMetafieldDefinition($definition: MetafieldDefinitionInput!) {
@@ -222,6 +217,7 @@ export const SHOP_LOCATIONS_QUERY = (afterCursor = null) => `query {
           id
           name
           isActive
+          shipsInventory
           address {
             formatted
           }
