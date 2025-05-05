@@ -28,7 +28,7 @@ export const loader = async ({ request }) => {
 export const action = async ({ request }) => {
   let domainId;
   const { admin, session } = await authenticate.admin(request);
-  const { syncProducts } = await import("../salonist/ProdductQuery.server");
+  const { syncProducts } = await import("../salonist/ProductQuery.server");
   const formData = await request.formData();
   const action = formData.get('action')?.trim();
   const shop = formData.get('shop')?.trim();

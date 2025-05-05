@@ -53,8 +53,7 @@ export const UPDATE_PRODUCT_MUTATION = `mutation ProductUpdate($input: ProductIn
   }
 }`;
 
-export const DELETE_PRODUCT_MUTATION = `
-  mutation productDelete($id: ID!) {
+export const DELETE_PRODUCT_MUTATION = `mutation productDelete($id: ID!) {
     productDelete(input: { id: $id }) {
       deletedProductId
       userErrors {
@@ -62,8 +61,7 @@ export const DELETE_PRODUCT_MUTATION = `
         message
       }
     }
-  }
-`;
+  }`;
 
 export const PUBLISH_PRODUCT_MUTATION = `mutation publishablePublish($id: ID!, $input: [PublicationInput!]!) {
   publishablePublish(id: $id, input: $input) {
@@ -151,6 +149,19 @@ export const CREATE_COLLECTION_MUTATION = `mutation createCollectionMetafields($
   }
 }`;
 
+export const DELETE_COLLECTION_MUTATION =`mutation collectionDelete($input: CollectionDeleteInput!) {
+  collectionDelete(input: $input) {
+    deletedCollectionId
+    shop {
+      id
+      name
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}`;
 
   export const CREATE_METAFIELD_DEFINATION = `mutation CreateMetafieldDefinition($definition: MetafieldDefinitionInput!) {
   metafieldDefinitionCreate(definition: $definition) {
@@ -184,6 +195,13 @@ export const CREATE_COLLECTION_MUTATION = `mutation createCollectionMetafields($
 
  export const PRODUCT_BY_IDENTIFIER = `query($identifier: ProductIdentifierInput!) {
   product: productByIdentifier(identifier: $identifier) {
+    id
+    handle
+  }
+}`;
+
+export const COLLECTION_BY_IDENTIFIER = `query($identifier: CollectionIdentifierInput!) {
+  collection: collectionByIdentifier(identifier: $identifier) {
     id
     handle
   }

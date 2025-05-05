@@ -53,7 +53,7 @@ export default function App() {
           <>
             <p className="description">Enter your Shopify store domain to get started</p>
             <Form className="input-group" method="post" >
-              <input type="text" placeholder="example.myshopify.com" value="" name="domain" className={error ? "error-border" : ""} id="inputField" />
+              <input type="text" placeholder="example.myshopify.com"  name="domain" className={error ? "error-border" : ""} id="inputField" />
               <button type="submit">Install Now</button>
             </Form>
           </>

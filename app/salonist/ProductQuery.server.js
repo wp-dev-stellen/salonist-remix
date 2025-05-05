@@ -21,6 +21,7 @@ export const syncProducts = async (domainId, shop) => {
     );
 
     for (const product of productsToDelete) {
+      await  shopifyApi.Deleteshopifyproduct(product.shop,product.crmProductId);
       await prisma.RetailProduct.delete({
         where: { crmProductId: product.crmProductId },
       });

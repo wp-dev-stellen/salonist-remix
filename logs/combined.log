@@ -592,3 +592,21 @@
 [2025-05-03T18:31:47.407Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
 [2025-05-03T18:31:50.123Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
 [2025-05-03T18:31:52.876Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: syntax error, unexpected RCURLY ("}") at [5, 5]
+[2025-05-05T06:14:36.598Z] ERROR: CreateandUpdateCollection error for shop [object Object]: Received invalid shop argument
+[2025-05-05T06:45:18.035Z] ERROR: CreateandUpdateCollection error for shop salonist-app.myshopify.com: CollectionIdentifierInput isn't a defined input type (on $identifier)
+[2025-05-05T06:49:11.812Z] ERROR: CreateandUpdateCollection error for shop salonist-app.myshopify.com: CollectionIdentifierInput isn't a defined input type (on $identifier)
+[2025-05-05T09:00:03.841Z] ERROR: Exception while updating variant for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.compareAtPrice (invalid money '')
+[2025-05-05T09:00:03.859Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: 
+Invalid `prisma.retailProduct.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+[2025-05-05T09:02:59.682Z] ERROR: Exception while updating variant for shop salonist-app.myshopify.com: Variable $variants of type [ProductVariantsBulkInput!]! was provided invalid value for 0.compareAtPrice (invalid money '')
+[2025-05-05T09:02:59.721Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: 
+Invalid `prisma.retailProduct.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+[2025-05-05T09:15:42.781Z] ERROR: Exception while updating Service variant for shop salonist-app.myshopify.com: Throttled
+[2025-05-05T09:15:42.797Z] ERROR: Exception while updating Service variant for shop salonist-app.myshopify.com: Throttled
+[2025-05-05T09:15:42.802Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Throttled
