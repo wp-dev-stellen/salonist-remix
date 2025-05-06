@@ -26,10 +26,22 @@ export const startOrReuseImportJob = async({ shop, domainId, type, runJob }) => 
   (async () => {
     try {
       await runJob(newJob.id);
-      await prisma.ImportJob.update({
-        where: { id: newJob.id },
-        data: { status: 'done' },
-      });
+
+      await prisma.$transaction([
+        prisma.ImportJob.update({
+          where: { id: newJob.id },
+          data: { status: 'done' },
+        }),
+        prisma.ImportJob.deleteMany({
+          where: {
+            shop: newJob.shop,
+            type: type,
+            status: { in: ['in_progress', 'failed', 'done'] }, 
+            id: { not: newJob.id },
+          },  
+        }),
+      ]);
+
     } catch (error) {
       await prisma.ImportJob.update({
         where: { id: newJob.id },

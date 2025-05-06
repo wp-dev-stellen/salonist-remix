@@ -1,4 +1,5 @@
 import prisma from "../db.server";
+import { useEffect, useState } from "react";
 
 export const getProductsByShop = async (shop) => {
   
@@ -37,7 +38,6 @@ export const getServicesByShop = async (shop) => {
     throw new Error('Failed to fetch products');
   }
 };
-
 
 
  export const  capitalizeWords = async(str) => {

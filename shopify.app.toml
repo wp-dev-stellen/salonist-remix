@@ -3,7 +3,7 @@
 client_id = "6c38763fe7a276ba283c9eb1331506f1"
 name = "salonist-remix"
 handle = "salonist-remix"
-application_url = "https://fiji-orange-filed-surrey.trycloudflare.com"
+application_url = "https://approx-relation-genetic-initiatives.trycloudflare.com"
 embedded = true
 
 [build]
@@ -27,9 +27,9 @@ scopes = "read_inventory,read_locations,read_products,write_inventory,write_loca
 
 [auth]
 redirect_urls = [
-  "https://fiji-orange-filed-surrey.trycloudflare.com/auth/callback",
-  "https://fiji-orange-filed-surrey.trycloudflare.com/auth/shopify/callback",
-  "https://fiji-orange-filed-surrey.trycloudflare.com/api/auth/callback"
+  "https://approx-relation-genetic-initiatives.trycloudflare.com/auth/callback",
+  "https://approx-relation-genetic-initiatives.trycloudflare.com/auth/shopify/callback",
+  "https://approx-relation-genetic-initiatives.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

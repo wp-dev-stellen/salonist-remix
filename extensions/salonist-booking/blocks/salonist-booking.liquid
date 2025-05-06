@@ -1,0 +1,52 @@
+{% if product and product.metafields.salonist.product_type %}
+     {% assign salonist_product_type = product.metafields.salonist.product_type.value | downcase %}
+          {% if salonist_product_type == "service" %}  
+<div class="salonist-appointment" style="text-align: center; margin: 20px 0;">
+    <style>
+      .product-form__submit {display: none !important;}
+      form[action="/cart/add"] { display: none !important; }
+    </style>
+  <button 
+    class="salonist-book-btn"
+    id="salonist-open"
+    style="background-color: {{ block.settings.button_color }}; color: {{ block.settings.text_color }};"
+  >
+    {{ block.settings.button_text }}
+  </button>
+
+
+<link href="{{ 'salonist-form.css' | asset_url }}" rel="stylesheet">
+
+{% render 'salonist-booking-form' %}
+<script src="{{ 'salonist-form.js' | asset_url }}" ></script>
+</div>
+    {% endif %}
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Salonist Appointment",
+  "target": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Background Color",
+      "default": "#0d9488"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Book Now",
+    }
+  ]
+}
+{% endschema %}

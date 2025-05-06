@@ -1,5 +1,6 @@
-import React, { useState,useEffect,useRef, useLayoutEffect } from 'react';
-import {  Page,
+import React, { useState,useEffect} from 'react';
+import { 
+  Page,
   Button,
   Text,
   Banner,
@@ -7,6 +8,7 @@ import {  Page,
   IndexTable,
   useIndexResourceState,
   Icon,
+  Badge,
   } from '@shopify/polaris';
   import {
     PaginationEndIcon,PaginationStartIcon
@@ -17,6 +19,17 @@ import { GetCrmCredentialsByShop } from '../salonist/crm-credentials.server';
 import { authenticate } from '../shopify.server';
 import { redirect ,data} from '@remix-run/node';
 
+export function ClientOnly({ children }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
+  return children;
+}
 
 // Loader
 export const loader = async ({ request }) => {
@@ -30,13 +43,14 @@ export const loader = async ({ request }) => {
   }
 
   const domainId = CrmData?.domainId;
-  const products = await getServicesByShop(shop);
+  const services = await getServicesByShop(shop);
 
-  return { shop, domainId, products };
+  return { shop, domainId, services };
 };
 
 
 export const action = async ({ request }) => {
+
   const { admin, session } = await authenticate.admin(request);
   const { startOrReuseImportJob  } = await import("../salonist/ImportJob.server.js");
   const formData = await request.formData();
@@ -77,61 +91,41 @@ export default function ProductPage() {
 
   const actionData = useActionData();
   const shopdata = useLoaderData();
-  const initialProducts = shopdata?.products || [];
+  const initialProducts = shopdata?.services || [];
   const submit = useSubmit(); 
+
   const handleImportClick = async (shop ,domainId) => {
-    console.log('Importing services...');
-    console.log('Shop:', shop);
-    console.log('Domain ID:', domainId);
-    submit(
-      {
-        action: 'import_services',
-        shop,
-        domainId,
-      },
-      { method: 'post' }
-    );
+    submit({action: 'import_services', shop, domainId, },{ method: 'post' });
   };
+
   const pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const [visibleRows, setVisibleRows] = useState([]);
 
   const totalPages = Math.ceil(initialProducts.length / pageSize);
-  const tableContainerRef = useRef(null);
+
   useEffect(() => {
     const start = (currentPage - 1) * pageSize;
     const end = start + pageSize;
     setVisibleRows(initialProducts.slice(start, end));
   }, [currentPage, initialProducts, pageSize]);
 
-  useLayoutEffect(() => {
-    if (tableContainerRef.current) {
-      tableContainerRef.current.scrollTop = 0;
-    }
-  }, [currentPage]);
-  
+  const resourceName = {singular: 'service', plural: 'services', };
 
-  const resourceName = {
-    singular: 'service',
-    plural: 'services',
-  };
-
-  const { selectedResources, allResourcesSelected, handleSelectionChange } =
-    useIndexResourceState(visibleRows);
 
   const rowMarkup = visibleRows.map((product, index) => (
-    <IndexTable.Row
-      id={product.id}
-      key={product.id}
-      selected={false}
-      // selected={selectedResources.includes(product.id)}
-      position={index}
-      onClick={() => handleSelectionChange(product.id)} 
-    >
+    <IndexTable.Row id={product.id} key={product.id} selected={false} position={index} >
       <IndexTable.Cell><Text variation="strong">{product.serviceId}</Text></IndexTable.Cell>
       <IndexTable.Cell>{product.name}</IndexTable.Cell>
       <IndexTable.Cell>{product.price || 'N/A'}</IndexTable.Cell>
       <IndexTable.Cell>{product.time}</IndexTable.Cell>
+      <IndexTable.Cell>
+        {product.shopifyProductId ? (
+          <Badge tone="success">Imported</Badge>
+        ) : (
+          <Badge tone="attention">Pending</Badge>
+        )}
+      </IndexTable.Cell>
     </IndexTable.Row>
   ));
 
@@ -157,42 +151,41 @@ export default function ProductPage() {
         </Banner>
       )}
 
-<div ref={tableContainerRef} className="table-container" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+<ClientOnly>
         <IndexTable
           resourceName={resourceName}
           itemCount={initialProducts.length}
-         
-          onSelectionChange={handleSelectionChange}
           headings={[
             { title: 'ID' },
             { title: 'Title' },
             { title: 'Price' },
             { title: 'Duration' },
+            { title: 'Status' },
           ]}
           selectable={false}
-        
-         
         >
           {rowMarkup}
         </IndexTable>
-</div>
+
         <div style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between' }}>
           <Text>Showing {visibleRows.length} of {initialProducts.length} services</Text>
-          <div>
-            <Button onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1}>
-            <Icon
-              source={PaginationStartIcon}
-              tone="base"
-            />
-            </Button>
-            <Button onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages}>
-            <Icon
-              source={PaginationEndIcon}
-              tone="base"
-            />
-            </Button>
-          </div>
+            <div>
+              <Button onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1}>
+              <Icon
+                source={PaginationStartIcon}
+                tone="base"
+              />
+              </Button>
+              <Button onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages}>
+              <Icon
+                source={PaginationEndIcon}
+                tone="base"
+              />
+              </Button>
+            </div>
         </div>
+        </ClientOnly>
+      
       </Card>
       
     </Page>

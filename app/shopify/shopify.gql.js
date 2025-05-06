@@ -73,19 +73,18 @@ export const PUBLISH_PRODUCT_MUTATION = `mutation publishablePublish($id: ID!, $
 }`;
 
 
-export const SET_METAFIELD = `
-  mutation MetafieldsSet($metafields: [MetafieldsSetInput!]!) {
-    metafieldsSet(metafields: $metafields) {
-      metafields {
-        id
-      }
-      userErrors {
-        field
-        message
-        code
-      }
+export const SET_METAFIELD = `mutation MetafieldsSet($metafields: [MetafieldsSetInput!]!) {
+  metafieldsSet(metafields: $metafields) {
+    metafields {
+    id
     }
-  }`;
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+}`;
 
 export const PRODUCT_DEFAULT_VARIANT_MUTATION = `
     mutation productVariantsBulkCreate($productId: ID!, $strategy: ProductVariantsBulkCreateStrategy, $variants: [ProductVariantsBulkInput!]!) {
@@ -258,9 +257,6 @@ export const SHOP_PRIMARY_LOCATION_QUERY =  `
       isActive
     }
   }`;
-
-
-  
 
   export const COLLECTION_BY_HANDLE = `query CollectionByHandle($handle: String!) {
     collectionByHandle(handle: $handle) {

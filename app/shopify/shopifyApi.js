@@ -45,6 +45,11 @@ export const SyncProduct = async (dbproduct,result) => {
     const productid = product?.id;
     const variantData = {productid ,variantid , ...result}
 
+    if(productid){
+    const metadata =  {type:'product',id:productid} ;
+     await  SetProductMetafiled(shop ,metadata);
+    }
+
      await ProductVariantUpdate (shop, variantData);
      await updateshopifyId(result.id,productid);
      await PublishablePublish(shop, productid);
@@ -150,6 +155,10 @@ export const SyncServices = async (dbproduct,result,collectionid) => {
     const variantid = product.variants.edges[0].node.id;
     const productid = product?.id;
     const variantData = {productid ,variantid , ...result}
+    if(productid){
+       const metadata =  {type:'service',id:productid};
+       await  SetProductMetafiled(shop ,metadata);
+      }
     await ServiceVariantUpdate (shop, variantData);
     await PublishablePublish(shop, productid);
 
@@ -157,7 +166,7 @@ export const SyncServices = async (dbproduct,result,collectionid) => {
 
   } catch (error) {
 
-    logger.error(`SyncProduct error for shop ${shop}: ${error.message}`, { stack: error.stack });
+    logger.error(`SyncService error for shop ${shop}: ${error.message}`, { stack: error.stack });
     throw error; 
   }
 
@@ -351,6 +360,23 @@ export const DeleteshopifyCollection = async (shop,id) => {
   return true;
 };
 
+export const SetProductMetafiled = async(shop,data) => {
+
+  const { admin } = await unauthenticated.admin(shop);
+  const mutation = ShopifyGQL.SET_METAFIELD;
+  const metaField = { metafields:[ {namespace: "salonist", key: "product_type",ownerId:data.id,type: "single_line_text_field", value:data.type}]};
+  const response = await admin.graphql(mutation, { variables:metaField});
+  const responseJson = await response.json();
+  const userErrors = responseJson?.data?.metafieldsSet?.userErrors || [];
+  if (userErrors && userErrors.length > 0) {
+    logger.error(`GraphQL Errors for Meta field set  for shop ${shop}:`, JSON.stringify(responseJson.errors, null, 2));
+    console.error('GraphQL Errors:', userErrors);
+  } 
+  return true;
+};
+
+
+
 export const PublishablePublish = async (shop, pid) => {
   try {
     const { admin } = await unauthenticated.admin(shop);
@@ -389,10 +415,8 @@ export const PublishablePublish = async (shop, pid) => {
     });
     return false;
   }
+
 };
-
-
-
 
 export const CreateMetafieldDefinition = async (admin ,shop,def) => {
   
@@ -421,25 +445,14 @@ export const CreateMetafieldDefinition = async (admin ,shop,def) => {
       const createResponse = await admin.graphql(mutation, {variables:MetafieldData});
       const createJson = await createResponse.json();
       const errors = createJson?.data?.metafieldDefinitionCreate?.userErrors;
-
-
-      if (errors?.length) {
-        logger.error(`Failed to create metafield definition for shop ${shop}:`, {
-          errors,
-        });
+    if (errors?.length) {
+        logger.error(`Failed to create metafield definition for shop ${shop}:`, { errors,});
 
       } else {
-
-        console.log(
-          "Metafield definition created:",
-          createJson.data.metafieldDefinitionCreate.createdDefinition
-        );
-
+        console.log("Metafield definition created:");
       }
     } else {
-
       console.log("Metafield definition already exists:", existingDefs[0].node);
-
     }
     
   } catch (error) {
