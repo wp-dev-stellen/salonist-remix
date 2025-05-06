@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "354009510147a812607e4df29560460b"
-application_url = "https://junk-genealogy-strongly-nothing.trycloudflare.com"
+application_url = "https://flavor-every-singer-magazine.trycloudflare.com"
 embedded = true
 name = "salonist-remix"
 handle = "salonist-remix-1"
@@ -15,9 +15,9 @@ scopes = "read_inventory,read_locations,read_products,write_inventory,write_loca
 
 [auth]
 redirect_urls = [
-  "https://junk-genealogy-strongly-nothing.trycloudflare.com/auth/callback",
-  "https://junk-genealogy-strongly-nothing.trycloudflare.com/auth/shopify/callback",
-  "https://junk-genealogy-strongly-nothing.trycloudflare.com/api/auth/callback"
+  "https://flavor-every-singer-magazine.trycloudflare.com/auth/callback",
+  "https://flavor-every-singer-magazine.trycloudflare.com/auth/shopify/callback",
+  "https://flavor-every-singer-magazine.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

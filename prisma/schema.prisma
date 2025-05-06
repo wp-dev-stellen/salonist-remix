@@ -115,3 +115,14 @@ model Service {
 
   plan                Plan?     @relation("PlanToServices", fields: [planId], references: [planid])
 }
+
+model ImportJob {
+  id         String   @id @default(cuid())
+  shop       String
+  domainId   String
+  type       String   
+  status     String  
+  error      String?  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

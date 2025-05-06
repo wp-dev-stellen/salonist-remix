@@ -1,13 +1,11 @@
 import prisma from "../db.server";
 
-export const getProductsByShop = async (shop, { limit = 10, page = 1 }) => {
-  const offset = (page - 1) * limit;
+export const getProductsByShop = async (shop) => {
+  
 
   try {
     const products = await prisma.retailProduct.findMany({
-      where: { shop },
-      skip: offset,
-      take: limit,
+      where: { shop }
     });
 
     if (products.length === 0) {
@@ -20,6 +18,27 @@ export const getProductsByShop = async (shop, { limit = 10, page = 1 }) => {
     throw new Error('Failed to fetch products');
   }
 };
+
+export const getServicesByShop = async (shop) => {
+  
+
+  try {
+    const products = await prisma.Service.findMany({
+      where: { shop }
+    });
+
+    if (products.length === 0) {
+      return null;
+    }
+
+    return products;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw new Error('Failed to fetch products');
+  }
+};
+
+
 
  export const  capitalizeWords = async(str) => {
   return str.replace(/\b\w/g, char => char.toUpperCase());
