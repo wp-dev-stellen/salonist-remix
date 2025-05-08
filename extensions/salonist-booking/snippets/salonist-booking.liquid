@@ -1,0 +1,48 @@
+<div id="salonist-booking-modal" class="salonist-modal">
+  <div class="salonist-modal-content">
+    <span class="salonist-close-btn">&times;</span>
+    
+    <div class="salonist-loading" style="display: none;">
+      <div class="salonist-spinner"></div>
+      <p>Loading...</p>
+    </div>
+    
+    <div class="salonist-error" style="display: none;"></div>
+    
+    <div class="salonist-step-indicators">
+      <div class="salonist-step active" data-step="1">Shop</div>
+      <div class="salonist-step" data-step="2">Staff</div>
+      <div class="salonist-step" data-step="3">Date</div>
+      <div class="salonist-step" data-step="4">Time</div>
+    </div>
+    
+    <div class="salonist-form-steps">
+      <div class="salonist-step-content active" data-step="1">
+        <h2>Select a Shop</h2>
+        <div class="salonist-shop-list"></div>
+      </div>
+      
+      <div class="salonist-step-content" data-step="2">
+        <h2>Select Staff</h2>
+        <div class="salonist-staff-list"></div>
+      </div>
+      
+      <div class="salonist-step-content" data-step="3">
+        <h2>Select Date</h2>
+        <div class="salonist-calendar"></div>
+      </div>
+      
+      <div class="salonist-step-content" data-step="4">
+        <h2>Select Time</h2>
+        <div class="salonist-time-slots"></div>
+        <div class="salonist-summary"></div>
+      </div>
+    </div>
+    
+    <div class="salonist-nav-buttons">
+      <button class="salonist-prev-btn">Back</button>
+      <button class="salonist-next-btn">Next</button>
+      <button class="salonist-book-btn" style="display: none;">Book Now</button>
+    </div>
+  </div>
+</div>

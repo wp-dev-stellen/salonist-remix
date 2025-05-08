@@ -700,3 +700,4 @@ An operation failed because it depends on one or more records that were required
 [2025-05-06T06:50:34.243Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $input of type CollectionDeleteInput! was provided invalid value
 [2025-05-06T06:50:36.220Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Variable $input of type CollectionDeleteInput! was provided invalid value
 [2025-05-06T07:29:14.275Z] ERROR: Exception while updating variant for shop salonist-app.myshopify.com: Http request error, no response available: GraphQL Client: fetch failed
+[2025-05-07T19:22:33.616Z] ERROR: Exception while publishing product for shop quickstart-840ac43c.myshopify.com: Http request error, no response available: GraphQL Client: fetch failed

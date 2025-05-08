@@ -1,13 +1,13 @@
-{% if product and product.metafields.salonist.product_type %}
+{% if product  %}
      {% assign salonist_product_type = product.metafields.salonist.product_type.value | downcase %}
-          {% if salonist_product_type == "service" %}  
+           
 <div class="salonist-appointment" style="text-align: center; margin: 20px 0;">
     <style>
       .product-form__submit {display: none !important;}
       form[action="/cart/add"] { display: none !important; }
     </style>
   <button 
-    class="salonist-book-btn"
+    class="salonist-booking-trigger"
     id="salonist-open"
     style="background-color: {{ block.settings.button_color }}; color: {{ block.settings.text_color }};"
   >
@@ -15,12 +15,16 @@
   </button>
 
 
-<link href="{{ 'salonist-form.css' | asset_url }}" rel="stylesheet">
+<link href="{{ 'salonist-booking.css' | asset_url }}" rel="stylesheet">
 
-{% render 'salonist-booking-form' %}
-<script src="{{ 'salonist-form.js' | asset_url }}" ></script>
+{% render 'salonist-booking' %}
+{{ 'salonist-api.js' | asset_url | script_tag }}
+{{ 'salonist-modal.js' | asset_url | script_tag }}
+{{ 'salonist-state.js' | asset_url | script_tag }}
+{{ 'salonist-ui.js' | asset_url | script_tag }}
+{{ 'salonist-booking.js' | asset_url | script_tag }}
 </div>
-    {% endif %}
+
 {% endif %}
 
 
