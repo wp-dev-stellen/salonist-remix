@@ -6,6 +6,7 @@ const API_LOGIN = 'https://salonist.io/secureweb/login';
 const API_SERVICE = 'https://salonist.io/wordpressapi/services';
 const API_PRODUCT = 'https://salonist.io/wordpressapi/products';
 const API_PACKAGES = 'https://salonist.io/wordpressapi/packages';
+const API_BRANCHES = 'https://salonist.io/wordpressapi/getAllLocations';
 
 /**
  * Logs into Salonist using email and password
@@ -153,3 +154,35 @@ export async function fetchSalonistPackages(domainId) {
 }
 
 
+
+/**
+ * Fetches All Locations data from Salonist API using domainId
+ * @param {*} domainId 
+ * @returns 
+ */
+export async function fetchSalonistBranches(domainId) {
+  try {
+    const data = new FormData();
+    data.append('domainId', domainId);  // Sending domainId instead of shop
+
+    const response = await axios.post(API_BRANCHES, data);
+
+    if (response.data?.status == 'error') {
+      return {
+        success: false,
+        error: response.data.message || "Failed to fetch packages",
+      };
+    }
+
+    return {
+      success: true,
+      data: response.data,
+    };
+  } catch (error) {
+    console.error("Salonist Branches fetch error:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message || "Something went wrong",
+    };
+  }
+}

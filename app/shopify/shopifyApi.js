@@ -46,7 +46,7 @@ export const SyncProduct = async (dbproduct,result) => {
     const variantData = {productid ,variantid , ...result}
 
     if(productid){
-    const metadata =  {type:'product',id:productid} ;
+    const metadata =  {type:'product',id:productid,domainId:result.domainId} ;
      await  SetProductMetafiled(shop ,metadata);
     }
 
@@ -156,7 +156,7 @@ export const SyncServices = async (dbproduct,result,collectionid) => {
     const productid = product?.id;
     const variantData = {productid ,variantid , ...result}
     if(productid){
-       const metadata =  {type:'service',id:productid};
+       const metadata =  {type:'service',id:productid ,domainId:result.domainId};
        await  SetProductMetafiled(shop ,metadata);
       }
     await ServiceVariantUpdate (shop, variantData);
@@ -364,7 +364,10 @@ export const SetProductMetafiled = async(shop,data) => {
 
   const { admin } = await unauthenticated.admin(shop);
   const mutation = ShopifyGQL.SET_METAFIELD;
-  const metaField = { metafields:[ {namespace: "salonist", key: "product_type",ownerId:data.id,type: "single_line_text_field", value:data.type}]};
+  const metaField = { metafields:[ 
+    {namespace: "salonist", key: "product_type",ownerId:data.id,type: "single_line_text_field", value:data.type},
+    {namespace: "salonist", key: "domainid",ownerId:data.id,type: "single_line_text_field", value:data.domainId}
+  ]};
   const response = await admin.graphql(mutation, { variables:metaField});
   const responseJson = await response.json();
   const userErrors = responseJson?.data?.metafieldsSet?.userErrors || [];

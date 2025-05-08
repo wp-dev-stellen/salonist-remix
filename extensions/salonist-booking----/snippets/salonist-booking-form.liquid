@@ -1,0 +1,28 @@
+<div id="salonistPopup" class="salonist-popup">
+  <div class="salonist-popup-content">
+    <span class="close-btn" onclick="salonistBookingClose()">×</span>
+    
+    <div class="product-info mb-4"></div>
+
+    <!-- Step 1 -->
+    <div class="step" data-step="1">
+      <div class="branches">
+      </div>
+      <button type="button" onclick="bookingPopup.nextStep()">Next</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step" data-step="2" style="display: none;">
+      <label>Email: <input type="email" required></label>
+      <button type="button" onclick="bookingPopup.prevStep()">Back</button>
+      <button type="button" onclick="bookingPopup.nextStep()">Next</button>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step" data-step="3" style="display: none;">
+      <p>Confirm Booking</p>
+      <button type="button" onclick="bookingPopup.prevStep()">Back</button>
+      <button type="submit">Book Now</button>
+    </div>
+  </div>
+</div>
