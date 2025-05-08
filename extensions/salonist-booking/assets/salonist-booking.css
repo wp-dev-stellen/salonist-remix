@@ -10,24 +10,28 @@
   }
   
   .salonist-modal-content {
-    background-color: #fff;
+    background-color: #FAF9F6;
     margin: 5% auto;
-    padding: 25px;
+    padding: 40px;
     border-radius: 8px;
-    width: 90%;
-    max-width: 700px;
-    max-height: 90vh;
-    overflow-y: auto;
+    width: 100%;
+    max-width: 750px;
     position: relative;
-  }
+    height: 500px;
+    overflow-y: auto;
+}
   
   .salonist-close-btn {
     position: absolute;
-    right: 20px;
+    right: 15px;
     top: 15px;
-    font-size: 28px;
+    font-size: 32px;
     cursor: pointer;
-  }
+    line-height: 0.7;
+    border-radius: 75px;
+    color: #000;
+    font-weight: 500;
+}
   
   .salonist-loading {
     position: absolute;
@@ -66,10 +70,11 @@
   }
   
   .salonist-step-indicators {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    position: relative;
+    position: relative; */
+    display: none;
   }
   
   .salonist-step-indicators::before {
@@ -111,7 +116,7 @@
     display: block;
   }
   
-  .salonist-shop-list,
+  .salonist-branch-list,
   .salonist-staff-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -119,7 +124,7 @@
     margin: 20px 0;
   }
   
-  .salonist-shop-item,
+  .salonist-branch-item,
   .salonist-staff-item {
     border: 1px solid #e0e0e0;
     padding: 15px;
@@ -128,7 +133,7 @@
     transition: all 0.3s ease;
   }
   
-  .salonist-shop-item:hover,
+  .salonist-branch-item:hover,
   .salonist-staff-item:hover {
     border-color: #2196f3;
     box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
@@ -219,7 +224,7 @@
   
   .salonist-next-btn,
   .salonist-book-btn {
-    background: #2196f3;
+    background: #757575;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -238,7 +243,7 @@
       padding: 15px;
     }
     
-    .salonist-shop-list,
+    .salonist-branch-list,
     .salonist-staff-list {
       grid-template-columns: 1fr;
     }

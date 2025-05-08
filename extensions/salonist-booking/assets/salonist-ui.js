@@ -1,12 +1,13 @@
 class SalonistUI {
     constructor(app) {
+  
       this.app = app;
       this.elements = {
         loading: document.querySelector('.salonist-loading'),
         error: document.querySelector('.salonist-error'),
         stepIndicators: document.querySelectorAll('.salonist-step'),
         stepContents: document.querySelectorAll('.salonist-step-content'),
-        shopList: document.querySelector('.salonist-shop-list'),
+        branchList: document.querySelector('.salonist-branch-list'),
         staffList: document.querySelector('.salonist-staff-list'),
         calendar: document.querySelector('.salonist-calendar'),
         timeSlots: document.querySelector('.salonist-time-slots'),
@@ -23,30 +24,36 @@ class SalonistUI {
       this.elements.bookBtn.addEventListener('click', () => this.app.bookAppointment());
     }
   
-    renderShops(shops) {
-      this.elements.shopList.innerHTML = shops.map(shop => `
-        <div class="salonist-shop-item" 
-             data-shop-id="${shop.Detail.id}"
-             data-domain-id="${shop.Domain.id}"
-             data-staff-select="${shop.Detail.staff_select.toLowerCase()}">
-          <h3>${shop.Detail.name}</h3>
-          <p>${shop.Detail.address}</p>
-          <p>${shop.Detail.country_code} ${shop.Detail.salon_contact}</p>
+    renderBranches(branches) {
+      this.elements.branchList.innerHTML = branches.map(branch => `
+        <div class="salonist-branch-item " 
+             data-branch-id="${branch.Detail.id}"
+             data-domain-id="${branch.Domain.id}"
+             data-staff-select="${branch.Detail.staff_select.toLowerCase()}">
+          <h3>${branch.Detail.name}</h3>
+          <p>${branch.Detail.address}</p>
+          <p>${branch.Detail.country_code} ${branch.Detail.salon_contact}</p>
         </div>
       `).join('');
     }
   
     renderStaff(staffList) {
-      this.elements.staffList.innerHTML = staffList.map(staff => `
-        <div class="salonist-staff-item" data-staff-id="${staff.id}">
-          <img src="/staff-images/${staff.img || 'default-staff.jpg'}" 
-               alt="${staff.name}"
-               onerror="this.src='/staff-images/default-staff.jpg'">
-          <h4>${staff.name}</h4>
-        </div>
-      `).join('');
+      console.log(staffList, 'staffList');
+      this.elements.staffList.innerHTML = staffList.map(staff => {
+        const imageUrl = staff?.img
+          ? `https://salonist.io/img/user/${staff.img}`
+          : 'https://salonist.io/img/user/no_image.png';
+        
+        return `
+          <div class="salonist-staff-item" data-staff-id="${staff.id}">
+            <img src="${imageUrl}" alt="${staff.name}">
+            <h4>${staff.name}</h4>
+          </div>
+        `;
+      }).join('');
     }
   
+
     renderCalendar(calendarData) {
       // Implement calendar rendering based on calendarData
       // This would create the calendar grid with available dates
@@ -86,6 +93,7 @@ class SalonistUI {
     }
   
     toggleButtons(currentStep, totalSteps) {
+   
       this.elements.prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
       this.elements.nextBtn.style.display = currentStep === totalSteps ? 'none' : 'block';
       this.elements.bookBtn.style.display = currentStep === totalSteps ? 'block' : 'none';

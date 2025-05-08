@@ -1,29 +1,51 @@
 class SalonistAPI {
     constructor() {
-      this.baseUrl = '/apps/api';
+      this.baseUrl = 'https://mario-aud-poor-landscapes.trycloudflare.com/api';
       this.endpoints = {
-        locations: '/locations',
-        staff: '/staff',
+        branches: '/branches',
+        staff: '/service-staff',
         calendar: '/calendar',
         timeslots: '/timeslots'
       };
     }
   
-    async fetchShops() {
-      const response = await fetch(`${this.baseUrl}${this.endpoints.locations}`);
-      const data = await response.json();
-      if (data.status !== 'success') throw new Error(data.message || 'Failed to load shops');
-      return data.locations;
+    async fetchBranches(data) {
+
+      const response = await fetch(`${this.baseUrl}${this.endpoints.branches}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'domainId': data.domainid,
+          'shop': data.shop
+        }
+      });
+    
+      const responseJson = await response.json();
+      console.log(responseJson?.data);
+      if (responseJson?.data.message?.type !== 'success') {
+
+        throw new Error(responseJson.message || 'Failed to load Branches');
+      }
+    
+      return responseJson?.data?.locations || [];
     }
   
-    async fetchStaff(domainId, shopId, serviceId = null) {
-      let url = `${this.baseUrl}${this.endpoints.staff}?domain_id=${domainId}&shop_id=${shopId}`;
-      if (serviceId) url += `&service_id=${serviceId}`;
-      
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.status !== 'success') throw new Error(data.message || 'Failed to load staff');
-      return data.list;
+    async fetchStaff(data) {
+     
+      const response = await fetch(`${this.baseUrl}${this.endpoints.staff}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'domainId': data.domainId,
+          'serviceId': data.serviceId,
+          'shop': data.shop
+        }
+      }); 
+
+      const responseJson = await response.json(); 
+      if (responseJson?.data?.message?.type !== 'success') throw new Error(responseJson?.message?.text || 'Failed to load staff');
+
+      return responseJson?.data?.staff || [];
     }
   
     async fetchCalendar(domainId, shopId, staffId = null, serviceId = null) {

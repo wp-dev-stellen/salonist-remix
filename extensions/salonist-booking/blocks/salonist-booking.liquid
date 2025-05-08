@@ -1,32 +1,32 @@
 {% if product  %}
-     {% assign salonist_product_type = product.metafields.salonist.product_type.value | downcase %}
+{% assign salonist_product_type = product.metafields.salonist.product_type.value | downcase %}
            
 <div class="salonist-appointment" style="text-align: center; margin: 20px 0;">
     <style>
       .product-form__submit {display: none !important;}
       form[action="/cart/add"] { display: none !important; }
     </style>
-  <button 
+    <button 
     class="salonist-booking-trigger"
     id="salonist-open"
+    data-product-info='{"salonistid":{{ product.metafields.salonist.id.value }},
+    "domainid":{{ product.metafields.salonist.domainid.value }},
+    "productid":{{ product.id }},
+    "variantid":{{ product.selected_or_first_available_variant.id }}
+      }'
     style="background-color: {{ block.settings.button_color }}; color: {{ block.settings.text_color }};"
-  >
-    {{ block.settings.button_text }}
+     >
+      {{ block.settings.button_text }}
   </button>
-
-
 <link href="{{ 'salonist-booking.css' | asset_url }}" rel="stylesheet">
-
-{% render 'salonist-booking' %}
-{{ 'salonist-api.js' | asset_url | script_tag }}
-{{ 'salonist-modal.js' | asset_url | script_tag }}
-{{ 'salonist-state.js' | asset_url | script_tag }}
-{{ 'salonist-ui.js' | asset_url | script_tag }}
-{{ 'salonist-booking.js' | asset_url | script_tag }}
+    {% render 'salonist-booking' %}
+    {{ 'salonist-api.js' | asset_url | script_tag }}
+    {{ 'salonist-modal.js' | asset_url | script_tag }}
+    {{ 'salonist-state.js' | asset_url | script_tag }}
+    {{ 'salonist-ui.js' | asset_url | script_tag }}
+    {{ 'salonist-booking.js' | asset_url | script_tag }}
 </div>
-
 {% endif %}
-
 
 {% schema %}
 {

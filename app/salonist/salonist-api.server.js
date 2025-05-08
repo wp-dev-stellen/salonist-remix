@@ -7,6 +7,7 @@ const API_SERVICE = 'https://salonist.io/wordpressapi/services';
 const API_PRODUCT = 'https://salonist.io/wordpressapi/products';
 const API_PACKAGES = 'https://salonist.io/wordpressapi/packages';
 const API_BRANCHES = 'https://salonist.io/wordpressapi/getAllLocations';
+const API_STAFF_SERVICE = 'https://salonist.io/wordpressapi/service_staff';
 
 /**
  * Logs into Salonist using email and password
@@ -180,6 +181,42 @@ export async function fetchSalonistBranches(domainId) {
     };
   } catch (error) {
     console.error("Salonist Branches fetch error:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message || "Something went wrong",
+    };
+  }
+}
+
+
+
+/**
+ * Fetches  staff data from Salonist API using domainId and serviceId
+ * @param {string|number} domainId 
+ * @param {string|number} serviceId 
+ * @returns {Promise<{success: boolean, data?: any, error?: string}>}
+ */
+
+export async function fetchServiceStaff(domainId, serviceId) {
+  try {
+    const data = new FormData();
+    data.append('domainId', domainId);
+    data.append('service_id', serviceId);
+
+    const response = await axios.post(API_STAFF_SERVICE, data);
+
+    if (response.data?.status === 'error') {
+      return {
+        success: false,
+        error: response.data.message || "Failed to fetch branches or staff",
+      };
+    }
+    return {
+      success: true,
+      data: response.data,
+    };
+  } catch (error) {
+    console.error("Salonist Branches + Staff fetch error:", error);
     return {
       success: false,
       error: error?.response?.data?.message || error.message || "Something went wrong",

@@ -1,4 +1,5 @@
-<div id="salonist-booking-modal" class="salonist-modal">
+  <script>
+  const salonistModalHTML = `<div id="salonist-booking-modal" class="salonist-modal">
   <div class="salonist-modal-content">
     <span class="salonist-close-btn">&times;</span>
     
@@ -10,7 +11,7 @@
     <div class="salonist-error" style="display: none;"></div>
     
     <div class="salonist-step-indicators">
-      <div class="salonist-step active" data-step="1">Shop</div>
+      <div class="salonist-step active" data-step="1">Branch</div>
       <div class="salonist-step" data-step="2">Staff</div>
       <div class="salonist-step" data-step="3">Date</div>
       <div class="salonist-step" data-step="4">Time</div>
@@ -19,7 +20,7 @@
     <div class="salonist-form-steps">
       <div class="salonist-step-content active" data-step="1">
         <h2>Select a Shop</h2>
-        <div class="salonist-shop-list"></div>
+        <div class="salonist-branch-list"></div>
       </div>
       
       <div class="salonist-step-content" data-step="2">
@@ -45,4 +46,10 @@
       <button class="salonist-book-btn" style="display: none;">Book Now</button>
     </div>
   </div>
-</div>
+</div>`;
+
+const modalContainer = document.createElement("div");
+modalContainer.innerHTML = salonistModalHTML;
+document.body.appendChild(modalContainer.firstElementChild);
+
+</script>
