@@ -52,7 +52,6 @@ class SalonistBookingApp {
     this.state.selected.branch = branchId;
     this.state.selected.domain = domainId;
     this.state.staffSelectionType = staffSelect?.toLowerCase?.() || '';staffSelect;
-console.log(this.state.staffSelectionType, 'Staff selection type');
     if (this.state.staffSelectionType === 'none') {
       await this.loadCalendar();
       this.nextStep(3);
@@ -205,11 +204,10 @@ console.log(this.state.staffSelectionType, 'Staff selection type');
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           items: [{
-            id: 123456789, // Replace with dynamic variant ID
+            id: 123456789,
             quantity: 1,
             properties: {
               booking_type: 'service',
-              shop_id: this.state.selected.shop,
               domain_id: this.state.selected.domain,
               staff_id: this.state.selected.staff,
               date: this.state.selected.date,
@@ -240,15 +238,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.salonist-booking-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
-      const bookingData = JSON.parse(trigger.getAttribute('data-product-info') || '{}');
-      console.log(bookingData, 'Booking data on click');
 
+      const bookingData = JSON.parse(trigger.getAttribute('data-product-info') || '{}');
       salonistApp.modal.open();
       salonistApp.state.reset();
       salonistApp.state.set(bookingData);
       salonistApp.updateUI();
 
-      salonistApp.loadBranches(); // Load with updated data
+      salonistApp.loadBranches(); 
     });
   });
 });
