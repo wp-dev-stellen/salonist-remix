@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "354009510147a812607e4df29560460b"
-application_url = "https://activation-tx-ads-bureau.trycloudflare.com"
+application_url = "https://anatomy-courage-recommendations-teacher.trycloudflare.com"
 embedded = true
 name = "salonist-remix"
 handle = "salonist-remix-1"
@@ -15,9 +15,9 @@ scopes = "read_inventory,read_locations,read_products,write_inventory,write_loca
 
 [auth]
 redirect_urls = [
-  "https://activation-tx-ads-bureau.trycloudflare.com/auth/callback",
-  "https://activation-tx-ads-bureau.trycloudflare.com/auth/shopify/callback",
-  "https://activation-tx-ads-bureau.trycloudflare.com/api/auth/callback"
+  "https://anatomy-courage-recommendations-teacher.trycloudflare.com/auth/callback",
+  "https://anatomy-courage-recommendations-teacher.trycloudflare.com/auth/shopify/callback",
+  "https://anatomy-courage-recommendations-teacher.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

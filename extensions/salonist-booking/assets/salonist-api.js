@@ -1,6 +1,6 @@
 class SalonistAPI {
     constructor() {
-      this.baseUrl = 'https://mario-aud-poor-landscapes.trycloudflare.com/api';
+      this.baseUrl = 'https://anatomy-courage-recommendations-teacher.trycloudflare.com/api';
       this.endpoints = {
         branches: '/branches',
         staff: '/service-staff',

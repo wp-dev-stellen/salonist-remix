@@ -51,8 +51,8 @@ class SalonistBookingApp {
 
     this.state.selected.branch = branchId;
     this.state.selected.domain = domainId;
-    this.state.staffSelectionType = staffSelect;
-
+    this.state.staffSelectionType = staffSelect?.toLowerCase?.() || '';staffSelect;
+console.log(this.state.staffSelectionType, 'Staff selection type');
     if (this.state.staffSelectionType === 'none') {
       await this.loadCalendar();
       this.nextStep(3);
@@ -184,8 +184,11 @@ class SalonistBookingApp {
 
     if (this.state.currentStep === 1 && this.state.selected.branch) {
       const selectedBranchEl = this.ui.elements.branchList.querySelector(`[data-branch-id="${this.state.selected.branch}"]`);
-       selectedBranchEl.classList.remove('selected');
+      
       if (selectedBranchEl) {
+       
+        this.ui.elements.branchList.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+    
         selectedBranchEl.classList.add('selected');
       }
     }

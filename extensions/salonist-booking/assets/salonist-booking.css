@@ -133,6 +133,7 @@
     transition: all 0.3s ease;
   }
   
+  .salonist-branch-list .selected,
   .salonist-branch-item:hover,
   .salonist-staff-item:hover {
     border-color: #2196f3;
