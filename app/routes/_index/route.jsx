@@ -2,9 +2,10 @@ import { redirect } from "@remix-run/node";
 import { Form, useLoaderData ,useActionData} from "@remix-run/react";
 import { login } from "../../shopify.server";
 import styles from "./styles.module.css";
-import customstyles from "./custom-style.css";
+import './custom-style.css';
 
-export const links = () => [{ rel: 'stylesheet', href: customstyles }];
+
+export const links = () => [{ rel: 'stylesheet' }];
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);

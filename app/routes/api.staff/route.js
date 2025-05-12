@@ -1,5 +1,5 @@
 import { data } from "@remix-run/node";
-import { fetchSalonistStaff } from '../../salonist/salonist-api.server';
+
 
 export const loader = () => {
 
@@ -7,6 +7,8 @@ export const loader = () => {
 };
 
 export const action = async ({ request }) => {
+
+const { fetchSalonistStaff } = await import('../../salonist/salonist-api.server');
   try {
     const shop = request.headers.get("shop");
     const domainId = request.headers.get("domainId");

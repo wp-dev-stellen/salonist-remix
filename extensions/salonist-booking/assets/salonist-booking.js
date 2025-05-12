@@ -80,23 +80,40 @@ class SalonistBookingApp {
     }
   }
 
-  async loadCalendar() {
-    this.ui.showLoading();
-    try {
-      const calendarData = await this.api.fetchCalendar(
-        this.state.selected.domain,
-        this.state.selected.shop,
-        this.state.selected.staff,
-        this.state.selected.service
-      );
-      this.state.setCalendar(calendarData);
-      this.ui.renderCalendar(calendarData);
-    } catch (error) {
-      this.ui.showError(error.message);
-    } finally {
-      this.ui.hideLoading();
+async loadCalendar(selectedDate = null) {
+  this.ui.showLoading();
+
+  const calendarData = {
+    domainId: this.state.selected.domain,
+    shop: this.state.data.shop,
+    date: selectedDate || this.state.selectedDate // use passed or stored date
+  };
+
+  try {
+    const calendar = await this.api.fetchCalendar(calendarData);
+
+    // Update state
+    this.state.setCalendar(calendar);
+
+    // Optional: update selectedDate state
+    if (selectedDate) {
+      this.state.selectedDate = selectedDate;
     }
+
+    // Render calendar
+    this.ui.renderCalendar(calendar);
+
+    // Trigger selected date callback
+    if (this.onDateSelected && typeof this.onDateSelected === 'function') {
+      this.onDateSelected(selectedDate || new Date());
+    }
+
+  } catch (error) {
+    this.ui.showError(error.message);
+  } finally {
+    this.ui.hideLoading();
   }
+}
 
   async handleStaffSelect(staffElement) {
     this.state.selected.staff = staffElement.dataset.staffId;

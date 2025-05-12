@@ -1,23 +1,21 @@
 import { data } from "@remix-run/node";
 
-
 export const loader = () => {
-
-  return  data({ message: { type: "error", text: "Unexpected server error" } },{ status: 500 });
+  return data({ message: { type: "error", text: "Unexpected server error" } }, { status: 500 });
 };
 
 export const action = async ({ request }) => {
-
-const fetchSalonistBranches = await import ('../../salonist/salonist-api.server'); 
+  const {fetchSalonistCalendar} = await import ('../../salonist/salonist-api.server'); 
   try {
     const shop = request.headers.get("shop");
     const domainId = request.headers.get("domainId");
+
 
     if (!shop) {
       return data(
         {
           message: { type: "error", text: "Missing shop header" },
-          locations: [],
+          calendarEvents: [],
         },
         { status: 400 }
       );
@@ -27,37 +25,37 @@ const fetchSalonistBranches = await import ('../../salonist/salonist-api.server'
       return data(
         {
           message: { type: "error", text: "Missing domainId header" },
-          locations: [],
+          calendarEvents: [],
         },
         { status: 400 }
       );
     }
 
-    const result = await fetchSalonistBranches(domainId);
+    const result = await fetchSalonistCalendar(domainId);
 
     if (!result.success) {
       return data(
         {
           message: {
             type: "error",
-            text: result.error || "Failed to fetch Salonist branches",
+            text: result.error || "Failed to fetch calendar events",
           },
-          locations: [],
+          calendarEvents: [],
         },
-        { status: 502 } 
+        { status: 502 }
       );
     }
 
-    const locations = result.data?.locations || [];
+    const calendarEvents = result.data || [];
 
     return data(
       {
         message: {
           type: "success",
-          text: "Branches fetched successfully",
+          text: "Calendar events fetched successfully",
         },
         shop,
-        locations,
+        calendarEvents,
       },
       { status: 200 }
     );
@@ -69,7 +67,7 @@ const fetchSalonistBranches = await import ('../../salonist/salonist-api.server'
           type: "error",
           text: error.message || "Unexpected server error",
         },
-        locations: [],
+        calendarEvents: [],
       },
       { status: 500 }
     );
