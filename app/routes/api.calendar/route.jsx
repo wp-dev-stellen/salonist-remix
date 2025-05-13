@@ -44,7 +44,7 @@ export const action = async ({ request }) => {
         },
         { status: 502 }
       );
-    }
+    } 
 
     const calendarEvents = result.data || [];
 

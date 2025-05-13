@@ -19,10 +19,22 @@
       {{ block.settings.button_text }}
   </button>
 <link href="{{ 'salonist-booking.css' | asset_url }}" rel="stylesheet">
-    {% render 'salonist-booking' %}
+
+    {% render 'salonist-booking' %} 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+  <script>
+    if (window.jQuery && typeof window.jQuery.noConflict === 'function') {
+        window._$ = window.jQuery.noConflict(true);
+         console.log('✅ jQuery loaded and set to _$');
+    }
+  </script>
     {{ 'salonist-api.js' | asset_url | script_tag }}
     {{ 'salonist-modal.js' | asset_url | script_tag }}
     {{ 'salonist-state.js' | asset_url | script_tag }}
+    {{ 'salonistCalendar.js' | asset_url | script_tag }}
     {{ 'salonist-ui.js' | asset_url | script_tag }}
     {{ 'salonist-booking.js' | asset_url | script_tag }}
 </div>

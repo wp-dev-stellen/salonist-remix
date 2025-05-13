@@ -80,34 +80,23 @@ class SalonistBookingApp {
     }
   }
 
-async loadCalendar(selectedDate = null) {
+async loadCalendar() {
   this.ui.showLoading();
 
-  const calendarData = {
-    domainId: this.state.selected.domain,
-    shop: this.state.data.shop,
-    date: selectedDate || this.state.selectedDate // use passed or stored date
-  };
-
+  const calendarData = {domainId: this.state.selected.domain, shop: this.state.data.shop, };
   try {
+    this.state.selected.date = '';
     const calendar = await this.api.fetchCalendar(calendarData);
-
-    // Update state
     this.state.setCalendar(calendar);
-
-    // Optional: update selectedDate state
-    if (selectedDate) {
-      this.state.selectedDate = selectedDate;
-    }
-
-    // Render calendar
     this.ui.renderCalendar(calendar);
-
-    // Trigger selected date callback
-    if (this.onDateSelected && typeof this.onDateSelected === 'function') {
-      this.onDateSelected(selectedDate || new Date());
-    }
-
+    console.log(this.state.selected);
+    const date = this.state.selected.date
+   if (date){
+    console.log(date,'date')
+    await this.handleDateSelect(date);
+   }
+    
+    
   } catch (error) {
     this.ui.showError(error.message);
   } finally {
@@ -130,14 +119,18 @@ async loadCalendar(selectedDate = null) {
   async loadTimeSlots() {
     this.ui.showLoading();
     try {
-      const timeSlots = await this.api.fetchTimeSlots(
-        this.state.selected.domain,
-        this.state.selected.date,
-        this.state.selected.shop,
-        this.state.selected.staff,
-        this.state.selected.service
-      );
+      const slotsData = {
+        domainId: this.state.selected.domain,
+        date:  this.state.selected.date,
+        shop:  this.state.selected.shop,
+        staffId: this.state.selected.staff,
+        serviceId: this.state.selected.service,
+      }
+
+      const timeSlots = await this.api.fetchTimeSlots(slotsData);
+
       this.state.setTimeSlots(timeSlots);
+
       this.ui.renderTimeSlots(timeSlots);
     } catch (error) {
       this.ui.showError(error.message);
@@ -191,6 +184,7 @@ async loadCalendar(selectedDate = null) {
   }
 
   updateUI() {
+
     this.ui.updateStepIndicators(this.state.currentStep);
     this.ui.toggleButtons(this.state.currentStep, this.totalSteps);
 
@@ -249,20 +243,21 @@ async loadCalendar(selectedDate = null) {
   }
 }
 
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   const salonistApp = new SalonistBookingApp();
 
   document.querySelectorAll('.salonist-booking-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
 
+    trigger.addEventListener('click', () => {
+      
       const bookingData = JSON.parse(trigger.getAttribute('data-product-info') || '{}');
       salonistApp.modal.open();
       salonistApp.state.reset();
       salonistApp.state.set(bookingData);
       salonistApp.updateUI();
-
       salonistApp.loadBranches(); 
+
     });
+
   });
 });

@@ -1,6 +1,6 @@
 class SalonistAPI {
     constructor() {
-      this.baseUrl = 'https://andrea-enabled-rev-indie.trycloudflare.com/api';
+      this.baseUrl = 'https://con-assuming-archives-uh.trycloudflare.com/api';
       this.endpoints = {
         branches: '/branches',
         staff: '/service-staff',

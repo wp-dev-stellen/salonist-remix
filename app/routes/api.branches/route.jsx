@@ -8,7 +8,7 @@ export const loader = () => {
 
 export const action = async ({ request }) => {
 
-const fetchSalonistBranches = await import ('../../salonist/salonist-api.server'); 
+const { fetchSalonistBranches } = await import ('../../salonist/salonist-api.server'); 
   try {
     const shop = request.headers.get("shop");
     const domainId = request.headers.get("domainId");

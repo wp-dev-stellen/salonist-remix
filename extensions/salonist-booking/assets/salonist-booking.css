@@ -8,23 +8,28 @@
     height: 100%;
     background-color: rgba(0,0,0,0.7);
   }
-  
+  .salonist-form-steps h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
   .salonist-modal-content {
     background-color: #FAF9F6;
     margin: 5% auto;
-    padding: 40px;
+    padding: 30px;
     border-radius: 8px;
     width: 100%;
-    max-width: 750px;
+    max-width: 550px;
     position: relative;
-    height: 500px;
+    /* height: 455px; */
     overflow-y: auto;
 }
   
   .salonist-close-btn {
     position: absolute;
-    right: 15px;
-    top: 15px;
+    right: 10px;
+    top: 10px;
     font-size: 32px;
     cursor: pointer;
     line-height: 0.7;
@@ -61,13 +66,17 @@
     100% { transform: rotate(360deg); }
   }
   
-  .salonist-error {
+.salonist-error {
     background-color: #ffebee;
     color: #c62828;
-    padding: 15px;
-    margin-bottom: 20px;
+    padding: 8px;
+    margin-bottom: 10px;
     border-radius: 4px;
-  }
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1;
+}
   
   .salonist-step-indicators {
     /* display: flex;
@@ -261,102 +270,12 @@
 .salonist-form-steps .salonist-staff-list .salonist-staff-item img { width: 70px; height: 70px; border-radius: 100px; margin: 0; }
 .salonist-form-steps .salonist-staff-list .salonist-staff-item h4 { margin: 0; font-size: 18px; }
 
-
-/* Calendar Styles */
-.salonist-calendar {
-    font-family: Arial, sans-serif;
-    max-width: 100%;
-    margin: 0 auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-}
-
-.salonist-calendar-banner {
-    width: 100%;
-    max-height: 150px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: 15px;
-}
-
-.salonist-calendar-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background: #f5f5f5;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.salonist-month-year {
-    font-weight: bold;
-    font-size: 1.1em;
-    color: #159957;
-}
-
-.salonist-weekdays-header {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    background: #eee;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px 0;
-    border-radius: 8px;
-    margin-bottom: 5px;
-}
-
-.salonist-weekday {
-    padding: 5px;
-    color: #555;
-}
-
-.salonist-days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-}
-
-.salonist-day {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.salonist-day.empty {
-    visibility: hidden;
-}
-
-.salonist-day.available {
-    background: #e6f7ff;
-    color: #159957;
-}
-
-.salonist-day.available:hover {
-    background: #b3e0ff;
-}
-
-.salonist-day.unavailable {
-    color: #ccc;
-    cursor: not-allowed;
-}
-
-.salonist-day.today {
-    background: #159957;
-    color: white;
-    font-weight: bold;
-}
-
-.salonist-day.selected {
-    background: #107a3d;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 0 0 2px rgba(21, 153, 87, 0.5);
-}
+.salonist-calendar .salonist-datepicker .ui-state-active { border-color: #159957; background: #159957; }
+.salonist-calendar .salonist-datepicker .ui-datepicker-inline { max-width: 550px; width: 100%; margin: auto; }
+.salonist-calendar .salonist-datepicker .ui-datepicker table tbody tr td span, 
+.salonist-calendar .salonist-datepicker .ui-datepicker td a {text-align: center; }
+.salonist-calendar .salonist-datepicker .ui-state-active {border-color: #159957; background: #159957; }
+.salonist-calendar .salonist-datepicker .ui-dat.salonist-modal-contentepicker table tbody tr td span, 
+.salonist-calendar .salonist-datepicker .ui-datepicker table tbody tr td a { padding: 5px; border-radius: 6px; }
+.salonist-calendar .salonist-datepicker .ui-datepicker table tbody tr td a.ui-state-active {color: #fff; }
+ 
