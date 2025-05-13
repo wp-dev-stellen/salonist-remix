@@ -1,3 +1,4 @@
+
 class SalonistUI {
   constructor(app) {
     this.app = app;
@@ -47,156 +48,24 @@ class SalonistUI {
   }
 
   renderCalendar(calendarData) {
-    this.calendarData = calendarData;
-    this.currentMonth = new Date().getMonth();
-    this.currentYear = new Date().getFullYear();
-    this._renderCalendar(calendarData, this.currentMonth, this.currentYear);
-  }
+    
+    }
 
-  _renderCalendar(calendarData, month, year) {
+ 
 
-    this.elements.calendar.innerHTML = '';
-
-
-    const maxAdvanceMonths = parseInt(calendarData.details.Insdetail.max_advance_booking) || 3;
-
-    const minDate = new Date(); 
-
-    const maxDate = new Date(year, month + maxAdvanceMonths, 0);
-
-    const navContainer = document.createElement('div');
-
-    navContainer.className = 'salonist-calendar-nav';
-
-    const prevMonthButton = document.createElement('button');
-
-    prevMonthButton.className = 'salonist-prev-month';
-
-    prevMonthButton.textContent = 'Previous Month';
-
-    prevMonthButton.addEventListener('click', () => {
-
-      const firstAvailableMonth = minDate.getMonth();
-      const firstAvailableYear = minDate.getFullYear();
-
-      if (year > firstAvailableYear || (year === firstAvailableYear && month > firstAvailableMonth)) {
-
-        this.currentMonth--;
-
-        if (this.currentMonth < 0) {
-
-          this.currentMonth = 11;
-          this.currentYear--;
-
+    updateStepIndicators(currentStep) {
+      this.elements.stepIndicators.forEach((indicator, index) => {
+        if (index + 1 === currentStep) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
         }
 
         this._renderCalendar(this.calendarData, this.currentMonth, this.currentYear);
-      }
-    });
+      })
+    };
 
-    const monthYearDisplay = document.createElement('span');
-    monthYearDisplay.className = 'salonist-month-year';
-    monthYearDisplay.textContent = `${this.getMonthName(month)} ${year}`;
-
-    const nextMonthButton = document.createElement('button');
-    nextMonthButton.className = 'salonist-next-month';
-    nextMonthButton.textContent = 'Next Month';
-
-    nextMonthButton.addEventListener('click', () => {
-      if (year < maxDate.getFullYear() || (year === maxDate.getFullYear() && month < maxDate.getMonth())) {
-        this.currentMonth++;
-        if (this.currentMonth > 11) {
-          this.currentMonth = 0;
-          this.currentYear++;
-        }
-        this._renderCalendar(this.calendarData, this.currentMonth, this.currentYear);
-      }
-    });
-
-    navContainer.appendChild(prevMonthButton);
-    navContainer.appendChild(monthYearDisplay);
-    navContainer.appendChild(nextMonthButton);
-
-    this.elements.calendar.appendChild(navContainer);
-
-    const weekdaysHeader = document.createElement('div');
-    weekdaysHeader.className = 'salonist-weekdays-header';
-
-    const weekStartDay = parseInt(calendarData.details.Insdetail.weekdays) || 0;
-
-    const orderedWeekdays = this.getOrderedWeekdays(weekStartDay);
-
-    orderedWeekdays.forEach(day => {
-      const el = document.createElement('div');
-      el.className = 'salonist-weekday';
-      el.textContent = day.substring(0, 3);
-      weekdaysHeader.appendChild(el);
-    });
-
-    this.elements.calendar.appendChild(weekdaysHeader);
-
-    const daysGrid = document.createElement('div');
-    daysGrid.className = 'salonist-days-grid';
-    const firstDay = new Date(year, month, 1).getDay();
-    const totalDays = new Date(year, month + 1, 0).getDate();
-    const now = new Date();
-    let adjustedFirstDay = (firstDay - weekStartDay + 7) % 7;
-
-    for (let i = 0; i < adjustedFirstDay; i++) {
-      const emptyCell = document.createElement('div');
-      emptyCell.className = 'salonist-day empty';
-      daysGrid.appendChild(emptyCell);
-    }
-
-    for (let day = 1; day <= totalDays; day++) {
-      const date = new Date(year, month, day);
-      const formattedDate = this.formatDate(date);
-      const dayName = this.getDayName(date.getDay());
-      const businessDay = calendarData.list.find(item => item.Businesshours.days === dayName);
-
-      const dayCell = document.createElement('div');
-      dayCell.className = 'salonist-day';
-      dayCell.textContent = day;
-
-      
-      if (date < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
-
-        dayCell.classList.add('unavailable');
-
-        dayCell.title = 'Past date - not available';
-
-      } else if (businessDay?.Businesshours?.status === 'Open') {
-
-        dayCell.classList.add('available');
-
-        dayCell.title = `Available: ${businessDay.Businesshours.start} - ${businessDay.Businesshours.end}`;
-
-        dayCell.addEventListener('click', () => {
-
-          this.elements.calendar.querySelectorAll('.salonist-day.selected').forEach(el => el.classList.remove('selected'));
-
-          dayCell.classList.add('selected');
-
-          this.app.handleDateSelect(formattedDate);
-
-        });
-      } else {
-
-        dayCell.classList.add('unavailable');
-        dayCell.title = 'Not available';
-      }
-      /*
-      if (day === now.getDate() && month === now.getMonth() && year === now.getFullYear()) {
-
-        dayCell.classList.add('today');
-      }
-      */
-      daysGrid.appendChild(dayCell);
-    }
-
-    this.elements.calendar.appendChild(daysGrid);
-  }
-
+   
   renderTimeSlots(timeSlotsHTML) {
     this.elements.timeSlots.innerHTML = timeSlotsHTML;
     const slots = this.elements.timeSlots.querySelectorAll('label');
@@ -247,26 +116,8 @@ class SalonistUI {
     }, 5000);
   }
 
-  getMonthName(month) {
-    return [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
-    ][month];
-  }
+ 
+ 
 
-  getDayName(day) {
-    return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
-  }
 
-  getOrderedWeekdays(startDay) {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    return [...days.slice(startDay), ...days.slice(0, startDay)];
-  }
-
-  formatDate(date) {
-    const dd = String(date.getDate()).padStart(2, '0');
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const yyyy = date.getFullYear();
-    return `${yyyy}-${mm}-${dd}`;
-  }
 }
