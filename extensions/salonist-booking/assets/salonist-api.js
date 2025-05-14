@@ -5,7 +5,8 @@ class SalonistAPI {
         branches: '/branches',
         staff: '/service-staff',
         calendar: '/calendar',
-        timeslots: '/timeslots'
+        timeslots: '/timeslots',
+        ab: '/xx' 
       };
     }
    
@@ -67,16 +68,22 @@ class SalonistAPI {
     }
 
   
-    async fetchTimeSlots(domainId, date, shopId, staffId = null, serviceId = null) {
-      let url = `${this.baseUrl}${this.endpoints.timeslots}?domain_id=${domainId}&date=${date}&shop_id=${shopId}`;
-      if (staffId) url += `&staff_id=${staffId}`;
-      if (serviceId) url += `&service_id=${serviceId}`;
-      
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.type !== 'success') throw new Error(data.message || 'Failed to load time slots');
-      return data.html;
+    async fetchTimeSlots(data) {
+
+      console.log(data);
+
+     const response = await fetch(`${this.baseUrl}${this.endpoints.timeslots}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+         ...data,
+        }
+      }); 
+
+      const responseJson = await response.json(); 
+      console.log(responseJson,'responseJsontime');
+      if (responseJson?.data?.message?.type !== 'success') throw new Error(responseJson?.message?.text || 'Failed to load Slots');
+
+      return responseJson?.data?.timeSlots || [];
     }
   }
-
-  

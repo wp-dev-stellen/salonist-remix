@@ -22,7 +22,7 @@
     width: 100%;
     max-width: 550px;
     position: relative;
-    /* height: 455px; */
+    height: 455px;
     overflow-y: auto;
 }
   

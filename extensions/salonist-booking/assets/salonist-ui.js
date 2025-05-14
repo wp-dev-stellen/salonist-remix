@@ -77,6 +77,7 @@ class SalonistUI {
         },
         onSelect: (dateText) => {
           this.app.state.selected.date = dateText;
+          console.log(dateText);
           this.app.handleDateSelect(dateText);
           return dateText;
         }
@@ -89,22 +90,23 @@ class SalonistUI {
   }
 
   renderTimeSlots(timeSlotsHTML) {
-    this.elements.timeSlots.innerHTML = timeSlotsHTML;
+    console.log(timeSlotsHTML,'timeSlotsHTML');
+    this.elements.timeSlots.innerHTML = timeSlotsHTML?.html || '';
     const slots = this.elements.timeSlots.querySelectorAll('label');
-    slots.forEach((slot) => {
+    slots.forEach((slot) => { 
       slot.classList.add('salonist-time-slot');
       const input = slot.querySelector('input');
       slot.dataset.time = input.dataset.attr;
       input.style.display = 'none';
-    });
+    }); 
   }
 
   renderSummary() {
 
-    const { shop, domain, staff, date, time } = this.app.state.selected;
+    const {domain, staff, date, time } = this.app.state.selected;
     this.elements.summary.innerHTML = `
       <h3>Appointment Summary</h3>
-      <p><strong>Shop:</strong> ${shop}</p>
+      <p><strong>Shop:</strong> ${ this.app.state.data.shop}</p>
       ${staff ? `<p><strong>Staff:</strong> ${staff}</p>` : ''}
       <p><strong>Date:</strong> ${date}</p>
       <p><strong>Time:</strong> ${time}</p>
@@ -120,7 +122,9 @@ class SalonistUI {
   toggleButtons(currentStep) {
     this.elements.prevBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
     this.elements.nextBtn.style.display = currentStep === 3 ? 'none' : 'inline-block';
-    this.elements.bookBtn.style.display = currentStep === 3 ? 'inline-block' : 'none';
+    this.elements.nextBtn.style.display = currentStep === 4 ? 'none' : 'inline-block';
+    this.elements.nextBtn.style.display = currentStep === 5 ? 'none' : 'inline-block';
+    this.elements.bookBtn.style.display = currentStep === 5 ? 'inline-block' : 'none';
   }
 
   showLoading() {

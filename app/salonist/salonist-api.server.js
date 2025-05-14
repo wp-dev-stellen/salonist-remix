@@ -9,6 +9,8 @@ const API_PACKAGES = 'https://salonist.io/wordpressapi/packages';
 const API_BRANCHES = 'https://salonist.io/wordpressapi/getAllLocations';
 const API_STAFF_SERVICE = 'https://salonist.io/wordpressapi/service_staff';
 const API_CALENDAR = "https://salonist.io/wordpressapi/business_hours";
+const API_STAFF_TIME_SLOTS = 'https://salonist.io/wordpressapi/get_staff_time_availaibility';
+const API_TIME_SLOTS = 'https://salonist.io/wordpressapi/get_business_time';
 
 /**
  * Logs into Salonist using email and password
@@ -74,7 +76,7 @@ export async function fetchSalonistServices(domainId) {
       };
     }
 
-    return {
+    return { 
       success: true,
       data: response.data.services,
       count: response.data.count,
@@ -130,7 +132,7 @@ export async function fetchSalonistProducts(domainId) {
 export async function fetchSalonistPackages(domainId) {
   try {
     const data = new FormData();
-    data.append('domainId', domainId);  // Sending domainId instead of shop
+    data.append('domainId', domainId);  
 
     const response = await axios.post(API_PACKAGES, data);
 
@@ -256,3 +258,41 @@ export async function fetchSalonistCalendar(domainId) {
     };
   }
 }
+
+
+/**
+ * Fetches time slots from Salonist API
+ * @param {string|number} domainId 
+ * @returns {Promise<{success: boolean, data?: any, error?: string}>}
+ */
+
+export async function fetchSalonistTimeSlots(adata) {
+
+  try {
+    const data = new FormData();
+    data.append('domainId',adata.domainId);
+    data.append('date', adata.date);
+    data.append('serviceId', adata.serviceId);
+    data.append('staff', adata.staffId);
+    const url = adata.staffId ? API_STAFF_TIME_SLOTS : API_TIME_SLOTS;
+    const response = await axios.post(url, data);
+    if (response.data?.status === 'error') {
+      return {
+        success: false,
+        error: response.data.message || "Failed to fetch time slots",
+      };
+    }
+
+    return {
+      success: true,
+      data: response.data || [],
+    };
+  } catch (error) {
+    console.error("Salonist Time Slots fetch error:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message || "Something went wrong",
+    };
+  }
+}
+
