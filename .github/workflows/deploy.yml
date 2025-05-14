@@ -1,0 +1,45 @@
+name: 🚀 Deploy Salonist App to Hostinger VPS
+
+on:
+  push:
+    branches: [main]  # or change this to your deploy branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH connection
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 82.25.90.123 >> ~/.ssh/known_hosts
+
+      - name: Deploy to Hostinger via SSH
+        run: |
+          ssh salonistapp@82.25.90.123 << 'EOF'
+            echo "✅ Connected to VPS"
+
+            cd /home/salonistapp/htdocs/salonistapp.com
+
+            echo "📦 Pulling latest code..."
+            git pull origin main
+
+            echo "📁 Installing dependencies..."
+            if [ -f package.json ]; then
+              npm install --production
+            fi
+
+            echo "⚙️ Restarting app (CloudPanel setup)..."
+            if command -v pm2 > /dev/null; then
+              pm2 restart all
+            elif [ -f ecosystem.config.js ]; then
+              npx pm2 start ecosystem.config.js
+            else
+              echo "No process manager found. Consider installing PM2 or setting up service with clpctl."
+            fi
+          EOF
