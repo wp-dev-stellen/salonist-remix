@@ -37,14 +37,24 @@ class SalonistUI {
     `).join('');
   }
 
-  renderStaff(staffList) {
-    this.elements.staffList.innerHTML = staffList.map(staff => `
-      <div class="salonist-staff-item" data-staff-id="${staff.id}">
-        <img src="${staff?.img ? `https://salonist.io/img/user/${staff.img}` : 'https://salonist.io/img/user/no_image.png'}" alt="${staff.name}">
-        <h4>${staff.name}</h4>
-      </div>
-    `).join('');
+ renderStaff(staffList) {
+  let list = [...staffList];
+
+  if (this.app.state.staffSelectionType === 'preference') {
+    list.unshift({
+      id: 'any', 
+      name: 'No Preference',
+      img: null 
+    });
   }
+
+  this.elements.staffList.innerHTML = list.map(staff => `
+    <div class="salonist-staff-item" data-staff-id="${staff.id}">
+      <img src="${staff?.img ? `https://salonist.io/img/user/${staff.img}` : 'https://salonist.io/img/user/no_image.png'}" alt="${staff.name}">
+      <h4>${staff.name}</h4>
+    </div>
+  `).join('');
+}
 
   renderCalendar(calendarData) {
     const _$ = window._$;
@@ -96,22 +106,36 @@ class SalonistUI {
     slots.forEach((slot) => { 
       slot.classList.add('salonist-time-slot');
       const input = slot.querySelector('input');
-      slot.dataset.time = input.dataset.attr;
-      input.style.display = 'none';
+      if(input){
+        this.elements.timeSlots.classList.remove('noslots');
+        slot.dataset.time = input.dataset.attr;
+         input.style.display = 'none';
+      }else{
+        this.elements.timeSlots.classList.add('noslots');
+      }
     }); 
   }
 
-  renderSummary() {
+ renderSummary() {
+  const { domain, staff, date, time } = this.app.state.selected;
+  this.elements.summary.innerHTML = `
+    <div class="summary-card">
+      <ul class="summary-list">
+        <li class="summary-item">
+          <strong>Shop:</strong> ${this.app.state.data.shop}
+        </li>
+        <li class="summary-item"><strong>Branch ID:</strong> ${domain}</li>
+        ${staff ? `
+          <li class="summary-item"><strong>Staff Name:</strong> ${staff}</li>
+          <li class="summary-item"><strong>Staff ID:</strong> ${staff}</li>
+        ` : ''}
+        <li class="summary-item"><strong>Date:</strong> ${date}</li>
+        <li class="summary-item"><strong>Time:</strong> ${time}</li>
+      </ul>
+    </div>
+  `;
+}
 
-    const {domain, staff, date, time } = this.app.state.selected;
-    this.elements.summary.innerHTML = `
-      <h3>Appointment Summary</h3>
-      <p><strong>Shop:</strong> ${ this.app.state.data.shop}</p>
-      ${staff ? `<p><strong>Staff:</strong> ${staff}</p>` : ''}
-      <p><strong>Date:</strong> ${date}</p>
-      <p><strong>Time:</strong> ${time}</p>
-    `;
-  }
 
   updateStepIndicators(currentStep) {
     this.elements.stepIndicators.forEach((indicator, index) => {

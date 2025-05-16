@@ -1,43 +1,56 @@
 {% if product  %}
 {% assign salonist_product_type = product.metafields.salonist.product_type.value | downcase %}
-           
+
+ {% if salonist_product_type == 'service' %} 
+
 <div class="salonist-appointment" style="text-align: center; margin: 20px 0;">
     <style>
       .product-form__submit {display: none !important;}
       form[action="/cart/add"] { display: none !important; }
     </style>
     <button 
-    class="salonist-booking-trigger"
-    id="salonist-open"
-    data-product-info='{"salonistid":{{ product.metafields.salonist.id.value }},
-    "domainid":{{ product.metafields.salonist.domainid.value }},
-    "productid":{{ product.id }},
-    "variantid":{{ product.selected_or_first_available_variant.id }}
-      }'
-    style="background-color: {{ block.settings.button_color }}; color: {{ block.settings.text_color }};"
+        class="salonist-booking-trigger"
+        id="salonist-open"
+        data-product-info='{"salonistid":{{ product.metafields.salonist.id.value }},
+        "duration":"{{ product.metafields.salonist.servicetime.value }}",
+        "domainid":{{ product.metafields.salonist.domainid.value }},
+        "productid":{{ product.id }},
+        "variantid":{{ product.selected_or_first_available_variant.id }},
+        "cart":{{settings.cart_type | json }}
+          }'
+        style="background-color: {{ block.settings.button_color }}; color: {{ block.settings.text_color }};"
      >
       {{ block.settings.button_text }}
   </button>
-<link href="{{ 'salonist-booking.css' | asset_url }}" rel="stylesheet">
+  <link href="{{ 'salonist-booking.css' | asset_url }}" rel="stylesheet">
 
     {% render 'salonist-booking' %} 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-  <script>
+     <link href="{{ 'jquery-ui.css' | asset_url }}" rel="stylesheet">
+    {% comment %} <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script> {% endcomment %}
+    {% comment %} <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js" defer></script> {% endcomment %}
+     <script src="{{ 'jquery-3.6.0.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'jquery-3.7.1.js' | asset_url }}" defer></script>
+    <script src="{{ 'jquery-ui.js' | asset_url }}" defer></script>
+    <script src="{{ 'salonist-api.js' | asset_url }}" defer></script>
+    <script src="{{ 'salonist-modal.js' | asset_url }}" defer></script>
+    <script src="{{ 'salonist-state.js' | asset_url }}" defer></script>
+    <script src="{{ 'salonistCalendar.js' | asset_url }}" defer></script>
+    <script src="{{ 'salonist-ui.js' | asset_url }}" defer></script>
+    <script src="{{ 'salonist-booking.js' | asset_url }}" defer></script>
+ <script defer>
+  window.addEventListener('DOMContentLoaded', function () {
     if (window.jQuery && typeof window.jQuery.noConflict === 'function') {
-        window._$ = window.jQuery.noConflict(true);
-         console.log('✅ jQuery loaded and set to _$');
+      window._$ = window.jQuery.noConflict(true);
+      console.log('✅ jQuery loaded and set to _$');
+    } else {
+      console.warn('⚠️ jQuery not loaded yet!');
     }
-  </script>
-    {{ 'salonist-api.js' | asset_url | script_tag }}
-    {{ 'salonist-modal.js' | asset_url | script_tag }}
-    {{ 'salonist-state.js' | asset_url | script_tag }}
-    {{ 'salonistCalendar.js' | asset_url | script_tag }}
-    {{ 'salonist-ui.js' | asset_url | script_tag }}
-    {{ 'salonist-booking.js' | asset_url | script_tag }}
+  });
+</script>
 </div>
+  {% endif %}
 {% endif %}
 
 {% schema %}

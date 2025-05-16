@@ -6,12 +6,12 @@ class SalonistModal {
   
     init() {
       this.closeBtn.addEventListener('click', () => this.close());
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') this.close();
-      });
-      this.modal.addEventListener('click', (e) => {
-        if (e.target === this.modal) this.close();
-      });
+      // document.addEventListener('keydown', (e) => {
+      //   if (e.key === 'Escape') this.close();
+      // });
+      // this.modal.addEventListener('click', (e) => {
+      //   if (e.target === this.modal) this.close();
+      // });
     }
   
     open() {

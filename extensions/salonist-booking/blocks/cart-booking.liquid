@@ -1,0 +1,60 @@
+{% comment %} 
+  This app block injects custom logic to detect bookings and hide quantities.
+  Booking line items are identified via the `_isBooking` line item property.
+{% endcomment %}
+
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/cart.js', true);
+
+  xhr.onload = function () {
+    if (xhr.status >= 200 && xhr.status < 400) {
+      var cart = JSON.parse(xhr.responseText);
+      for (var i = 0; i < cart.items.length; i++) {
+        var item = cart.items[i];
+        var isBooking = item.properties && item.properties["Booking Type"];
+        console.log(item);
+        if (isBooking) {
+          var row = document.querySelector('[data-line-index="' + (i + 1) + '"]');
+            console.log(row);
+          if (row) {
+            var qtyInput = row.querySelector('input[name^="updates"]');
+            if (qtyInput) {
+              qtyInput.style.display = 'none';
+            }
+            var label = row.querySelector('.cart__quantity-label');
+            if (label) {
+              label.innerText = "Booking — Fixed Qty";
+            }
+          }
+        }
+      }
+    }
+  };
+
+  xhr.send();
+});
+</script>
+
+<style>
+  .booking-label {
+    color: #159957;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .booking-line-item .cart-item__quantity {
+    display: none !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Booking Cart Handler",
+  "target": "section",
+  "settings": [],
+}
+{% endschema %}
+ 

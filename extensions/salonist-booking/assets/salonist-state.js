@@ -23,7 +23,9 @@ class SalonistState {
       domainid: null,
       serviceid: null,
       productid: null,
-      variantid: null
+      variantid: null,
+      duration:null,
+      cart:null,
     };
   }
 
@@ -34,6 +36,8 @@ class SalonistState {
     this.data.serviceid = data?.salonistid || null;
     this.data.productid = data?.productid || null;
     this.data.variantid = data?.variantid || null;
+    this.data.duration = data?.duration || null;
+    this.data.cart = data?.cart || null;
 
     console.log('Updated state:', this.data);
   }

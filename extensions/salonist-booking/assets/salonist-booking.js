@@ -5,6 +5,7 @@ class SalonistBookingApp {
     this.state = new SalonistState();
     this.ui = new SalonistUI(this);
     this.totalSteps = 5;
+    this.skipstep = ''
     this.init();
   }
 
@@ -31,9 +32,10 @@ class SalonistBookingApp {
     try {
       const data = this.state.get();
       const branches = await this.api.fetchBranches(data);
-
       this.state.setBranches(branches);
       this.ui.renderBranches(branches);
+      if(branches.length == 1){ this.defaultBrancheSelect(branches[0]);}
+
     } catch (error) {
       this.ui.showError(error.message);
     } finally {
@@ -41,11 +43,34 @@ class SalonistBookingApp {
     }
   }
 
-  async handleBranchesSelect(branchElement) {
+async defaultBrancheSelect(branch) {
+
+  const branchId = branch.Detail.id;
+  const domainId = branch.Domain.id;
+  const staffSelect = branch.Detail.staff_select;
+
+  if (!branchId || !domainId || !staffSelect) {
+      this.ui.showError("Invalid selection. Please try again.");
+    }
+
+   this.state.selected.branch = branchId;
+    this.state.selected.domain = domainId;
+    this.state.staffSelectionType = staffSelect?.toLowerCase?.() || '';
+    this.skipstep = '';
+    if (this.state.staffSelectionType === 'none') {
+      await this.loadCalendar();
+      this.skipstep = 2;
+      this.nextStep(3);
+    } else {
+      await this.loadStaff();
+      this.nextStep();
+    } 
+}
+
+async handleBranchesSelect(branchElement) {
     const branchId = branchElement.dataset.branchId;
     const domainId = branchElement.dataset.domainId;
     const staffSelect = branchElement.dataset.staffSelect;
-  
 
     if (!branchId || !domainId || !staffSelect) {
       this.ui.showError("Invalid selection. Please try again.");
@@ -53,9 +78,11 @@ class SalonistBookingApp {
 
     this.state.selected.branch = branchId;
     this.state.selected.domain = domainId;
-    this.state.staffSelectionType = staffSelect?.toLowerCase?.() || '';staffSelect;
+    this.state.staffSelectionType = staffSelect?.toLowerCase?.() || '';
+    this.skipstep = '';
     if (this.state.staffSelectionType === 'none') {
       await this.loadCalendar();
+      this.skipstep = 2;
       this.nextStep(3);
     } else {
       await this.loadStaff();
@@ -195,6 +222,7 @@ async loadCalendar() {
     }
   
     if (skipTo) {
+   
       this.state.goToStep(skipTo);
     } else {
       this.state.nextStep();
@@ -203,10 +231,33 @@ async loadCalendar() {
     this.updateUI();
   }
 
-  prevStep() {
+prevStep() {
+  const stepToGo = this?.skipstep - 1;
+  const currentStep = this.state.currentStep - 1;
+  console.log(stepToGo,'stepToGo');
+  if (currentStep === this.skipstep) {
+    this.state.goToStep(stepToGo);
+  } else {
     this.state.prevStep();
-    this.updateUI();
   }
+
+  this.updateUI();
+}
+
+  clearStepsFrom(step) {
+  const fieldsToReset = {
+    2: () => { this.elements.staffList.innerHTML = ''; },
+    3: () => { this.elements.calendar.innerHTML = ''; },
+    4: () => { this.elements.timeSlotContainer.innerHTML = ''; },
+    5: () => { this.elements.summary.innerHTML = ''; },
+  };
+
+  for (let i = step; i <= 5; i++) {
+    fieldsToReset[i]?.();
+    this.elements.stepContents[i - 1]?.classList.remove('active');
+  }
+}
+
 
   updateUI() {
 
@@ -237,60 +288,45 @@ async loadCalendar() {
         selectedStaff1.classList.add('selected');
       }
     }
+
+   if (this.state.currentStep === 4 && this.state.selected.time) {
+      const selectedTimeSlot = this.ui.elements.timeSlots.querySelector(`[data-time="${this.state.selected.time}"]`);
+      
+      if (selectedTimeSlot) {
+        this.ui.elements.timeSlots.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+        selectedTimeSlot.classList.add('selected');
+      }
+    }
   
     this.ui.elements.stepContents[this.state.currentStep - 1].classList.add('active');
   }
 
-async bookAppointment() {
+  async bookAppointment() {
   try {
     this.ui.showLoading();
 
-    // Step 1: Fetch existing cart
-    const cartRes = await fetch('/cart.js');
-    const cartData = await cartRes.json();
+    const cartData = await this.fetchCartData();
+    const newProps = this.buildBookingProperties();
 
-    // Step 2: Build property map of new booking
-    const newProps = {
-      'Booking Type': 'Service',
-      'Domain ID': this.state.selected.domain,
-      'Staff ID': this.state.selected.staff || 'N/A',
-      'Date': this.state.selected.date,
-      'Time': this.state.selected.time
-    };
+    const conflictMessage = this.checkForConflicts(cartData, newProps);
 
-    // Step 3: Check if item with same variant and properties exists
-    const isDuplicate = cartData.items.some(item => {
-      if (item.variant_id !== this.state.data.variantid) return false;
-
-      const itemProps = item.properties || {};
-      return Object.entries(newProps).every(([key, val]) => itemProps[key] === val);
-    });
-
-    if (isDuplicate) {
-      this.ui.showError('This booking is already in your cart.');
+    if (conflictMessage) {
+      this.ui.showError(conflictMessage);
       return;
     }
 
-    // Step 4: Add to cart if not duplicate
-    const response = await fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        items: [{
-          id: this.state.data.variantid,
-          quantity: 1,
-          properties: newProps
-        }]
-      })
-    });
+    const success = await this.addBookingToCart(newProps);
+      const cartDrawer = document.querySelector('.drawer');
+      const cartOpen   = this.state.data?.cart || 'page';
 
-    const result = await response.json();
-
-    if (response.ok) {
-      window.location.href = '/cart';
-    } else {
-      throw new Error(result.message || 'Booking failed');
-    }
+      if (success) {
+        this.modal.close();
+        if (cartOpen === 'drawer' && cartDrawer) {
+          cartDrawer.classList.add('active');
+        } else {
+          window.location.href = '/cart';
+        }
+      }
 
   } catch (error) {
     this.ui.showError(error.message);
@@ -299,15 +335,126 @@ async bookAppointment() {
   }
 }
 
+async fetchCartData() {
+  const response = await fetch('/cart.js');
+  if (!response.ok) throw new Error('Failed to load cart data.');
+  return await response.json();
+}
+
+    buildBookingProperties() {
+      const { selected, data } = this.state;
+      return {
+        'Booking Type': 'Service',
+        'Domain ID':    selected.domain,
+        'Staff ID':     selected.staff || 'any',
+        'Date':         selected.date,
+        'Service Time': selected.time,
+        'Duration':     data.duration,
+        '_isBooking': true,
+      };
+    }
+
+    parseDuration(durationStr) {
+      if (!durationStr) return 0;
+      const [h, m] = durationStr.split(':').map(Number);
+      return (h || 0) * 60 + (m || 0);
+    }
+
+    parseDateDMY(dateStr) {
+      const [day, month, year] = dateStr.split('-').map(Number);
+      return new Date(year, month - 1, day);
+    }
+    parseTime12Hour(dateStr, timeStr) {
+      const dt = this.parseDateDMY(dateStr);
+      const [time, modifier] = timeStr.split(' ');
+      let [hours, minutes] = time.split(':').map(Number);
+      if (modifier === 'PM' && hours < 12) hours += 12;
+      if (modifier === 'AM' && hours === 12) hours = 0;
+      dt.setHours(hours, minutes, 0, 0);
+      return dt;
+    }
+
+    checkForConflicts(cartData, newProps) {
+        const selectedDate     = newProps['Date'];
+        const selectedStart    = this.parseTime12Hour(selectedDate, newProps['Service Time']);
+        const selectedDuration = this.parseDuration(newProps['Duration']);     
+        const bufferMinutes    = Math.max(selectedDuration - 1, 0);            
+        const selectedEnd      = new Date(selectedStart.getTime() + selectedDuration * 60000);
+        const selectedStaff    = (newProps['Staff ID'] || '').toLowerCase();
+
+      for (const item of cartData.items) {
+        const props = item.properties || {};
+        const isExactDuplicate = 
+          item.variant_id === this.state.data.variantid &&
+          Object.entries(newProps).every(([k, v]) => props[k] === v);
+
+          if (!selectedStaff || selectedStaff === 'any') {
+            if (isExactDuplicate) return 'This booking is already in your cart.';
+            continue;
+          }
+
+          if (
+            (props['Staff ID'] || '').toLowerCase() !== selectedStaff ||
+            props['Date'] !== selectedDate
+          ) {
+            if (isExactDuplicate) return 'This booking is already in your cart.';
+            continue;
+          }
+
+
+        const itemStart    = this.parseTime12Hour(props['Date'], props['Service Time']);
+        const itemDuration = this.parseDuration(props['Duration']);
+        const itemEnd      = new Date(itemStart.getTime() + itemDuration * 60000);
+
+ 
+        const bufferBefore = new Date(itemStart.getTime() - bufferMinutes * 60000);
+        const bufferAfter  = new Date(itemStart.getTime() + bufferMinutes * 60000);
+
+        const isOverlap      = selectedStart < itemEnd   && selectedEnd > itemStart;
+        const isWithinBuffer = selectedStart >= bufferBefore && selectedStart <= bufferAfter;
+
+        console.log({ isExactDuplicate, isOverlap, isWithinBuffer });
+   
+
+        if (isExactDuplicate) {
+          return 'This booking is already in your cart.';
+        }
+
+        if (isOverlap || isWithinBuffer) {
+          return `Staff is already booked within a ${bufferMinutes}-minute window around that time.`;
+        }
+
+      }
+
+      return null;  
+    }
+
+      async addBookingToCart(properties) {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items: [{
+              id:       this.state.data.variantid,
+              quantity: 1,
+              properties
+            }]
+          })
+        });
+
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || 'Booking failed');
+        return true;
+  }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const salonistApp = new SalonistBookingApp();
 
   document.querySelectorAll('.salonist-booking-trigger').forEach(trigger => {
-
     trigger.addEventListener('click', () => {
-      
+
       const bookingData = JSON.parse(trigger.getAttribute('data-product-info') || '{}');
       salonistApp.modal.open();
       salonistApp.state.reset();

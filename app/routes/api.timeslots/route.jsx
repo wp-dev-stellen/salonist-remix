@@ -12,14 +12,7 @@ export const action = async ({ request }) => {
     const date = request.headers.get("adate");
     const serviceId = request.headers.get("serviceId");
     const staffId = request.headers.get("staffId");
-    const tdata = {
-      domainId:domainId,
-      shop:shop,
-      date:date,
-      staffId:staffId,
-      serviceId:serviceId
-    }
-    console.log(tdata,'tdata');
+     const tdata = {domainId:domainId, shop:shop, date:date, staffId:staffId, serviceId:serviceId };
 
     if (!shop) {
       return data(

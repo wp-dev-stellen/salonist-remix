@@ -1,12 +1,11 @@
 class SalonistAPI {
     constructor() {
-      this.baseUrl = 'https://quebec-batman-blast-dependence.trycloudflare.com/api';
+      this.baseUrl = 'https://bargain-parks-calendar-tag.trycloudflare.com/api';
       this.endpoints = {
         branches: '/branches',
         staff: '/service-staff',
         calendar: '/calendar',
         timeslots: '/timeslots',
-        ab: '/xx' 
       };
     }
    
@@ -67,7 +66,7 @@ class SalonistAPI {
       return responseJson?.data?.calendarEvents || [];
     }
 
-  
+
     async fetchTimeSlots(data) {
 
       console.log(data);
@@ -81,7 +80,6 @@ class SalonistAPI {
       }); 
 
       const responseJson = await response.json(); 
-      console.log(responseJson,'responseJsontime');
       if (responseJson?.data?.message?.type !== 'success') throw new Error(responseJson?.message?.text || 'Failed to load Slots');
 
       return responseJson?.data?.timeSlots || [];
