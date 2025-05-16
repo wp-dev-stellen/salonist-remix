@@ -3,7 +3,7 @@
 client_id = "6c38763fe7a276ba283c9eb1331506f1"
 name = "salonist-remix"
 handle = "salonist-remix"
-application_url = "https://bargain-parks-calendar-tag.trycloudflare.com"
+application_url = "https://century-intended-falling-aluminum.trycloudflare.com"
 embedded = true
 
 [build]
@@ -15,21 +15,29 @@ api_version = "2025-04"
 
   [[webhooks.subscriptions]]
   topics = [ "app/scopes_update" ]
-  uri = "/webhooks/app/scopes_update"
+  uri = "/webhooks/app/scopes-update"
 
   [[webhooks.subscriptions]]
   topics = [ "app/uninstalled" ]
   uri = "/webhooks/app/uninstalled"
 
+  [[webhooks.subscriptions]]
+  topics = [ "orders/create" ]
+  uri = "/webhooks/app/orders-create"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
+  uri = "/webhooks/app/compliance"
+
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_inventory,read_locations,read_products,write_inventory,write_locations,write_products,write_publications"
+scopes = "read_inventory,read_locations,read_products,write_inventory,write_locations,write_products,write_publications,read_orders,write_orders"
 
 [auth]
 redirect_urls = [
-  "https://bargain-parks-calendar-tag.trycloudflare.com/auth/callback",
-  "https://bargain-parks-calendar-tag.trycloudflare.com/auth/shopify/callback",
-  "https://bargain-parks-calendar-tag.trycloudflare.com/api/auth/callback"
+  "https://century-intended-falling-aluminum.trycloudflare.com/auth/callback",
+  "https://century-intended-falling-aluminum.trycloudflare.com/auth/shopify/callback",
+  "https://century-intended-falling-aluminum.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
