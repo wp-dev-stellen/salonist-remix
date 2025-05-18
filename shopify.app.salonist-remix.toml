@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "354009510147a812607e4df29560460b"
-application_url = "https://anatomy-courage-recommendations-teacher.trycloudflare.com"
+application_url = "https://russell-surrounding-buy-mae.trycloudflare.com"
 embedded = true
 name = "salonist-remix"
 handle = "salonist-remix-1"
@@ -11,13 +11,13 @@ api_version = "2025-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_inventory,read_locations,read_products,write_inventory,write_locations,write_products,write_publications"
+scopes = "read_inventory,read_locations,read_products,write_inventory,write_locations,write_products,write_publications,read_orders,write_orders"
 
 [auth]
 redirect_urls = [
-  "https://anatomy-courage-recommendations-teacher.trycloudflare.com/auth/callback",
-  "https://anatomy-courage-recommendations-teacher.trycloudflare.com/auth/shopify/callback",
-  "https://anatomy-courage-recommendations-teacher.trycloudflare.com/api/auth/callback"
+  "https://russell-surrounding-buy-mae.trycloudflare.com/auth/callback",
+  "https://russell-surrounding-buy-mae.trycloudflare.com/auth/shopify/callback",
+  "https://russell-surrounding-buy-mae.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
@@ -26,3 +26,4 @@ embedded = false
 [build]
 dev_store_url = "quickstart-840ac43c.myshopify.com"
 automatically_update_urls_on_dev = true
+include_config_on_deploy = true

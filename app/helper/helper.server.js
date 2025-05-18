@@ -40,6 +40,26 @@ export const getServicesByShop = async (shop) => {
 };
 
 
+export const getPackagesByShop = async (shop) => {
+  
+
+  try {
+    const products = await prisma.Packages.findMany({
+      where: { shop }
+    });
+
+    if (products.length === 0) {
+      return null;
+    }
+
+    return products;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw new Error('Failed to fetch products');
+  }
+};
+
+
  export const  capitalizeWords = async(str) => {
   return str.replace(/\b\w/g, char => char.toUpperCase());
 };

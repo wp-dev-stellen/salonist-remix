@@ -126,3 +126,20 @@ model ImportJob {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
+model Packages {
+  id               Int           @id @default(autoincrement())
+  crmProductId     String        @unique 
+  domainId         String
+  shop             String
+  title            String?       
+  productType      String?
+  sku              String?
+  salePrice        String?
+  shopifyProductId String?       
+  showInApp        Boolean       @default(true)
+  rawJson          Json
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+}
