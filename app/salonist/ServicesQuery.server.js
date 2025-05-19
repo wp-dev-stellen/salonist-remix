@@ -37,6 +37,7 @@ export const syncServices = async (domainId, shop) => {
       const children = item.Child;
       console.log("Plan ID:", plan.id);
       const dbPlan = await upsertPlan(shop, plan);
+
       collectionId = await shopifyApi.CreateandUpdateCollection(dbPlan,plan);
        await UpdateshopifyCollectionId(plan.id,collectionId);
       delay(500);

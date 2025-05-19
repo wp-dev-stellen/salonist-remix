@@ -1,6 +1,6 @@
 class SalonistAPI {
     constructor() {
-      this.baseUrl = 'https://reasons-dresses-intake-radical.trycloudflare.com/api';
+      this.baseUrl = 'https://temporary-biggest-substitute-fly.trycloudflare.com/api';
       this.endpoints = {
         branches: '/branches',
         staff: '/service-staff',

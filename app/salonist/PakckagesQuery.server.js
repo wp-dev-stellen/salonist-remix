@@ -8,14 +8,12 @@ export const syncPackages = async (domainId, shop) => {
     /**
      * Fetch the Salonist Packages 
      */
-    packages = await fetchSalonistPackages(domainId);
-    packages = packages.data;
-
+    let packagesResponse = await fetchSalonistPackages(domainId);
+     packages = packagesResponse.data?.packages || [];
     const existingPackages = await getExistingPackagesByShop(shop);
-    const crmPackageIds = packages.map((pkg) => pkg?.Product.id);
+    const crmPackageIds = packages.map((pkg) => pkg?.Package.id);
     const dbPackageIds = existingPackages.map((pkg) => pkg.crmProductId);
 
-    // Find packages that need to be deleted
     const packagesToDelete = existingPackages.filter(
       (pkg) => !crmPackageIds.includes(pkg.crmProductId)
     );
@@ -30,14 +28,15 @@ export const syncPackages = async (domainId, shop) => {
 
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-    // Sync each package with Shopify
     for (const p of packages) {
       try {
-        const dbPackage = await upsertPackage(p, shop);
-        const shopifyProduct = await shopifyApi.SyncProduct(dbPackage, p.Product);
-        console.log(`Synced package ${p.Product.id}`);
+        console.log(p.Package.id,p.Package.id);
+       const dbPackage = await upsertPackage(p, shop);
+        const shopifyProduct = await shopifyApi.syncPackage(dbPackage, p);
+         await updateShopifyId(p.Package.id,shopifyProduct.productid);
+        console.log(`Synced package ${p.Package.id}`);
       } catch (error) {
-        console.error(`Error processing package ${p.Product.id}:`, error);
+        console.error(`Error processing package ${p.Package.id}:`, error);
       }
       await delay(500);
     }
@@ -54,12 +53,10 @@ export async function upsertPackage(pkg, shop) {
   const {
     id,
     domainId,
-    product_type,
-    code,
-    sale_price,
+    cost_price,
     show_in_app,
     name
-  } = pkg.Product;
+  } = pkg.Package;
 
   try {
     return await prisma.Packages.upsert({
@@ -70,22 +67,22 @@ export async function upsertPackage(pkg, shop) {
         domainId,
         shop,
         title: name ?? "",
-        productType: product_type ?? "",
-        sku: code ?? "",
-        salePrice: sale_price ?? "0",
-        showInApp: show_in_app ?? true,
-        rawJson: pkg, // ✅ Save full package object including Packageinfo
+        productType:  "packages",
+        sku: id ?? "",
+        price: cost_price ?? "0",
+        showInApp: toBoolean(show_in_app) ?? true,
+        rawJson: pkg, 
       },
       create: {
         crmProductId: id,
         domainId,
         shop,
         title: name ?? "",
-        productType: product_type ?? "",
-        sku: code ?? "",
-        salePrice: sale_price ?? "0",
-        showInApp: show_in_app ?? true,
-        rawJson: pkg, // ✅ Save full package object including Packageinfo
+        productType: "packages",
+        sku: id ?? "",
+        price: cost_price ?? "0",
+        showInApp: toBoolean(show_in_app) ?? true,
+        rawJson: pkg, 
       },
     });
   } catch (error) {
@@ -135,4 +132,9 @@ export async function deletePackagesNotInCrm(crmPackageIds, shop) {
     console.error("Error deleting packages not in CRM:", error);
     throw new Error("Failed to delete packages");
   }
+}
+
+
+export function toBoolean(value) {
+  return value === "1" || value === 1 || value === true;
 }

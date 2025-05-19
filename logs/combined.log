@@ -1,10 +1,144 @@
-[2025-05-16T07:26:39.929Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T07:26:39.956Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T10:09:18.254Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T10:09:18.294Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T10:56:19.227Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T10:56:19.267Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T11:04:07.796Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T11:04:07.830Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T11:56:49.723Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
-[2025-05-16T11:56:49.762Z] ERROR: Metafield error for shop salonist-app.myshopify.com: undefined
+
+[2025-05-19T07:45:01.634Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:02.175Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:02.715Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:03.255Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:03.813Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:04.391Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:04.924Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:05.451Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:05.994Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:06.537Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:07.080Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:07.606Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T07:45:08.265Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: data is not defined
+[2025-05-19T08:23:56.643Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:23:58.045Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:23:59.567Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:01.022Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:02.515Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:03.917Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:05.355Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:06.819Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:08.398Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:09.879Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:11.330Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:12.746Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:14.169Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:49.343Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:50.771Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:52.263Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:53.731Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:55.157Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:56.613Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:58.074Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:24:59.541Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:25:01.060Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:25:02.520Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:25:03.974Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:25:05.460Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:25:06.924Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot read properties of undefined (reading 'id')
+[2025-05-19T08:58:49.197Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:58:50.607Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:58:52.051Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:58:53.488Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:58:54.992Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:58:56.474Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:58:57.934Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:58:59.352Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:59:00.897Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:59:02.427Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:59:03.907Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:59:05.409Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T08:59:06.944Z] ERROR: SyncProduct error for shop salonist-app.myshopify.com: Cannot access 'Package' before initialization
+[2025-05-19T09:10:24.705Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:27.914Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:30.234Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:32.800Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:35.970Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:38.340Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:40.803Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:43.090Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:45.394Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:47.649Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:50.085Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:52.342Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:10:54.677Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:35.657Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:38.012Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:40.351Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:42.670Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:44.958Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:47.216Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:49.549Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:51.855Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:54.189Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:56.433Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:20:58.646Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:21:00.897Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:21:03.374Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $product of type ProductCreateInput! was provided invalid value for descriptionHtml (Could not coerce value {} to String)
+[2025-05-19T09:36:09.497Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:12.630Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:15.744Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:18.840Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:21.893Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:24.911Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:27.985Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:30.974Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:34.106Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:37.192Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:40.650Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:44.461Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:47.569Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:36:52.351Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"32793"}] to be a key-value object.)
+[2025-05-19T09:36:54.605Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"33591"}] to be a key-value object.)
+[2025-05-19T09:36:57.079Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"37619"}] to be a key-value object.)
+[2025-05-19T09:36:59.411Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39154"}] to be a key-value object.)
+[2025-05-19T09:37:01.879Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39155"}] to be a key-value object.)
+[2025-05-19T09:37:04.376Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39184"}] to be a key-value object.)
+[2025-05-19T09:37:07.087Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39476"}] to be a key-value object.)
+[2025-05-19T09:37:10.052Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40250"}] to be a key-value object.)
+[2025-05-19T09:37:12.273Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40306"}] to be a key-value object.)
+[2025-05-19T09:37:14.587Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40307"}] to be a key-value object.)
+[2025-05-19T09:37:16.880Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40308"}] to be a key-value object.)
+[2025-05-19T09:37:19.186Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40309"}] to be a key-value object.)
+[2025-05-19T09:37:21.564Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40860"}] to be a key-value object.)
+[2025-05-19T09:37:34.951Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"32793"}] to be a key-value object.)
+[2025-05-19T09:37:37.237Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"33591"}] to be a key-value object.)
+[2025-05-19T09:37:39.641Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"37619"}] to be a key-value object.)
+[2025-05-19T09:37:42.060Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39154"}] to be a key-value object.)
+[2025-05-19T09:37:44.461Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39155"}] to be a key-value object.)
+[2025-05-19T09:37:47.266Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39184"}] to be a key-value object.)
+[2025-05-19T09:37:49.925Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"39476"}] to be a key-value object.)
+[2025-05-19T09:37:52.160Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40250"}] to be a key-value object.)
+[2025-05-19T09:37:54.468Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40306"}] to be a key-value object.)
+[2025-05-19T09:37:56.769Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40307"}] to be a key-value object.)
+[2025-05-19T09:37:59.107Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40308"}] to be a key-value object.)
+[2025-05-19T09:38:01.467Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40309"}] to be a key-value object.)
+[2025-05-19T09:38:03.848Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $input of type ProductInput! was provided invalid value for metafields.0 (Expected [{"namespace":"salonist","key":"id","type":"id","value":"40860"}] to be a key-value object.)
+[2025-05-19T09:40:00.677Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:03.621Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:06.454Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:09.399Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:12.247Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:15.015Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:17.973Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:20.809Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:23.820Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:26.602Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:29.563Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:32.403Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:40:35.225Z] ERROR: syncPackage error for shop salonist-app.myshopify.com: Variable $metafields of type [MetafieldsSetInput!]! was provided invalid value for 1.value (Expected value to not be null)
+[2025-05-19T09:42:54.193Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:42:58.238Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:02.091Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:06.387Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:10.626Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:14.552Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:18.506Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:22.519Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:26.546Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:30.632Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:34.786Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:38.821Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value
+[2025-05-19T09:43:42.911Z] ERROR: Exception while updating Package variant for shop salonist-app.myshopify.com: Variable $productId of type ID! was provided invalid value

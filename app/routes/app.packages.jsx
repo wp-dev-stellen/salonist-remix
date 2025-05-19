@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
+import {
   Page,
   Button,
   Text,
@@ -11,24 +11,26 @@ import {
   Badge,
 } from '@shopify/polaris';
 import {
-  PaginationEndIcon, PaginationStartIcon
+  PaginationEndIcon,
+  PaginationStartIcon,
 } from '@shopify/polaris-icons';
-import { useLoaderData, useActionData, useSubmit } from '@remix-run/react';
-import { getPackagesByShop } from '../helper/helper.server'; // rename this helper function accordingly
-import { GetCrmCredentialsByShop } from '../salonist/crm-credentials.server'; 
+import {
+  useLoaderData,
+  Form,
+  useFetcher,
+} from '@remix-run/react';
+import { getPackagesByShop } from '../helper/helper.server';
+import { GetCrmCredentialsByShop } from '../salonist/crm-credentials.server';
 import { authenticate } from '../shopify.server';
-import { redirect, data } from '@remix-run/node';
+import { redirect, json } from '@remix-run/node';
 
+// Client-only wrapper
 export function ClientOnly({ children }) {
   const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  if (!isClient) return null;
-
-  return children;
+  return isClient ? children : null;
 }
 
 // Loader
@@ -38,85 +40,98 @@ export const loader = async ({ request }) => {
   const CrmData = await GetCrmCredentialsByShop(shop);
   const status = CrmData?.loginStatus;
 
-  if (!status) {
-    return redirect('app/login/');
-  }
+  if (!status) return redirect('app/login/');
 
   const domainId = CrmData?.domainId;
-  const packages = await getPackagesByShop(shop);  
+  const packages = await getPackagesByShop(shop);
 
-  return { shop, domainId, packages };
+  return json({ shop, domainId, packages });
 };
 
 // Action
 export const action = async ({ request }) => {
-  let domainId;
-  const { admin, session } = await authenticate.admin(request);
-  const { startOrReuseImportJob  } = await import("../salonist/ImportJob.server.js");
   const formData = await request.formData();
   const action = formData.get('action')?.trim();
   const shop = formData.get('shop')?.trim();
-  if (action === 'import_packages') {  
-    const {session, admin } = await authenticate.admin(request);
+
+  if (action === 'import_packages') {
+    const { session } = await authenticate.admin(request);
     const CrmData = await GetCrmCredentialsByShop(shop);
-    domainId = CrmData?.domainId;
+    const domainId = CrmData?.domainId;
+
+    const { startOrReuseImportJob } = await import('../salonist/ImportJob.server.js');
     const { job, isNew } = await startOrReuseImportJob({
       shop,
       domainId,
-      type: 'package',  
+      type: 'Packages',
       runJob: async () => {
-        const { syncPackages } = await import('../salonist/PackageQuery.server.js'); 
+        const { syncPackages } = await import('../salonist/PakckagesQuery.server.js');
         await syncPackages(domainId, shop);
       },
     });
 
-    return data({
+    return json({
       message: {
         type: isNew ? 'success' : 'info',
         text: isNew
           ? 'Package import started in background.'
           : 'A package import is already in progress.',
       },
-    }, { status: 200 });
-
+    });
   }
 
-  return data({ message: { type: 'info', text: 'No valid action provided.' } }, { status: 400 });
+  return json({ message: { type: 'info', text: 'No valid action provided.' } }, { status: 400 });
 };
 
 // Component
-export default function PackagePage() {  
-  const actionData = useActionData();
-  const shopdata = useLoaderData();
-  const initialPackages = shopdata?.packages || [];
+export default function PackagesPage() {
+  const { shop, domainId, packages } = useLoaderData();
+  const fetcher = useFetcher();
 
-  const submit = useSubmit();
-  const handleImportClick = async (shop, domainId) => {
-    submit({ action: 'import_packages', shop, domainId }, { method: 'post' });
-  };
-
-  const pageSize = 10;
+  const [initialProducts, setInitialProducts] = useState(packages || []);
   const [currentPage, setCurrentPage] = useState(1);
   const [visibleRows, setVisibleRows] = useState([]);
+  const pageSize = 10;
+  const totalPages = Math.ceil(initialProducts.length / pageSize);
 
-  const totalPages = Math.ceil(initialPackages.length / pageSize);
-
+  // Sync paginated data
   useEffect(() => {
     const start = (currentPage - 1) * pageSize;
     const end = start + pageSize;
-    setVisibleRows(initialPackages.slice(start, end));
-  }, [currentPage, initialPackages, pageSize]);
+    setVisibleRows(initialProducts.slice(start, end));
+  }, [currentPage, initialProducts]);
 
-  const resourceName = { singular: 'Package', plural: 'Packages' };
+  // Auto-refresh data after import
+  useEffect(() => {
+    if (fetcher.state === 'idle' && fetcher.data?.message?.type === 'success') {
+      fetch('/app/packages') // update path if needed
+        .then(res => res.json())
+        .then(data => {
+          setInitialProducts(data?.packages || []);
+          setCurrentPage(1);
+        });
+    }
+  }, [fetcher]);
 
-  const rowMarkup = visibleRows.map((pkg, index) => (
-    <IndexTable.Row id={pkg.id} key={pkg.id} selected={false} position={index} >
-      <IndexTable.Cell><Text variation="strong">{pkg.crmPackageId}</Text></IndexTable.Cell>
-      <IndexTable.Cell>{pkg.title}</IndexTable.Cell>
-      <IndexTable.Cell>{pkg.salePrice || 'N/A'}</IndexTable.Cell>
-      <IndexTable.Cell>{pkg.qty}</IndexTable.Cell>
+  const handleImportClick = () => {
+    fetcher.submit(
+      { action: 'import_packages', shop, domainId },
+      { method: 'post' }
+    );
+  };
+
+  const resourceName = {
+    singular: 'Product',
+    plural: 'Products',
+  };
+
+  const rowMarkup = visibleRows.map((product, index) => (
+    <IndexTable.Row id={product.id} key={product.id} selected={false} position={index}>
+      <IndexTable.Cell><Text variation="strong">{product.crmProductId}</Text></IndexTable.Cell>
+      <IndexTable.Cell>{product.title}</IndexTable.Cell>
+      <IndexTable.Cell>{product.price || 'N/A'}</IndexTable.Cell>
       <IndexTable.Cell>
-        {pkg.shopifyPackageId ? (
+        {product.shopifyProductId ? (
           <Badge tone="success">Imported</Badge>
         ) : (
           <Badge tone="attention">Pending</Badge>
@@ -128,36 +143,36 @@ export default function PackagePage() {
   return (
     <Page
       fullWidth
-      title='Packages'
+      title="Packages"
       primaryAction={{
-        content: 'Import Packages',
-        onAction: () => handleImportClick(shopdata?.shop, shopdata?.domainId),
+        content: fetcher.state === 'submitting' ? 'Importing…' : 'Import Packages',
+        onAction: handleImportClick,
+        disabled: fetcher.state === 'submitting',
       }}
     >
       <Card sectioned>
-        {actionData?.data.message && (
+        {fetcher.data?.message && (
           <Banner
             status={
-              actionData?.data?.message?.type === 'success'
+              fetcher.data.message.type === 'success'
                 ? 'success'
-                : actionData?.data?.message?.type === 'info'
-                  ? 'info'
-                  : 'critical'
+                : fetcher.data.message.type === 'info'
+                ? 'info'
+                : 'critical'
             }
           >
-            <p>{actionData?.data?.message?.text}</p>
+            <p>{fetcher.data.message.text}</p>
           </Banner>
         )}
 
         <ClientOnly>
           <IndexTable
             resourceName={resourceName}
-            itemCount={initialPackages.length}
+            itemCount={initialProducts.length}
             headings={[
               { title: 'ID' },
               { title: 'Title' },
               { title: 'Price' },
-              { title: 'Quantity' },
               { title: 'Status' },
             ]}
             selectable={false}
@@ -166,24 +181,25 @@ export default function PackagePage() {
           </IndexTable>
 
           <div style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between' }}>
-            <Text>Showing {visibleRows.length} of {initialPackages.length} packages</Text>
+            <Text>
+              Showing {visibleRows.length} of {initialProducts.length} packages
+            </Text>
             <div>
-              <Button onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1}>
-                <Icon
-                  source={PaginationStartIcon}
-                  tone="base"
-                />
+              <Button
+                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+              >
+                <Icon source={PaginationStartIcon} tone="base" />
               </Button>
-              <Button onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages}>
-                <Icon
-                  source={PaginationEndIcon}
-                  tone="base"
-                />
+              <Button
+                onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+              >
+                <Icon source={PaginationEndIcon} tone="base" />
               </Button>
             </div>
           </div>
         </ClientOnly>
-
       </Card>
     </Page>
   );

@@ -64,6 +64,115 @@ export const SyncProduct = async (dbproduct,result) => {
 };
 
 /**
+ * Create / update a Shopify product for one Salonist package,
+ * then publish and update the default variant.
+ *
+ * @param {object} dbPackage    – Row from your DB (contains the shop name, etc.)
+ * @param {object} result       – Single package payload returned by Salonist
+ *                                ({ Package, Packageinfo } structure)
+ * @returns {{ productId: string }}
+ */
+export const syncPackage = async (dbPackage, result) => {
+  let shop;
+  try {
+    /* ------------------------------------------------------------------ */
+    /* 0. Grab shop + ensure the “Packages” collection exists             */
+    /* ------------------------------------------------------------------ */
+    shop = dbPackage?.shop;
+
+    const collectionData = {
+      name: 'Packages',
+      handle: 'packages',
+      descriptionHtml: 'Packages',
+      id: 'packages',
+    };
+    const collectionId = await CreateandUpdateCollection(
+      dbPackage,
+      collectionData,
+    );
+
+    /* ------------------------------------------------------------------ */
+    /* 1. Auth + unpack Salonist payload                                  */
+    /* ------------------------------------------------------------------ */
+    const { admin } = await unauthenticated.admin(shop);
+
+    const { Package, Packageinfo } = result;        // <- NOW we have Package
+    const descriptionHtml = await generatePackageDescription(result);
+
+    /* metafield – store the Salonist ID so we can look it up later */
+     const metaField = {namespace: "salonist", key: "id", type: "id", value: Package.id};
+
+    /* ------------------------------------------------------------------ */
+    /* 2. Create or update the product                                   */
+    /* ------------------------------------------------------------------ */
+
+    console.log(descriptionHtml);
+    const baseProductData = {
+      title: Package.name,
+      handle: Package.id.toString(),
+      descriptionHtml: `${descriptionHtml}`,
+      productType: 'Package',
+      vendor: Package.brand ?? 'Salonist',
+      metafields:[metaField],
+      collectionsToJoin: [collectionId],
+    };
+
+    // Does a Shopify product with this CRM ID already exist?
+    const existing = await productByIdentifier(admin, Package.id);
+    const isUpdate = Boolean(existing?.id);
+
+    const mutation = isUpdate
+      ? ShopifyGQL.UPDATE_PRODUCT_MUTATION
+      : ShopifyGQL.CREATE_PRODUCTS_MUTATION;
+
+    const variables = isUpdate
+      ? { input: { id: existing.id, ...baseProductData } }
+      : { product: baseProductData };
+
+    const response = await admin.graphql(mutation, { variables });
+    const responseJson = await response.json();
+
+    const product =
+      responseJson.data?.productCreate?.product ??
+      responseJson.data?.productUpdate?.product;
+
+    if (!product) throw new Error('No product node returned from Shopify');
+
+    const productid = product.id;
+    const variantId = product.variants.edges[0].node.id;
+
+    /* ------------------------------------------------------------------ */
+    /* 3. Attach our own metafield doc (if you keep extra lookup data)    */
+    /* ------------------------------------------------------------------ */
+      if(productid){
+        const metadata =  {type:'product',id:productid,domainId:Package.domainId} ;
+        await  SetProductMetafiled(shop ,metadata);
+        }
+
+    /* ------------------------------------------------------------------ */
+    /* 4. Update default variant (price / compare‑at)                     */
+    /* ------------------------------------------------------------------ */
+    const variantData = {productid ,variantId , ...Package}
+    await PackageVariantUpdate(shop,variantData);
+
+    /* ------------------------------------------------------------------ */
+    /* 5. Publish the product (if it isn’t already)                       */
+    /* ------------------------------------------------------------------ */
+    await PublishablePublish(shop, productid);
+
+    return { productid };
+  } catch (err) {
+    logger.error(`syncPackage error for shop ${shop}: ${err.message}`, {
+      stack: err.stack,
+    });
+    throw err;
+  }
+};
+
+
+
+
+/**
  * Create and update collections
  * @param {*} dbplan 
  * @param {*} data 
@@ -275,6 +384,64 @@ export const ProductVariantUpdate = async (shop, variantData) => {
   }
 };
 
+/**
+ * Package Variant Create and Upadte 
+ * @param {
+ * } shop 
+ * @param {*} variantData 
+ * @returns 
+ */
+
+export const PackageVariantUpdate = async (shop, variantData) => {
+  const { admin } = await unauthenticated.admin(shop);
+  const mutation = ShopifyGQL.PRODUCT_DEFAULT_VARIANT_MUTATION;
+
+  const price = variantData?.cost_price || '0.00';
+  const compareAtPrice =
+    variantData?.special_price && parseFloat(variantData.special_price) > 0
+      ? variantData.special_price
+      : null;
+
+  const variant = {
+    productId: variantData.productid,
+    strategy: "REMOVE_STANDALONE_VARIANT",
+    variants: [
+      {
+        price,
+        ...(compareAtPrice ? { compareAtPrice } : {}),
+        inventoryItem: {
+          sku: variantData?.code || variantData?.id,
+          tracked: false
+        },
+        taxable: false
+      }
+    ]
+  };
+
+  try {
+    const response = await admin.graphql(mutation, { variables: variant });
+    const responseJson = await response.json();
+    const userErrors = responseJson?.data?.productVariantsBulkCreate?.userErrors || [];
+
+    if (userErrors && userErrors.length > 0) {
+      logger.error(`GraphQL Errors for Package shop ${shop}:`, JSON.stringify(responseJson.errors, null, 2));
+      console.error('GraphQL Errors:', userErrors);
+      return false;
+    }
+
+    console.log(`Package Variant updated successfully for shop ${shop}`);
+    return true;
+
+  } catch (error) {
+    logger.error(`Exception while updating Package variant for shop ${shop}: ${error.message}`, {
+      stack: error.stack,
+      variantData
+    });
+    console.error('Exception caught during Package GraphQL mutation:', error);
+    return true;
+  }
+};
+
 
 
 /**
@@ -432,12 +599,15 @@ export const PublishablePublish = async (shop, pid) => {
 
 };
 
-export const CreateMetafieldDefinition = async (admin ,shop,def) => {
-  
+export const CreateMetafieldDefinition = async (admin, shop, def) => {
+  if (!admin) {
+    const unauthenticatedAdmin = await unauthenticated.admin(shop);
+    admin = unauthenticatedAdmin.admin;
+  }
   const MetafieldData = {
     definition: {
-      ...def
-    }
+      ...def,
+    },
   };
 
   try {
@@ -449,33 +619,50 @@ export const CreateMetafieldDefinition = async (admin ,shop,def) => {
     const mutation = ShopifyGQL.CREATE_METAFIELD_DEFINATION;
 
     const response = await admin.graphql(query);
-
     const responseJson = await response.json();
 
     const existingDefs = responseJson?.data?.metafieldDefinitions?.edges;
 
     if (!existingDefs || existingDefs.length === 0) {
-
-      const createResponse = await admin.graphql(mutation, {variables:MetafieldData});
+      const createResponse = await admin.graphql(mutation, {
+        variables: MetafieldData,
+      });
       const createJson = await createResponse.json();
       const errors = createJson?.data?.metafieldDefinitionCreate?.userErrors;
-    if (errors?.length) {
-        logger.error(`Failed to create metafield definition for shop ${shop}:`, { errors,});
 
+      if (errors?.length) {
+        logger.error(`Failed to create metafield definition for shop ${shop}:`, {
+          errors,
+        });
       } else {
-        console.log("Metafield definition created:");
+        console.log('Metafield definition created');
       }
     } else {
-      console.log("Metafield definition already exists:", existingDefs[0].node);
+     // console.log('Metafield definition already exists:', existingDefs[0].node);
+     console.log(`Metafield definition already exists for for shop ${shop}`);
     }
-    
   } catch (error) {
-
     logger.error(`Metafield error for shop ${shop}: ${error.message}`, {
       stack: error.stack,
     });
-
   }
 
-  return true; 
+  return true;
 };
+
+
+export async function generatePackageDescription(pkg) {
+  const { Package, Packageinfo } = pkg;
+
+  const validity = `<p><strong>Validity:</strong> ${Package.expiry_days} ${Package.expiry_type}</p>`;
+
+  const servicesHeader = `<p><strong>Services Included:</strong></p>`;
+  const servicesList = Packageinfo.map(info => {
+    const plan = info.Plan;
+return `<li>${plan.name}${plan.service_time || plan.time ? ` <em>(Duration: ${plan.service_time || plan.time})</em>` : ''}</li>`;
+  }).join('');
+
+  const servicesHtml = `<ul>${servicesList}</ul>`;
+
+  return `${validity}${servicesHeader}${servicesHtml}`;
+}

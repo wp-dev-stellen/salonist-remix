@@ -135,7 +135,7 @@ model Packages {
   title            String?       
   productType      String?
   sku              String?
-  salePrice        String?
+  price            String?
   shopifyProductId String?       
   showInApp        Boolean       @default(true)
   rawJson          Json

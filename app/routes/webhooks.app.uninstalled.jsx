@@ -6,9 +6,15 @@ export const action = async ({ request }) => {
 
   console.log(`Received ${topic} webhook for ${shop}`);
 
-  
+ // await db.session.deleteMany({ where: { shop } });
+  const modelsToDelete = ['session', 'RetailProduct', 'Service','Plan', 'Packages','ImportJob','ShopLocations','ShopChannel','CrmCredential'];
+
   if (session) {
-    await db.session.deleteMany({ where: { shop } });
+    await Promise.all(
+      modelsToDelete.map(model =>
+        db[model].deleteMany({ where: { shop } })
+      )
+    );
   }
 
   return new Response();
