@@ -1,9 +1,9 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "6c38763fe7a276ba283c9eb1331506f1"
-name = "salonist-remix"
-handle = "salonist-remix"
-application_url = "https://wives-topics-learners-deviant.trycloudflare.com"
+name = "salonist-staging"
+handle = "salonist-staging"
+application_url = "https://mobility-processor-champagne-ann.trycloudflare.com"
 embedded = true
 
 [build]
@@ -35,9 +35,9 @@ scopes = "read_inventory,read_locations,read_products,write_inventory,write_loca
 
 [auth]
 redirect_urls = [
-  "https://wives-topics-learners-deviant.trycloudflare.com/auth/callback",
-  "https://wives-topics-learners-deviant.trycloudflare.com/auth/shopify/callback",
-  "https://wives-topics-learners-deviant.trycloudflare.com/api/auth/callback"
+  "https://mobility-processor-champagne-ann.trycloudflare.com/auth/callback",
+  "https://mobility-processor-champagne-ann.trycloudflare.com/auth/shopify/callback",
+  "https://mobility-processor-champagne-ann.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

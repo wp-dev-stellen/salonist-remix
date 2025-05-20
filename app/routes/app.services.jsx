@@ -1,23 +1,11 @@
 import React, { useState,useEffect} from 'react';
-import { 
-  Page,
-  Button,
-  Text,
-  Banner,
-  Card,
-  IndexTable,
-  useIndexResourceState,
-  Icon,
-  Badge,
-  } from '@shopify/polaris';
-  import {
-    PaginationEndIcon,PaginationStartIcon
-  } from '@shopify/polaris-icons';
-import { useLoaderData, Form ,useActionData,useSubmit } from '@remix-run/react';
+import {Page, Button, Text, Banner, Card, IndexTable, useIndexResourceState, Icon, Badge,Modal,Spinner } from '@shopify/polaris';
+import {PaginationEndIcon, PaginationStartIcon, } from '@shopify/polaris-icons';
+import { useLoaderData, Form ,useActionData,useSubmit,useNavigation  } from '@remix-run/react';
 import { getServicesByShop } from '../helper/helper.server';
 import { GetCrmCredentialsByShop } from '../salonist/crm-credentials.server';
 import { authenticate } from '../shopify.server';
-import { redirect ,data} from '@remix-run/node';
+import {data} from '@remix-run/node';
 
 export function ClientOnly({ children }) {
   const [isClient, setIsClient] = useState(false);
@@ -33,7 +21,7 @@ export function ClientOnly({ children }) {
 
 // Loader
 export const loader = async ({ request }) => {
-  const { session } = await authenticate.admin(request);
+  const { session ,redirect } = await authenticate.admin(request);
   const shop = session?.shop;
   const CrmData = await GetCrmCredentialsByShop(shop);
   const status = CrmData?.loginStatus;
@@ -91,6 +79,9 @@ export default function ProductPage() {
 
   const actionData = useActionData();
   const shopdata = useLoaderData();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'submitting' || navigation.state === 'loading';
+    const [selectedSevice, setSelectedSevice] = useState(null);
   const initialProducts = shopdata?.services || [];
   const submit = useSubmit(); 
 
@@ -126,66 +117,97 @@ export default function ProductPage() {
           <Badge tone="attention">Pending</Badge>
         )}
       </IndexTable.Cell>
+      <IndexTable.Cell>
+         <Button size="slim" onClick={() => setSelectedSevice(product)}>Info</Button>
+      </IndexTable.Cell>
     </IndexTable.Row>
   ));
 
   return (
   <Page 
     fullWidth
-    title='Services' primaryAction={{
+    title='Services'
+    primaryAction={{
       content: 'Import Services', 
       onAction: () => handleImportClick(shopdata?.shop, shopdata?.domainId),
-    }} >
+    }}
+     >
       <Card sectioned>
-    {actionData?.data.message && (
-        <Banner
-          status={
-            actionData?.data?.message?.type === 'success'
-              ? 'success'
-              : actionData?.data?.message?.type === 'info'
-              ? 'info'
-              : 'critical'
-          }
-        >
-          <p>{actionData?.data?.message?.text}</p>
-        </Banner>
-      )}
-
-<ClientOnly>
-        <IndexTable
-          resourceName={resourceName}
-          itemCount={initialProducts.length}
-          headings={[
-            { title: 'ID' },
-            { title: 'Title' },
-            { title: 'Price' },
-            { title: 'Duration' },
-            { title: 'Status' },
-          ]}
-          selectable={false}
-        >
-          {rowMarkup}
-        </IndexTable>
-
-        <div style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between' }}>
-          <Text>Showing {visibleRows.length} of {initialProducts.length} services</Text>
-            <div>
-              <Button onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1}>
-              <Icon
-                source={PaginationStartIcon}
-                tone="base"
-              />
-              </Button>
-              <Button onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages}>
-              <Icon
-                source={PaginationEndIcon}
-                tone="base"
-              />
-              </Button>
-            </div>
+       {isLoading ? (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
+          <Spinner accessibilityLabel="Loading products" size="large" />
         </div>
-        </ClientOnly>
-      
+      ) : (
+        <>
+
+          {actionData?.data.message && (
+                <Banner
+                  status={
+                    actionData?.data?.message?.type === 'success'
+                      ? 'success'
+                      : actionData?.data?.message?.type === 'info'
+                      ? 'info'
+                      : 'critical'
+                  }
+                >
+              <p>{actionData?.data?.message?.text}</p>
+            </Banner>
+          )}
+
+        <ClientOnly>
+                <IndexTable
+                  resourceName={resourceName}
+                  itemCount={initialProducts.length}
+                  headings={[
+                    { title: 'ID' },
+                    { title: 'Title' },
+                    { title: 'Price' },
+                    { title: 'Duration' },
+                    { title: 'Status' },
+                  ]}
+                  selectable={false}
+                >
+                  {rowMarkup}
+                </IndexTable>
+
+                <div className='pagination' style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between' }}>
+                  <Text>Showing {visibleRows.length} of {initialProducts.length} services</Text>
+                    <div className='pagination-icon' style={{ display: 'flex' ,gap: '15px' }}>
+                      <Button onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1}>
+                      <Icon
+                        source={PaginationStartIcon}
+                        tone="base"
+                      />
+                      </Button>
+                      <Button onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages}>
+                      <Icon
+                        source={PaginationEndIcon}
+                        tone="base"
+                      />
+                      </Button>
+                    </div>
+                </div>
+            </ClientOnly>
+
+    {/** Modal */}
+          {selectedSevice && (
+            <Modal
+              open
+              onClose={() => setSelectedSevice(null)}
+              title={`Service  Info: ${selectedSevice.title}`}
+              primaryAction={{ content: 'Close', onAction: () => setSelectedSevice(null) }}
+            >
+              <Modal.Section>
+                <Text as="p"><strong>ID:</strong> {selectedSevice.serviceId}</Text>
+                <Text as="p"><strong>Title:</strong> {selectedSevice.name}</Text>
+                <Text as="p"><strong>Price:</strong> {selectedSevice.price || 'N/A'}</Text>
+                <Text as="p"><strong>Status:</strong> {selectedSevice.shopifyProductId ? 'Imported' : 'Pending'}</Text>
+              </Modal.Section>
+            </Modal>
+          )}
+   {/** End Modal */}
+            </>
+          )}  
       </Card>
       
     </Page>
