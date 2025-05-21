@@ -1,6 +1,6 @@
 class SalonistAPI {
     constructor() {
-      this.baseUrl = 'https://temporary-biggest-substitute-fly.trycloudflare.com/api';
+      this.baseUrl = 'https://miles-gmt-threatening-briefs.trycloudflare.com/api';
       this.endpoints = {
         branches: '/branches',
         staff: '/service-staff',
@@ -68,9 +68,6 @@ class SalonistAPI {
 
 
     async fetchTimeSlots(data) {
-
-      console.log(data);
-
      const response = await fetch(`${this.baseUrl}${this.endpoints.timeslots}`, {
         method: 'POST',
         headers: {

@@ -1,11 +1,7 @@
 import { redirect } from "@remix-run/node";
-import { Form, useLoaderData ,useActionData} from "@remix-run/react";
-import { login } from "../../shopify.server";
+import { Form, useLoaderData, useActionData } from "@remix-run/react";
 import styles from "./styles.module.css";
 import './custom-style.css';
-
-
-export const links = () => [{ rel: 'stylesheet' }];
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
@@ -14,24 +10,33 @@ export const loader = async ({ request }) => {
     throw redirect(`/app?${url.searchParams.toString()}`);
   }
 
-  return { showForm: Boolean(login) };
+  return { showForm: true };
 };
 
+// Handle form submission
 export const action = async ({ request }) => {
+  let domain;
+
   const formData = new URLSearchParams(await request.text());
-  const domain = formData.get("domain");
+   domain = formData.get("domain");
 
-  if (!domain) {
-    return { error: "Shop parameter is required." };
+  domain = domain.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+  const domainRegex = /^(?!:\/\/)([a-z0-9-]+(\.[a-z0-9-]+)+)$/i;
+
+  if (!domainRegex.test(domain)) {
+    return { error: "A valid domain is required (e.g., example.com)." };
   }
+    const redirectUrl = `/auth/login?shop=${domain}`;
+    return redirect(redirectUrl);
+};
 
-  const redirectUrl = `/auth/login?shop=${domain}`;
-  return redirect(redirectUrl);
-}
+// The actual page component
 export default function App() {
   const { showForm } = useLoaderData();
   const actionData = useActionData();
-  const error = actionData?.error || null;
+  const error = actionData?.error;
+ 
   return (
     <div>
       {/* Logo Section */}
@@ -47,15 +52,21 @@ export default function App() {
           Transform Your Salon Experience –<br /> Install the Salonist App
         </h1>
         <p className="description">Manage appointments, clients, and staff directly from your Shopify store.</p>
-        <p className="description">Run your salon smarter,faster, and stress-free with just a tap by installing the Salonist app on your Shopify store!</p>
+        <p className="description">Run your salon smarter, faster, and stress-free with just a tap!</p>
 
-        {/* Conditionally render form based on showForm */}
         {showForm && (
           <>
-            <p className="description">Enter your Shopify store domain to get started</p>
-            <Form className="input-group" method="post" >
-              <input type="text" placeholder="example.myshopify.com"  name="domain" className={error ? "error-border" : ""} id="inputField" />
+            <p className="description">Enter your Shopify store domain to get started:</p>
+            <Form className="input-group" method="post">
+              <input
+                type="text"
+                name="domain"
+                placeholder="example.myshopify.com"
+                id="inputField"
+                className={error ? "error-border" : ""}
+              />
               <button type="submit">Install Now</button>
+              {error && <p className="error-message">{error}</p>}
             </Form>
           </>
         )}

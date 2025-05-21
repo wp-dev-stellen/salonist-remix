@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react';
+import React, {Suspense, useState,useEffect} from 'react';
 import {Page, Button, Text, Banner, Card, IndexTable, useIndexResourceState, Icon, Badge,Modal,Spinner } from '@shopify/polaris';
 import {PaginationEndIcon, PaginationStartIcon, } from '@shopify/polaris-icons';
 import { useLoaderData, Form ,useActionData,useSubmit,useNavigation  } from '@remix-run/react';
@@ -77,11 +77,24 @@ export const action = async ({ request }) => {
 // Component
 export default function ProductPage() {
 
+
   const actionData = useActionData();
   const shopdata = useLoaderData();
   const navigation = useNavigation();
   const isLoading = navigation.state === 'submitting' || navigation.state === 'loading';
-    const [selectedSevice, setSelectedSevice] = useState(null);
+
+  const [showSpinner, setShowSpinner] = useState(false);
+    useEffect(() => {
+      let timeout;
+      if (isLoading) {
+        timeout = setTimeout(() => setShowSpinner(true), 200);
+      } else {
+        setShowSpinner(false);
+      }
+      return () => clearTimeout(timeout);
+    }, [isLoading]);
+
+  const [selectedSevice, setSelectedSevice] = useState(null);
   const initialProducts = shopdata?.services || [];
   const submit = useSubmit(); 
 
@@ -102,7 +115,11 @@ export default function ProductPage() {
   }, [currentPage, initialProducts, pageSize]);
 
   const resourceName = {singular: 'service', plural: 'services', };
-
+  const getProductStatus = (product) => {
+    const created = new Date(product.createdAt).getTime();
+    const updated = new Date(product.updatedAt).getTime();
+    return created === updated ? 'Created' : 'Updated';
+  }
 
   const rowMarkup = visibleRows.map((product, index) => (
     <IndexTable.Row id={product.id} key={product.id} selected={false} position={index} >
@@ -112,18 +129,32 @@ export default function ProductPage() {
       <IndexTable.Cell>{product.time}</IndexTable.Cell>
       <IndexTable.Cell>
         {product.shopifyProductId ? (
-          <Badge tone="success">Imported</Badge>
+          <Badge tone="success">Synced</Badge>
         ) : (
           <Badge tone="attention">Pending</Badge>
         )}
       </IndexTable.Cell>
+         <Badge tone={product.shopifyProductId ? 'success' : 'attention'}>
+            {getProductStatus(product)}
+          </Badge>
       <IndexTable.Cell>
          <Button size="slim" onClick={() => setSelectedSevice(product)}>Info</Button>
       </IndexTable.Cell>
     </IndexTable.Row>
   ));
 
+  const [delayedLoadComplete, setDelayedLoadComplete] = useState(false);
+        
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayedLoadComplete(true);
+    }, 500); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
+<Suspense fallback={<Spinner accessibilityLabel="Spinner example" size="large" />}>
   <Page 
     fullWidth
     title='Services'
@@ -132,8 +163,9 @@ export default function ProductPage() {
       onAction: () => handleImportClick(shopdata?.shop, shopdata?.domainId),
     }}
      >
+      <ClientOnly>
       <Card sectioned>
-       {isLoading ? (
+        {!delayedLoadComplete || showSpinner ?(
         <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
           <Spinner accessibilityLabel="Loading products" size="large" />
         </div>
@@ -153,8 +185,6 @@ export default function ProductPage() {
               <p>{actionData?.data?.message?.text}</p>
             </Banner>
           )}
-
-        <ClientOnly>
                 <IndexTable
                   resourceName={resourceName}
                   itemCount={initialProducts.length}
@@ -164,6 +194,8 @@ export default function ProductPage() {
                     { title: 'Price' },
                     { title: 'Duration' },
                     { title: 'Status' },
+                    { title: 'Imported On' },
+                    { title: 'Action' },
                   ]}
                   selectable={false}
                 >
@@ -187,14 +219,12 @@ export default function ProductPage() {
                       </Button>
                     </div>
                 </div>
-            </ClientOnly>
-
-    {/** Modal */}
+         {/** Modal */}
           {selectedSevice && (
             <Modal
               open
               onClose={() => setSelectedSevice(null)}
-              title={`Service  Info: ${selectedSevice.title}`}
+              title={`Service  Info: ${selectedSevice.name}`}
               primaryAction={{ content: 'Close', onAction: () => setSelectedSevice(null) }}
             >
               <Modal.Section>
@@ -205,11 +235,12 @@ export default function ProductPage() {
               </Modal.Section>
             </Modal>
           )}
-   {/** End Modal */}
+        {/** End Modal */}
             </>
           )}  
       </Card>
-      
+   </ClientOnly>
     </Page>
+    </Suspense>
   );
 }

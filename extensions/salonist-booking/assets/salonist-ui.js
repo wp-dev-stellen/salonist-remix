@@ -49,7 +49,7 @@ class SalonistUI {
   }
 
   this.elements.staffList.innerHTML = list.map(staff => `
-    <div class="salonist-staff-item" data-staff-id="${staff.id}">
+    <div class="salonist-staff-item" data-staff-id="${staff.id}" data-staff-name="${staff.name}">
       <img src="${staff?.img ? `https://salonist.io/img/user/${staff.img}` : 'https://salonist.io/img/user/no_image.png'}" alt="${staff.name}">
       <h4>${staff.name}</h4>
     </div>

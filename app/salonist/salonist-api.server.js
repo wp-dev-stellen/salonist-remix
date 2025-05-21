@@ -11,6 +11,7 @@ const API_STAFF_SERVICE = 'https://salonist.io/wordpressapi/service_staff';
 const API_CALENDAR = "https://salonist.io/wordpressapi/business_hours";
 const API_STAFF_TIME_SLOTS = 'https://salonist.io/wordpressapi/get_staff_time_availaibility';
 const API_TIME_SLOTS = 'https://salonist.io/wordpressapi/get_business_time';
+const API_ORDER_CREATE = 'https://salonist.io/wordpressapi/order_create';
 
 /**
  * Logs into Salonist using email and password
@@ -289,6 +290,48 @@ export async function fetchSalonistTimeSlots(adata) {
     };
   } catch (error) {
     console.error("Salonist Time Slots fetch error:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message || "Something went wrong",
+    };
+  }
+}
+
+
+/**
+ * Creates an order in the Salonist system
+ * @param {Object} orderData - The order data including domainId, date, serviceId, staffId, etc.
+ * @returns {Promise<{ success: boolean, data?: any, error?: string }>}
+ */
+
+export async function createSalonistOrder(orderData) {
+  try {
+    const data = new FormData();
+    data.append('domainId', orderData.domainId);
+    data.append('date', orderData.date);
+    data.append('serviceId', orderData.serviceId);
+    data.append('staff', orderData.staffId);
+    
+    // data.append('customerId', orderData.customerId);
+    // data.append('paymentMethod', orderData.paymentMethod);
+
+    const url = API_ORDER_CREATE;
+
+    const response = await axios.post(url, data);
+
+    if (response.data?.status === 'error') {
+      return {
+        success: false,
+        error: response.data.message || "Failed to create order",
+      };
+    }
+
+    return {
+      success: true,
+      data: response.data || [],
+    };
+  } catch (error) {
+    console.error("Salonist Order creation error:", error);
     return {
       success: false,
       error: error?.response?.data?.message || error.message || "Something went wrong",

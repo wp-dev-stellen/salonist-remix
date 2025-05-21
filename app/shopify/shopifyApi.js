@@ -605,7 +605,7 @@ export const CreateMetafieldDefinition = async (admin, shop, def) => {
     admin = unauthenticatedAdmin.admin;
   }
   const MetafieldData = {
-    definition: {
+    definition: { 
       ...def,
     },
   };

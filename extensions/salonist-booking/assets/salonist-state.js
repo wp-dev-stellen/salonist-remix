@@ -9,6 +9,7 @@ class SalonistState {
       branch: null,
       domain: null,
       staff: null,
+      staffName:null,
       date: null,
       time: null,
       service: null

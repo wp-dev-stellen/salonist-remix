@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {Suspense, useState, useEffect } from 'react';
 import {Page, Button, Text, Banner, Card, IndexTable, useIndexResourceState, Icon, Badge,Modal,Spinner } from '@shopify/polaris';
 import {PaginationEndIcon, PaginationStartIcon, } from '@shopify/polaris-icons';
 import { useLoaderData, Form ,useActionData,useSubmit,useNavigation  } from '@remix-run/react';
@@ -70,15 +70,40 @@ export const action = async ({ request }) => {
 // Component
 export default function PackagesPage() {
 
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    useEffect(() => {
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }, []);
+
+
   const { shop, domainId, packages } = useLoaderData();
   const actionData = useActionData();
   const navigation = useNavigation();
   const isLoading = navigation.state === 'submitting' || navigation.state === 'loading';
+
+  const [showSpinner, setShowSpinner] = useState(false);
+  useEffect(() => {
+    let timeout;
+    if (isLoading) {
+      timeout = setTimeout(() => setShowSpinner(true), 200);
+    } else {
+      setShowSpinner(false);
+    }
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
+
+
   const initialProducts = packages || [];
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [visibleRows, setVisibleRows] = useState([]);
+  //const [visibleRows, setVisibleRows] = useState([]);
 
   const [selectedPackage, setSelectedPackage] = useState(null);
 
@@ -94,11 +119,18 @@ export default function PackagesPage() {
 
  
     /** * Pagination*/
-     useEffect(() => {
-         const start = (currentPage - 1) * pageSize;
-         const end = start + pageSize;
-         setVisibleRows(initialProducts.slice(start, end));
-       }, [currentPage, initialProducts, pageSize]);
+    //  useEffect(() => {
+    //      const start = (currentPage - 1) * pageSize;
+    //      const end = start + pageSize;
+    //      setVisibleRows(initialProducts.slice(start, end));
+    //    }, [currentPage, initialProducts, pageSize]);
+
+  const [visibleRows, setVisibleRows] = useState(() => {
+      const start = 0;
+      const end = pageSize;
+      return initialProducts.slice(start, end);
+    });
+
 
     const resourceName = {singular: 'Product', plural: 'Products', };
 
@@ -125,7 +157,20 @@ export default function PackagesPage() {
       </IndexTable.Row>
     ));
 
+      const [delayedLoadComplete, setDelayedLoadComplete] = useState(false);
+      
+        useEffect(() => {
+          const timer = setTimeout(() => {
+            setDelayedLoadComplete(true);
+          }, 500); 
+      
+          return () => clearTimeout(timer);
+        }, []);
+
+
+
   return (
+<Suspense fallback={<Spinner accessibilityLabel="Spinner example" size="large" />}>
     <Page
       fullWidth
       title="Packages"
@@ -134,8 +179,9 @@ export default function PackagesPage() {
         onAction: () => handleImportClick(shop, domainId),
       }}
     >
+      <ClientOnly>
       <Card sectioned>
-        {isLoading ? (
+        {!delayedLoadComplete || showSpinner ? (
                 <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
                   <Spinner accessibilityLabel="Loading products" size="large" />
                 </div>
@@ -155,7 +201,6 @@ export default function PackagesPage() {
                   </Banner>
                 )}
 
-        <ClientOnly>
           <IndexTable
             resourceName={resourceName}
             itemCount={initialProducts.length}
@@ -190,7 +235,7 @@ export default function PackagesPage() {
                   </Button>
                 </div>
               </div>
-        </ClientOnly>
+     
         {/** Modal */}
        {selectedPackage && (
         <Modal
@@ -211,6 +256,8 @@ export default function PackagesPage() {
          </>
          )}
       </Card>
+    </ClientOnly>
     </Page>
+    </Suspense>
   );
 }

@@ -1,9 +1,13 @@
 import { authenticate } from "../shopify.server";
+import logger from '../logger/logger';
 
 export const action = async ({ request }) => {
-  const { shop, topic } = await authenticate.webhook(request);
+  const { shop, topic,payload } = await authenticate.webhook(request);
+  console.log(payload,'payload');
 
-  console.log(`Received ${topic} webhook for ${shop}`);
+  logger.info(`${payload} for shop ${shop}`);
+  
+  console.log(`Received ${topic} Webhook for ${shop}`);
 
   return new Response();
 };

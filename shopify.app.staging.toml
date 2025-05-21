@@ -3,7 +3,7 @@
 client_id = "6c38763fe7a276ba283c9eb1331506f1"
 name = "salonist-staging"
 handle = "salonist-staging"
-application_url = "https://mobility-processor-champagne-ann.trycloudflare.com"
+application_url = "https://miles-gmt-threatening-briefs.trycloudflare.com"
 embedded = true
 
 [build]
@@ -35,9 +35,9 @@ scopes = "read_inventory,read_locations,read_products,write_inventory,write_loca
 
 [auth]
 redirect_urls = [
-  "https://mobility-processor-champagne-ann.trycloudflare.com/auth/callback",
-  "https://mobility-processor-champagne-ann.trycloudflare.com/auth/shopify/callback",
-  "https://mobility-processor-champagne-ann.trycloudflare.com/api/auth/callback"
+  "https://miles-gmt-threatening-briefs.trycloudflare.com/auth/callback",
+  "https://miles-gmt-threatening-briefs.trycloudflare.com/auth/shopify/callback",
+  "https://miles-gmt-threatening-briefs.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

@@ -135,6 +135,7 @@ async loadCalendar() {
 
   async handleStaffSelect(staffElement) {
     this.state.selected.staff = staffElement.dataset.staffId;
+   this.state.selected.staffName = staffElement.dataset.staffName;
     await this.loadCalendar();
     this.nextStep();
   }
@@ -344,11 +345,13 @@ async fetchCartData() {
     buildBookingProperties() {
       const { selected, data } = this.state;
       return {
-        'Booking Type': 'Service',
-        'Domain ID':    selected.domain,
-        'Staff ID':     selected.staff || 'any',
+        '_booking_type': 'service',
+        '_domain_id':    selected.domain,
+        'Staff':         selected.staffName || 'any',
+        '_staff_id':     selected.staff || 'any',
         'Date':         selected.date,
         'Service Time': selected.time,
+        '_service_time': selected.time,
         'Duration':     data.duration,
         '_isBooking': true,
       };
@@ -376,11 +379,11 @@ async fetchCartData() {
 
     checkForConflicts(cartData, newProps) {
         const selectedDate     = newProps['Date'];
-        const selectedStart    = this.parseTime12Hour(selectedDate, newProps['Service Time']);
+        const selectedStart    = this.parseTime12Hour(selectedDate, newProps['_service_time']);
         const selectedDuration = this.parseDuration(newProps['Duration']);     
         const bufferMinutes    = Math.max(selectedDuration - 1, 0);            
         const selectedEnd      = new Date(selectedStart.getTime() + selectedDuration * 60000);
-        const selectedStaff    = (newProps['Staff ID'] || '').toLowerCase();
+        const selectedStaff    = (newProps['_staff_id'] || '').toLowerCase();
 
       for (const item of cartData.items) {
         const props = item.properties || {};
@@ -394,7 +397,7 @@ async fetchCartData() {
           }
 
           if (
-            (props['Staff ID'] || '').toLowerCase() !== selectedStaff ||
+            (props['_staff_id'] || '').toLowerCase() !== selectedStaff ||
             props['Date'] !== selectedDate
           ) {
             if (isExactDuplicate) return 'This booking is already in your cart.';
@@ -402,7 +405,7 @@ async fetchCartData() {
           }
 
 
-        const itemStart    = this.parseTime12Hour(props['Date'], props['Service Time']);
+        const itemStart    = this.parseTime12Hour(props['Date'], props['_service_time']);
         const itemDuration = this.parseDuration(props['Duration']);
         const itemEnd      = new Date(itemStart.getTime() + itemDuration * 60000);
 
