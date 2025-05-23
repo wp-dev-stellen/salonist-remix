@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { upsertCrmCredentials } from './crm-credentials.server'; // Assuming you are using a named export
-
+import { upsertCrmCredentials } from './crm-credentials.server'; 
+import logger from '../logger/logger';
 
 const API_LOGIN = 'https://salonist.io/secureweb/login';
 const API_SERVICE = 'https://salonist.io/wordpressapi/services';
@@ -11,7 +11,7 @@ const API_STAFF_SERVICE = 'https://salonist.io/wordpressapi/service_staff';
 const API_CALENDAR = "https://salonist.io/wordpressapi/business_hours";
 const API_STAFF_TIME_SLOTS = 'https://salonist.io/wordpressapi/get_staff_time_availaibility';
 const API_TIME_SLOTS = 'https://salonist.io/wordpressapi/get_business_time';
-const API_ORDER_CREATE = 'https://salonist.io/wordpressapi/order_create';
+const API_ORDER_CREATE = 'https://salonist.io/wordpressapi/order_create_wordpress';
 
 /**
  * Logs into Salonist using email and password
@@ -299,26 +299,48 @@ export async function fetchSalonistTimeSlots(adata) {
 
 
 /**
- * Creates an order in the Salonist system
+ * Creates an Sevices order  in the Salonist system
  * @param {Object} orderData - The order data including domainId, date, serviceId, staffId, etc.
  * @returns {Promise<{ success: boolean, data?: any, error?: string }>}
  */
 
-export async function createSalonistOrder(orderData) {
+export async function createSalonistServiceOrder(serviceItems,customerInfo,orderdata) {
   try {
     const data = new FormData();
-    data.append('domainId', orderData.domainId);
-    data.append('date', orderData.date);
-    data.append('serviceId', orderData.serviceId);
-    data.append('staff', orderData.staffId);
-    
-    // data.append('customerId', orderData.customerId);
-    // data.append('paymentMethod', orderData.paymentMethod);
+  serviceItems.forEach((item, index) => {
 
+    /** 
+     * Order Data 
+     */
+    data.append('domainId', item.domain);
+    data.append('type', 'Appointment');
+    data.append('customer_id', ' ');
+    data.append('bill_date', item.date);
+    data.append('subtotal',  item.price);
+    data.append('grandtotal',  item.price);
+    data.append('payingnow',  item.price);
+    data.append('time', item.time);
+    data.append('dueamount', '0');
+    data.append('customer_name', customerInfo.name);
+    data.append('customer_contact', customerInfo.phone);
+    data.append('payment_mode', orderdata.payment_mode);
+    data.append('bill_notes', 'shopify');
+    /** 
+     *Servive Data 
+     */
+
+    data.append(`services[${index}][id]`, item.serviceId || '');
+    data.append(`services[${index}][qty]`, item.qty || 1);
+    data.append(`services[${index}][price]`, item.price || 0);
+    data.append(`services[${index}][discount]`, 0);
+    data.append(`services[${index}][total]`, item.total || item.price || 0);
+    data.append(`services[${index}][staffId]`, item.staff || 'any');
+    data.append(`services[${index}][bill_date]`, item.date || '');
+    data.append(`services[${index}][time]`, item.time || '');
+
+    });
     const url = API_ORDER_CREATE;
-
     const response = await axios.post(url, data);
-
     if (response.data?.status === 'error') {
       return {
         success: false,
@@ -330,6 +352,7 @@ export async function createSalonistOrder(orderData) {
       success: true,
       data: response.data || [],
     };
+
   } catch (error) {
     console.error("Salonist Order creation error:", error);
     return {
@@ -339,3 +362,10 @@ export async function createSalonistOrder(orderData) {
   }
 }
 
+function formatISODateToDDMMYYYY(isoString) {
+    const date = new Date(isoString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; 
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+}

@@ -69,19 +69,7 @@ export const action = async ({ request }) => {
 
 // Component
 export default function PackagesPage() {
-
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = '';
-    };
-    useEffect(() => {
-      window.addEventListener('beforeunload', handleBeforeUnload);
-      return () => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-      };
-    }, []);
-
-
+  
   const { shop, domainId, packages } = useLoaderData();
   const actionData = useActionData();
   const navigation = useNavigation();
@@ -119,11 +107,11 @@ export default function PackagesPage() {
 
  
     /** * Pagination*/
-    //  useEffect(() => {
-    //      const start = (currentPage - 1) * pageSize;
-    //      const end = start + pageSize;
-    //      setVisibleRows(initialProducts.slice(start, end));
-    //    }, [currentPage, initialProducts, pageSize]);
+     useEffect(() => {
+         const start = (currentPage - 1) * pageSize;
+         const end = start + pageSize;
+         setVisibleRows(initialProducts.slice(start, end));
+       }, [currentPage, initialProducts, pageSize]);
 
   const [visibleRows, setVisibleRows] = useState(() => {
       const start = 0;

@@ -258,10 +258,20 @@ export const SHOP_PRIMARY_LOCATION_QUERY =  `
     }
   }`;
 
-  export const COLLECTION_BY_HANDLE = `query CollectionByHandle($handle: String!) {
+export const COLLECTION_BY_HANDLE = `query CollectionByHandle($handle: String!) {
     collectionByHandle(handle: $handle) {
       id
     }
   }`;
+
+
+
+ export const PRODUCT_META_BY_ID =`query ProductMetafield($namespace: String!, $key: String!, $ownerId: ID!) {
+  product(id: $ownerId) {
+    linerMaterial: metafield(namespace: $namespace, key: $key) {
+      value
+    }
+  }
+}`;
 
 

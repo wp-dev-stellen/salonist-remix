@@ -163,14 +163,15 @@ export default function ProductPage() {
       onAction: () => handleImportClick(shopdata?.shop, shopdata?.domainId),
     }}
      >
+          {!delayedLoadComplete || showSpinner ?(
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
+          <Spinner accessibilityLabel="Loading products" size="large" />
+          </div>
+          ) : (
+        <>
       <ClientOnly>
       <Card sectioned>
-        {!delayedLoadComplete || showSpinner ?(
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
-          <Spinner accessibilityLabel="Loading products" size="large" />
-        </div>
-      ) : (
-        <>
+      
 
           {actionData?.data.message && (
                 <Banner
@@ -236,10 +237,11 @@ export default function ProductPage() {
             </Modal>
           )}
         {/** End Modal */}
-            </>
-          )}  
+            
       </Card>
    </ClientOnly>
+   </>
+          )}  
     </Page>
     </Suspense>
   );

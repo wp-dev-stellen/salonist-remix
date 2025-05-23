@@ -666,3 +666,47 @@ return `<li>${plan.name}${plan.service_time || plan.time ? ` <em>(Duration: ${pl
 
   return `${validity}${servicesHeader}${servicesHtml}`;
 }
+
+
+
+export const getProductTypeById = async (shop, productId) => {
+
+  try {
+    
+    const { admin } = await unauthenticated.admin(shop);
+
+    const query = ShopifyGQL.PRODUCT_META_BY_ID;
+
+    const variables = {
+
+      variables: {
+        namespace: "salonist",
+        key: "product_type",
+        ownerId: `gid://shopify/Product/${productId}`
+      }
+
+    };
+
+    const response = await admin.graphql(query, variables);
+    const responseJson = await response.json();
+
+    const value = responseJson?.data?.product?.linerMaterial?.value || null;
+
+    if (!value) {
+
+      logger.warn(`No product_type metafield found for product ${productId} in shop ${shop}`);
+
+    } else {
+
+      logger.info(`Product type for product ${productId} in shop ${shop}: ${value}`);
+    }
+
+    return value;
+
+  } catch (error) {
+
+    logger.error(`Error fetching product_type metafield for product ${productId} in shop ${shop}: ${error.message}`);
+
+    return null;
+  }
+}

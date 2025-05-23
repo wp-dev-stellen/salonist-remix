@@ -324,6 +324,7 @@ prevStep() {
         this.modal.close();
         if (cartOpen === 'drawer' && cartDrawer) {
           cartDrawer.classList.add('active');
+          window.location.href = '/cart';
         } else {
           window.location.href = '/cart';
         }
@@ -344,16 +345,17 @@ async fetchCartData() {
 
     buildBookingProperties() {
       const { selected, data } = this.state;
+      console.log(selected);
       return {
-        '_booking_type': 'service',
-        '_domain_id':    selected.domain,
-        'Staff':         selected.staffName || 'any',
-        '_staff_id':     selected.staff || 'any',
-        'Date':         selected.date,
-        'Service Time': selected.time,
-        '_service_time': selected.time,
-        'Duration':     data.duration,
-        '_isBooking': true,
+      '_booking_type':'service',
+      '_domainId':selected.domain,
+      'Staff Name':selected.staffName || 'any',
+      '_staff_id': selected.staff || 'any',
+      'Appointment-Date':selected.date,
+      'Appointment-Time':selected.time,
+      'Duration':data.duration,
+      '_serviceid':data.serviceid,
+      '_booking_detail':selected,
       };
     }
 
@@ -378,8 +380,8 @@ async fetchCartData() {
     }
 
     checkForConflicts(cartData, newProps) {
-        const selectedDate     = newProps['Date'];
-        const selectedStart    = this.parseTime12Hour(selectedDate, newProps['_service_time']);
+        const selectedDate     = newProps['Appointment-Date'];
+        const selectedStart    = this.parseTime12Hour(selectedDate, newProps['Appointment-Time']);
         const selectedDuration = this.parseDuration(newProps['Duration']);     
         const bufferMinutes    = Math.max(selectedDuration - 1, 0);            
         const selectedEnd      = new Date(selectedStart.getTime() + selectedDuration * 60000);
@@ -398,14 +400,14 @@ async fetchCartData() {
 
           if (
             (props['_staff_id'] || '').toLowerCase() !== selectedStaff ||
-            props['Date'] !== selectedDate
+            props['Appointment-Date'] !== selectedDate
           ) {
             if (isExactDuplicate) return 'This booking is already in your cart.';
             continue;
           }
 
 
-        const itemStart    = this.parseTime12Hour(props['Date'], props['_service_time']);
+        const itemStart    = this.parseTime12Hour(props['Appointment-Date'], props['Appointment-Time']);
         const itemDuration = this.parseDuration(props['Duration']);
         const itemEnd      = new Date(itemStart.getTime() + itemDuration * 60000);
 
